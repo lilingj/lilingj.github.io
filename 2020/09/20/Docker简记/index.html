@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Docker为什么出现？传统模式下，运维部署开发的代码时，环境不一样，容易出错，两者扯皮。Docker将软件代码和环境整体打包递交给运维。  Docker是什么？解决了运行环境和配置问题软件容器，方便做持续集成并有助于整体发布的容器虚拟化技术 Docker能干什么？替代虚拟机 虚拟机缺点：资源占用多，冗余步骤多，启动慢 Docker三要素Docker架构图 三要素：镜像、容器、仓库 镜像类比于类，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker简记">
+<meta property="og:url" content="http://example.com/2020/09/20/Docker%E7%AE%80%E8%AE%B0/index.html">
+<meta property="og:site_name" content="换菜刀换脸盆">
+<meta property="og:description" content="Docker为什么出现？传统模式下，运维部署开发的代码时，环境不一样，容易出错，两者扯皮。Docker将软件代码和环境整体打包递交给运维。  Docker是什么？解决了运行环境和配置问题软件容器，方便做持续集成并有助于整体发布的容器虚拟化技术 Docker能干什么？替代虚拟机 虚拟机缺点：资源占用多，冗余步骤多，启动慢 Docker三要素Docker架构图 三要素：镜像、容器、仓库 镜像类比于类，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://uploader.shimo.im/f/VuatyY0RNnv42kYM.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/tLu0hN9C3xWvi5xx.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/7P3BnNiom3BSRhbe.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/0NHh8nivaFmRLueq.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/ds0OkbgMznc2ev11.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/49a8vK8yeIvKwTVP.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/XQy1Oekt7xZhtZpY.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/RVYO3ikJaRFqzOlY.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/XCFKiIalEcbvU9Zy.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/8AkjqUWoeXN6h1Lb.png!thumbnail">
+<meta property="article:published_time" content="2020-09-20T15:26:23.000Z">
+<meta property="article:modified_time" content="2020-09-20T15:37:16.297Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://uploader.shimo.im/f/VuatyY0RNnv42kYM.png!thumbnail">
+
+<link rel="canonical" href="http://example.com/2020/09/20/Docker%E7%AE%80%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Docker简记 | 换菜刀换脸盆</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">换菜刀换脸盆</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/20/Docker%E7%AE%80%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="换菜刀换脸盆的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="换菜刀换脸盆">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker简记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-20 23:26:23 / 修改时间：23:37:16" itemprop="dateCreated datePublished" datetime="2020-09-20T23:26:23+08:00">2020-09-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Docker为什么出现？"><a href="#Docker为什么出现？" class="headerlink" title="Docker为什么出现？"></a>Docker为什么出现？</h1><p>传统模式下，运维部署开发的代码时，环境不一样，容易出错，两者扯皮。Docker将软件代码和环境整体打包递交给运维。</p>
+<p><img src="https://uploader.shimo.im/f/VuatyY0RNnv42kYM.png!thumbnail" alt="图片"><img src="https://uploader.shimo.im/f/tLu0hN9C3xWvi5xx.png!thumbnail" alt="图片"></p>
+<h1 id="Docker是什么？"><a href="#Docker是什么？" class="headerlink" title="Docker是什么？"></a>Docker是什么？</h1><p>解决了运行环境和配置问题软件容器，方便做持续集成并有助于整体发布的容器虚拟化技术</p>
+<h1 id="Docker能干什么？"><a href="#Docker能干什么？" class="headerlink" title="Docker能干什么？"></a>Docker能干什么？</h1><p>替代虚拟机</p>
+<p>虚拟机缺点：资源占用多，冗余步骤多，启动慢</p>
+<h1 id="Docker三要素"><a href="#Docker三要素" class="headerlink" title="Docker三要素"></a>Docker三要素</h1><p>Docker架构图<img src="https://uploader.shimo.im/f/7P3BnNiom3BSRhbe.png!thumbnail" alt="图片"></p>
+<p>三要素：镜像、容器、仓库</p>
+<p>镜像类比于类，容器类比于类的实例，容器是用镜像创建的运行实例</p>
+<p>容器可以看做是一个简易版的Linux环境</p>
+<p>仓库是集中存放镜像文件的场所</p>
+<h1 id="Docker运行底层原理"><a href="#Docker运行底层原理" class="headerlink" title="Docker运行底层原理"></a>Docker运行底层原理</h1><p>Docker 是一个Client-Server 结构的系统，Docker 守护进程运行在主机上，然后通过Socket连接从客户端访问，守护进程从客户端接收命令并管理运行在主机上的容器</p>
+<p>相比于虚拟机，Docker 没有硬件虚拟化，减少了抽象层<img src="https://uploader.shimo.im/f/0NHh8nivaFmRLueq.png!thumbnail" alt="图片"></p>
+<h1 id="Docker常用命令"><a href="#Docker常用命令" class="headerlink" title="Docker常用命令"></a>Docker常用命令</h1><ol>
+<li><p>帮助命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br><span class="line">docker info</span><br><span class="line">docker --help</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>镜像命令</p>
+</li>
+</ol>
+<p>显示镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line">#-a 显示所有</span><br><span class="line">#-q 显示id</span><br><span class="line">#--digests 显示镜像摘要信息</span><br><span class="line">#-no-trunc 显示镜像完整信息</span><br></pre></td></tr></table></figure>
+<p>查找镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker search</span><br><span class="line">#--no-trunc 显示完整的镜像描述</span><br><span class="line">#-s 列出收藏数不小于指定值的镜像</span><br><span class="line">#--automated 只列出automated build类型的镜像</span><br></pre></td></tr></table></figure>
+<p>拉取镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull</span><br></pre></td></tr></table></figure>
+<p>删除镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker rmi</span><br><span class="line">#-f 强制删除</span><br><span class="line">docker rmi -f $(docker images -qa) #删除全部镜像</span><br></pre></td></tr></table></figure>
+<p>容器封装成镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -m&#x3D;&quot;提交描述信息&quot; -a&#x3D;&quot;作者&quot; 容器ID 要创建的目标镜像名:[标签名]</span><br></pre></td></tr></table></figure>
+
+
+<ol>
+<li>容器命令</li>
+</ol>
+<p>新建并启动容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -it centos</span><br><span class="line">#-i 以交互模式运行容器</span><br><span class="line">#-t 为容器重新分配一个伪输入终端</span><br><span class="line">#-p 主机端口:docker容器端口</span><br><span class="line">#-P 随机分配端口</span><br><span class="line">#-d 启动守护容器</span><br></pre></td></tr></table></figure>
+<p>列出所有正在运行的容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br><span class="line">#-a 正在运行和历史上运行的所有容器</span><br><span class="line">#-l 上一个运行的</span><br><span class="line">#-n 上指定次运行的</span><br></pre></td></tr></table></figure>
+<p>退出容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#容器停止退出</span><br><span class="line">exit</span><br><span class="line">#容器不停止退出</span><br><span class="line">ctrl + P + Q</span><br></pre></td></tr></table></figure>
+<p>启动容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start 容器ID</span><br></pre></td></tr></table></figure>
+<p>重启容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart 容器ID</span><br></pre></td></tr></table></figure>
+<p>停止容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#正常停止</span><br><span class="line">docker stop 容器ID</span><br><span class="line">#强制停止</span><br><span class="line">docker kill 容器ID</span><br></pre></td></tr></table></figure>
+<p>删除已经停止容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker rm 容器ID</span><br><span class="line">#-f 强制删除</span><br><span class="line">#一次性删除多容器</span><br><span class="line">docker rm -f $(docker ps -aq)</span><br><span class="line">docker ps -aq | xargs docker rm</span><br></pre></td></tr></table></figure>
+<p>查看容器日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f -t --tail 容器ID</span><br><span class="line">#-t 加入时间戳</span><br><span class="line">#-f 跟随最新日志打印</span><br><span class="line">#--tail 数字 显示最后多少条</span><br></pre></td></tr></table></figure>
+<p>查看容器内运行的进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker top 容器ID</span><br></pre></td></tr></table></figure>
+<p>查看容器内部细节</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect 容器ID</span><br></pre></td></tr></table></figure>
+<p>进入正在运行的容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker attach 容器ID</span><br></pre></td></tr></table></figure>
+<p>从容器内拷贝文件到主机上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp 容器ID:容器内路径 目的主机路径</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Docker镜像是什么"><a href="#Docker镜像是什么" class="headerlink" title="Docker镜像是什么"></a>Docker镜像是什么</h1><p>轻量级、可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，包括代码、运行时、库、环境变量、配置文件</p>
+<p>UnionFS（联合文件系统）:Union文件系统是一种分层、轻量级并且搞性能的文件系统，它支持对文件系统的修改作为一次提交来一层一层叠加，同时将不同目录挂载到同一个虚拟文件系统下</p>
+<p>UnionFS是Docker镜像的基础，镜像可以通过分层来继承，基于基础镜像</p>
+<p><img src="https://uploader.shimo.im/f/ds0OkbgMznc2ev11.png!thumbnail" alt="图片"></p>
+<h1 id="Docker容器数据卷"><a href="#Docker容器数据卷" class="headerlink" title="Docker容器数据卷"></a>Docker容器数据卷</h1><p>Docker容器产生的数据，如果不通过docker commit生成新的镜像，使数据作为镜像一部分保存下来，那么容器删除后，数据自然也就没有了</p>
+<ul>
+<li>将运用与运行环境打包成容器运行，运行可以伴随着容器，但我们对数据的要求是希望持久化的</li>
+<li>容器之前希望有可能共享数据</li>
+</ul>
+<p>直接命令添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -v &#x2F;宿主机绝对路径:&#x2F;容器内目录 镜像名</span><br><span class="line">#两个文件夹将共享数据</span><br><span class="line">docker run -it -v &#x2F;宿主机绝对路径:&#x2F;容器内目录:ro 镜像名</span><br><span class="line">#容器内对共享目录只读</span><br></pre></td></tr></table></figure>
+<p>dockerfile添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">略</span><br><span class="line">--volume-from 容器间传递共享</span><br></pre></td></tr></table></figure>
+
+<h1 id="DockerFile"><a href="#DockerFile" class="headerlink" title="DockerFile"></a>DockerFile</h1><p>DockerFile 是用来构建Docker镜像的构建文件，是由一系列命令和参数构成的脚本。</p>
+<p>构建三步骤：</p>
+<pre><code>* 编写DockerFile文件
+* docker build
+* docker run</code></pre>
+<p>scratch 是元镜像</p>
+<h4 id="DockerFile基础知识："><a href="#DockerFile基础知识：" class="headerlink" title="DockerFile基础知识："></a>DockerFile基础知识：</h4><pre><code>* 每条保留字指令都必须为大写字母且后面要跟随至少一个参数
+* 指令从上到下，顺序执行
+* #表示注释
+* 每条指令都会创建一个新的镜像层，并对镜像进行提交</code></pre>
+<h4 id="DockerFile执行的大致流程"><a href="#DockerFile执行的大致流程" class="headerlink" title="DockerFile执行的大致流程"></a>DockerFile执行的大致流程</h4><pre><code>* docker从基础镜像运行一个容器
+* 执行一条指令并对容器做出修改
+* 执行类似docker commit的操作提交一个新的镜像层
+* docker再基于刚提交的镜像运行一个新容器
+* 执行dockerfile中的下一条指令知道所有指令都执行完成</code></pre>
+<h4 id="DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段"><a href="#DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段" class="headerlink" title="DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段"></a>DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段</h4><pre><code>* DockerFile 是软件的原材料
+* Docker镜像是软件的交付品
+* Docker容器则可以认为世软件的运行态</code></pre>
+<p>DockerFile面向开发，Docker镜像成为交付标准，Docker容器则涉及到部署与运维<img src="https://uploader.shimo.im/f/49a8vK8yeIvKwTVP.png!thumbnail" alt="图片"></p>
+<h1 id="DockerFile保留字指令"><a href="#DockerFile保留字指令" class="headerlink" title="DockerFile保留字指令"></a>DockerFile保留字指令</h1><p><img src="https://uploader.shimo.im/f/XQy1Oekt7xZhtZpY.png!thumbnail" alt="图片"></p>
+<ol>
+<li><p>FROM：基础镜像，当前镜像是基于哪个镜像的</p>
+</li>
+<li><p>MAINTAINER：镜像维护者的姓名和邮箱地址</p>
+</li>
+<li><p>RUN：容器构建时需要运行的命令</p>
+</li>
+<li><p>EXPOSE：当前容器对外暴露的端口号</p>
+</li>
+<li><p>WORKDIR：指定在创建容器后，终端默认登录的进来工作目录，一个落脚点</p>
+</li>
+<li><p>ENV：用来构建镜像过程中设置环境变量</p>
+</li>
+<li><p>ADD：将宿主机目录下的文件拷贝进镜像且ADD命令会自动处理URL和解压tar压缩包</p>
+</li>
+<li><p>COPY：类似ADD，拷贝文件和目录到镜像中</p>
+<ul>
+<li>COPY src dest</li>
+<li>COPY [“src”, “dest”]</li>
+</ul>
+</li>
+<li><p>VOLUME：容器数据卷，用于数据保存和持久化工作</p>
+</li>
+<li><p>CMD：容器启动时要运行的命令，可以有多个，CMD会被docker run之后的参数替换</p>
+<ul>
+<li>shell格式：CMD &lt;命令&gt;</li>
+<li>exec格式：CMD [“可执行文件“， ”参数1”,  “参数2”…]</li>
+<li>参数列表格式：CMD [”参数1”,  “参数2”…]，在指定ENTRYPOINT指令后，用CMD指定具体参数</li>
+</ul>
+</li>
+<li><p>ENTRYPOINT：同CMD，但是docker run 之后的参数会追加到该命令行中</p>
+</li>
+<li><p>ONBUILD：当构建一个被继承的dockerfile时运行命令，父镜像在被子继承后父镜像的onbuild会被触发</p>
+<h4 id="例子1："><a href="#例子1：" class="headerlink" title="例子1："></a>例子1：</h4></li>
+</ol>
+<p>阿里云pull下的centos没有vim，也没有ifconfig。制作一个包含这些工具的centos镜像</p>
+<p>第一步：</p>
+<p>DockerFile文件编写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#DockerFile文件编写</span><br><span class="line">FROM centos</span><br><span class="line">MAINTAINER llj&lt;lilingjie_nefu@qq.com&gt;</span><br><span class="line">ENV MYPATH &#x2F;tmp</span><br><span class="line">WORKDIR $MYPATH</span><br><span class="line">RUN yum -y install vim</span><br><span class="line">RUN yum -y install net-tools</span><br><span class="line">EXPOSE 80</span><br><span class="line">CMD echo &quot;success!!!&quot;</span><br><span class="line">CMD &#x2F;bin&#x2F;bash</span><br><span class="line">ONBUILD RUN echo &quot;Dad is looking at you&quot;</span><br></pre></td></tr></table></figure>
+<p>第二步：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f &#x2F;mydocker&#x2F;DockerFile -t llj_centos:1.0 .</span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<pre><code>    * 最后那个&quot;.&quot;必须加，不然报错
+    * 我使用的Docker toolbox，创建了mydocker文件夹，创建DockerFile文件，运行，报错，大意是找不到该文件，有&quot;D:\mydocker&quot;字样，我去D盘下创建了mydocker文件夹，DockerFile文件，然后可以正常运行
+    * 对上一条，我发现我用的是git bash，没进入docker toolbox提供的虚拟机，进入就好了</code></pre>
+<h4 id="例子2："><a href="#例子2：" class="headerlink" title="例子2："></a>例子2：<img src="https://uploader.shimo.im/f/RVYO3ikJaRFqzOlY.png!thumbnail" alt="图片"></h4><h1 id="本地镜像发布到阿里云"><a href="#本地镜像发布到阿里云" class="headerlink" title="本地镜像发布到阿里云"></a>本地镜像发布到阿里云</h1><p><img src="https://uploader.shimo.im/f/XCFKiIalEcbvU9Zy.png!thumbnail" alt="图片"></p>
+<p><img src="https://uploader.shimo.im/f/8AkjqUWoeXN6h1Lb.png!thumbnail" alt="图片"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/20/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/20/git%E7%AE%80%E8%AE%B0/" rel="next" title="git简记">
+      git简记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E4%B8%BA%E4%BB%80%E4%B9%88%E5%87%BA%E7%8E%B0%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">Docker为什么出现？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">Docker是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E8%83%BD%E5%B9%B2%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">Docker能干什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="nav-number">4.</span> <span class="nav-text">Docker三要素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E8%BF%90%E8%A1%8C%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">Docker运行底层原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">6.</span> <span class="nav-text">Docker常用命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E9%95%9C%E5%83%8F%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">7.</span> <span class="nav-text">Docker镜像是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="nav-number">8.</span> <span class="nav-text">Docker容器数据卷</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DockerFile"><span class="nav-number">9.</span> <span class="nav-text">DockerFile</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DockerFile%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%9A"><span class="nav-number">9.0.0.1.</span> <span class="nav-text">DockerFile基础知识：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DockerFile%E6%89%A7%E8%A1%8C%E7%9A%84%E5%A4%A7%E8%87%B4%E6%B5%81%E7%A8%8B"><span class="nav-number">9.0.0.2.</span> <span class="nav-text">DockerFile执行的大致流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DockerFile%E3%80%81Docker%E9%95%9C%E5%83%8F%E4%B8%8EDocker%E5%AE%B9%E5%99%A8%E5%88%86%E5%88%AB%E4%BB%A3%E8%A1%A8%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%B8%89%E4%B8%AA%E4%B8%8D%E5%90%8C%E9%98%B6%E6%AE%B5"><span class="nav-number">9.0.0.3.</span> <span class="nav-text">DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DockerFile%E4%BF%9D%E7%95%99%E5%AD%97%E6%8C%87%E4%BB%A4"><span class="nav-number">10.</span> <span class="nav-text">DockerFile保留字指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%901%EF%BC%9A"><span class="nav-number">10.0.0.1.</span> <span class="nav-text">例子1：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%902%EF%BC%9A"><span class="nav-number">10.0.0.2.</span> <span class="nav-text">例子2：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%95%9C%E5%83%8F%E5%8F%91%E5%B8%83%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91"><span class="nav-number">11.</span> <span class="nav-text">本地镜像发布到阿里云</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description">换菜刀换脸盆的博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

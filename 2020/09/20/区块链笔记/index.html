@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="比特币：密码学原理  * 哈希  * 签名  比特币：数据结构  * 区块链：使用哈希指针，每一个区块都包含指向前一个区块的哈希指针，改变任一区块，后续所有区块中的哈希指针都会变  * merkle tree：![图片](https:&#x2F;&#x2F;uploader.shimo.im&#x2F;f&#x2F;Z3BqaY2sG2Ug7Zb8.png!thumbnail)最下面一层为数据块，其余每个节点保存两个子节点的哈希值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链笔记">
+<meta property="og:url" content="http://example.com/2020/09/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="换菜刀换脸盆">
+<meta property="og:description" content="比特币：密码学原理  * 哈希  * 签名  比特币：数据结构  * 区块链：使用哈希指针，每一个区块都包含指向前一个区块的哈希指针，改变任一区块，后续所有区块中的哈希指针都会变  * merkle tree：![图片](https:&#x2F;&#x2F;uploader.shimo.im&#x2F;f&#x2F;Z3BqaY2sG2Ug7Zb8.png!thumbnail)最下面一层为数据块，其余每个节点保存两个子节点的哈希值">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-20T15:26:31.000Z">
+<meta property="article:modified_time" content="2020-09-20T15:37:16.303Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2020/09/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>区块链笔记 | 换菜刀换脸盆</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">换菜刀换脸盆</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="换菜刀换脸盆的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="换菜刀换脸盆">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          区块链笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-20 23:26:31 / 修改时间：23:37:16" itemprop="dateCreated datePublished" datetime="2020-09-20T23:26:31+08:00">2020-09-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ol>
+<li><p>比特币：密码学原理</p>
+<pre><code> * 哈希
+ * 签名</code></pre>
+</li>
+<li><p>比特币：数据结构</p>
+<pre><code> * 区块链：使用哈希指针，每一个区块都包含指向前一个区块的哈希指针，改变任一区块，后续所有区块中的哈希指针都会变
+ * merkle tree：![图片](https://uploader.shimo.im/f/Z3BqaY2sG2Ug7Zb8.png!thumbnail)最下面一层为数据块，其余每个节点保存两个子节点的哈希值</code></pre>
+</li>
+<li><p>比特币：共识协议</p>
+<pre><code> * 分为区块头和区块体，只对区块头取hash![图片](https://uploader.shimo.im/f/HFzXtAFWLmzU3xUB.png!thumbnail)
+ * 分布式共识：CAP Theorem
+ * 按计算力投票
+ * 最长合法链 longest valid chain：区块链中可能临时存在分叉![图片](https://uploader.shimo.im/f/op1K2uki9EvaW3Jk.png!thumbnail)
+ * 区块奖励(block reward)：发行新比特币的唯一方法
+ * 共识机制要取得的共识是什么？</code></pre>
+</li>
+<li><p>比特币：实现</p>
+<pre><code> * 维护UTXO（Unspent Transaction Output）集合  区块奖励  交易费
+ * 两种激励机制（每隔10分钟产生一个新的区块）
+     * 区块奖励
+     * 交易费
+ * 挖矿纯粹比拼算力，没有实际意义
+ * 假设大部分算力掌握在诚实的矿工手里。
+ * 写一个交易，称为one confirmation，此区块后随区块链每接一个区块，多一重confirmation，规定six confirmation后，此交易合法（防止交易被回滚），因为每产生一个区块等待十分钟，完成一个交易需要60分钟。</code></pre>
+</li>
+<li><p>比特币：网络</p>
+<pre><code> * 比特币协议工作在应用层，所有节点平等。加入网络需要知道一个种子节点，进而知道它知道的节点，以此类推，从来融入网络。
+ * 简单，鲁棒，而不是高效（simple，robust， but not efficient）
+ * 区块大小限制1M</code></pre>
+</li>
+<li><p>比特币：挖矿难度</p>
+<pre><code> * H(block header) &lt;= target 增加挖矿难度即减小target的值。
+ * 采用哈希算法是SHA-256，输出空间为2^256
+ * 出块时间不是越短越好，否则会分散好矿工算力，增加selfish attack
+ * 2016个区块调整一下区块难度，大概2016 * 10 / （60 * 24） = 14天调整一次
+ * 调整难度，即调整target，具体策略：target = target * actual time / expected time
+ * 算力-时间图![图片](https://uploader.shimo.im/f/mpwGo9pheM3TbYvV.png!thumbnail)
+ * 挖矿难度-时间图![图片](https://uploader.shimo.im/f/cZc1CSVFNNgjiSis.png!thumbnail)与算力增长基本同步</code></pre>
+</li>
+<li><p>比特币：挖矿</p>
+<pre><code> * 全节点和轻节点![图片](https://uploader.shimo.im/f/5lIo9rO2QTrV0U8L.png!thumbnail)![图片](https://uploader.shimo.im/f/yhNtYYjttStGA1eL.png!thumbnail)
+ * 比特币安全保证：
+     * 密码学上的保证：没有私钥，不能伪造签名，就不能盗取比特币（前提：大多数矿工是好的，不会接受非法交易）
+     * 共识机制
+ * 挖矿设备演化：越来越专业，由CPU转向GPU，再转向ASIC（Application Specific IntegratedCircuit 专用集成电路），由个人挖矿转向矿池挖矿
+ * 集中式矿池和分布式矿池
+ * 大矿池可进行的攻击：（大矿池可能的危害）
+     * 分叉攻击：double spent
+
+     * Boycott：强制分叉抵制某一账</code></pre>
+</li>
+<li><p>比特币：脚本</p>
+<pre><code> * 为了安全，输入脚本和输出脚本分开执行
+ * 比特币脚本语言非常简单，功能有限</code></pre>
+</li>
+<li><p>比特币：分叉</p>
+<pre><code> * 修改比特币协议产生的分叉
+     * 硬分叉：永久分叉
+         * 区块大小增大![图片](https://uploader.shimo.im/f/73zjcOmQ8tazxkuZ.png!thumbnail)由此导致分家（真实事件），分开的两条链只有协议不同，一个交易涉及的签名两条链都认可，会导致安全问题，后来加入链标识，问题已经解决
+     * 软分叉：不会永久分叉（半数以上的节点更新软件，就不会造成永久性分叉
+         * 区块大小减小![图片](https://uploader.shimo.im/f/qFIb5904w40DkOau.png!thumbnail)不会永久分叉</code></pre>
+</li>
+<li><p>比特币：问答</p>
+<pre><code> * 转账时接受者不在线会怎样？无所谓
+ * 无法重置密码
+ * 私钥泄露：只能赶紧转钱到安全账户
+ * 转错账：无解
+ * 交易费收款人怎么确定？挖到区块的矿工获得该区块内所有交易的交易费</code></pre>
+</li>
+<li><p>比特币：匿名性（Bitcoin and anonimity）</p>
+<pre><code> * 黑产层面来说，无法保证
+ * 零知识证明数学基础：同态隐藏![图片](https://uploader.shimo.im/f/75rMOh40tKoBscoh.png!thumbnail)
+ * 零币和零钞![图片](https://uploader.shimo.im/f/j1TamV8X1EUBfqZ1.png!thumbnail)</code></pre>
+</li>
+<li><p>比特币：思考</p>
+<pre><code> * 哈希指针：指针中的地址只在本地内存有意义，区块链中，实际上只有哈希，没有指针。在主节点中，使用键值数据库实现指针的功能。
+ * 区块恋：恋人各自保存半段私钥，安全性下降。
+ * 取得的共识随时可能被推翻，比特币并没有绕过分布式系统已经证明的不可能结论。
+ * 比特币的稀缺性：稀缺的东西不适合做货币
+ * 量子计算：量子计算机出现后会不会破坏加密货币？量子计算离实用还远，其次，它首先冲击的是传统金融业；比特币没有将公钥直接暴露出来，通过私钥可以单向退出公钥，即使计算力足够通过公钥推出私钥，但是比特币使用的是公钥的哈希，哈希一般不可逆。（即使是公钥，也不要随便泄露）</code></pre>
+</li>
+</ol>
+<ol>
+<li><p>以太坊：概论</p>
+<pre><code> * 比特币和以太坊是最主要的两种加密货币，以太坊针对比特币进行了改进，有一些革命性的改变。
+ * 以太坊（Ethereum）由比特币的工作量证明（proof of work）转为权益性证明（proof of stake），ASIC resistance，支持智能合约（smart contract）
+ * BTC最小单位为1 Satoshi，ETH最小单位为1 Wei
+ * 智能合约：
+     * 使用技术手段取代司法手段。
+     * 有些逻辑比较简单清晰可以写成智能合约的形式。
+     * 某些情况下，使用司法手段维护合同有效性比较困难，比较麻烦。</code></pre>
+</li>
+<li><p>以太坊：账户</p>
+<pre><code> * 比特币基于账本，没有显式的记录某个账户有多少货币，可能自己都不清楚自己有多少钱。      以太坊基于账户。
+ * 比特币有回滚攻击double spending attack，转账的人将同一个比特币用两次
+ * 以太坊有回放攻击replay attack，收账的人将一个交易再发布一次获得两份转账
+ * 以太坊两类账户
+     * 外部账户（externally owned account）
+     * 合约账户（smart contract account）</code></pre>
+</li>
+<li><p>以太坊：状态树</p>
+<pre><code> * Patricia trie 和 Merkle Patricia trie
+ * 区块结构：![图片](https://uploader.shimo.im/f/gRqqyFD3yjuzaaxi.png!thumbnail)</code></pre>
+</li>
+<li><p>以太坊：交易树和收据树</p>
+</li>
+<li><p>以太坊：GHOST协议</p>
+<pre><code> * 以太坊出块时间短，容易分叉，小矿工挖到的区块容易不在主链中，为防止此类事件，不在主链的区块也可能获得区块奖励（主链中的区块最多可以合并两个uncle区块）![图片](https://uploader.shimo.im/f/wU5xaaw5bEoC0rRv.png!thumbnail)![图片](https://uploader.shimo.im/f/Hq71GnyFb6s73x2t.png!thumbnail)合法的叔父限制七代，近代合并奖励大，鼓励出现分叉后及早合并</code></pre>
+</li>
+<li><p>以太坊：挖矿算法</p>
+<pre><code> * 要实现ASIC resistance，可以设计需要频繁访问内存的puzzle，因为ASIC和普通计算机访存时间差别不大
+ * 挖矿保存1G大数据，主节点保存16M数据用于验证，这两种数据集大小随时间增长
+ * 大数据集每个位置的数据都可以独立地生成出来
+ * 大数据集让以太币用GPU挖矿比较多，ASIC resistance比较成功</code></pre>
+</li>
+<li><p>以太坊：难度调整</p>
+<pre><code> * 区块难度![图片](https://uploader.shimo.im/f/QEykWYOVIDEPqn36.png!thumbnail)
+ * 难度炸弹（由工作量证明转向权益证明的保证）![图片](https://uploader.shimo.im/f/kU63hRzGpmuwdv1R.png!thumbnail)权益证明的机制还未开发出来，但是难度炸弹已经显现，与当初预期不符，只能临时增加第二条公式以修正![图片](https://uploader.shimo.im/f/TaCr4zcImuQe1rPw.png!thumbnail)
+ * 以太坊发展的四个阶段![图片](https://uploader.shimo.im/f/DRU3njOum449RdV7.png!thumbnail)</code></pre>
+</li>
+<li><p>以太坊：PoS（Proof of stake）</p>
+<pre><code> * 基于工作量证明浪费电，比特币一个交易目前耗费大约1000度电，以太坊一个交易67度电
+ * 这些能耗是否是必须的？
+ * 以太坊准备采用的PoS协议：FFG（Casper the Friendly Finality Gadget）
+ * 要想成为Validator，需要交保证金，以保证金的多少来确定投票的权重，决定哪条分叉为主链</code></pre>
+</li>
+<li><p>以太坊：智能合约</p>
+<pre><code> * 智能合约是运行在区块链上的一段代码，代码的逻辑定义了合约的内容
+ * 智能合约的账户保存了合约当前的运行状态
+     * balance：当前余额
+     * nonce：交易次数
+     * code：合约代码
+     * storage：存储，数据结构是一棵MPT
+ * Solidity是智能合约最常用的语言，语法上与JavaScript很接近![图片](https://uploader.shimo.im/f/x5X4sTLVDx2bWkDO.png!thumbnail)
+ * 外部账户如何调用智能合约？![图片](https://uploader.shimo.im/f/NDV3Yn6uIuXDyVdz.png!thumbnail)
+ * ![图片](https://uploader.shimo.im/f/lPGKPBW8vfZ8CoUD.png!thumbnail)![图片](https://uploader.shimo.im/f/ZNGQ3vBIiG8Q2lIC.png!thumbnail)停机问题不可解
+ * 以太坊错误处理：出现错误汽油费不退![图片](https://uploader.shimo.im/f/2X2YlO6GrZROEUhL.png!thumbnail)![图片](https://uploader.shimo.im/f/70SLajKi66oepQZr.png!thumbnail)
+ * 只能先执行智能合约，再挖矿，可能得不到汽油费，这样导致挖矿慢的矿工吃亏。
+ * 发布的交易不一定是执行成功的，因为执行不成功也要收汽油费
+ * Solidity不支持多线程
+ * 重入攻击![图片](https://uploader.shimo.im/f/GxFFompZXsojINsh.png!thumbnail)</code></pre>
+</li>
+<li><p>以太坊：The DAO（Decentralized Autonomous Organization）</p>
+<pre><code> * 要取回钱只能拆分
+ * The DAO受到攻击后进行了软件升级，造成软分叉，但是有bug，方案失败，新方案升级软件，强行转账，造成硬分叉，旧软件认为新软件记录的交易非法。硬分叉后旧链依旧有矿工继续挖，新链以太币继承原来的名字ETH，旧链改为ETC。
+ * 新旧链使用chainID标识，防止重放攻击</code></pre>
+</li>
+<li><p>以太坊：反思</p>
+<pre><code> * 智能合约真的智能吗？不智能。自动合约，如ATM机
+ * 不可篡改是把双刃剑，如The DAO被攻击事件。（没有什么是不可篡改的）
+ * solidity是否是好的编程语言？需要改进
+ * 图灵完备语言是否适合？不太合适
+ * 智能合约走向模板化，由专门的人编写
+ * 硬分叉是一种权利
+ * 去中心化不等价分布式，去中心化一定是分布式，分布式不一定是去中心化。
+ * 比特币&amp;以太坊：交易驱动的状态机。上千台机器重复同一种操作，同步状态，而分布式系统更多是让多台机器合作而非竞争。</code></pre>
+</li>
+<li><p>以太坊：美链</p>
+<pre><code> * 背景![图片](https://uploader.shimo.im/f/KC6kwBjBfiFeZbNI.png!thumbnail)黑客通过乘法溢出来攻击了美链</code></pre>
+</li>
+<li><p>总结</p>
+<pre><code> * 信息传播和价值交换渐渐融合
+ * 加密货币本就不该和已有的支付方式竞争
+ * 程序化是一个大趋势</code></pre>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/20/Shell%E7%AE%80%E8%AE%B0/" rel="prev" title="Shell简记">
+      <i class="fa fa-chevron-left"></i> Shell简记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/20/%E5%A4%A7%E5%AD%A6%E8%B5%9A%E9%92%B1/" rel="next" title="大学赚钱">
+      大学赚钱 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description">换菜刀换脸盆的博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

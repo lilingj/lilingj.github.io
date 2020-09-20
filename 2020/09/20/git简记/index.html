@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="git 结构* 工作区：写代码，通过git add提交到暂存区 * 暂存区：临时存储，通过git commit提交到本地库 * 本地库：保存历史版本 本地库操作 本地库初始化 1git init 初始化本地库后多了 .git 文件夹， .git 目录中存放的是本地库相关的子目录和文件  设置签名   形式： * 用户名：llj * Email地址：zz@qq.com 作用：区分不同开发人员身份 辨">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git简记">
+<meta property="og:url" content="http://example.com/2020/09/20/git%E7%AE%80%E8%AE%B0/index.html">
+<meta property="og:site_name" content="换菜刀换脸盆">
+<meta property="og:description" content="git 结构* 工作区：写代码，通过git add提交到暂存区 * 暂存区：临时存储，通过git commit提交到本地库 * 本地库：保存历史版本 本地库操作 本地库初始化 1git init 初始化本地库后多了 .git 文件夹， .git 目录中存放的是本地库相关的子目录和文件  设置签名   形式： * 用户名：llj * Email地址：zz@qq.com 作用：区分不同开发人员身份 辨">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://uploader.shimo.im/f/OwpxPL43akuyAmW5.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/mT1iwpXOMJzVIhxg.png!thumbnail">
+<meta property="article:published_time" content="2020-09-20T15:26:24.000Z">
+<meta property="article:modified_time" content="2020-09-20T15:37:16.298Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://uploader.shimo.im/f/OwpxPL43akuyAmW5.png!thumbnail">
+
+<link rel="canonical" href="http://example.com/2020/09/20/git%E7%AE%80%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>git简记 | 换菜刀换脸盆</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">换菜刀换脸盆</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/20/git%E7%AE%80%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="换菜刀换脸盆的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="换菜刀换脸盆">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git简记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-20 23:26:24 / 修改时间：23:37:16" itemprop="dateCreated datePublished" datetime="2020-09-20T23:26:24+08:00">2020-09-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="git-结构"><a href="#git-结构" class="headerlink" title="git 结构"></a>git 结构</h1><pre><code>* 工作区：写代码，通过git add提交到暂存区
+* 暂存区：临时存储，通过git commit提交到本地库
+* 本地库：保存历史版本</code></pre>
+<h1 id="本地库操作"><a href="#本地库操作" class="headerlink" title="本地库操作"></a>本地库操作</h1><ol>
+<li><p>本地库初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>初始化本地库后多了 .git 文件夹， .git 目录中存放的是本地库相关的子目录和文件</p>
+</li>
+<li><p>设置签名</p>
+</li>
+</ol>
+<p>形式：</p>
+<pre><code>* 用户名：llj
+* Email地址：zz@qq.com</code></pre>
+<p>作用：区分不同开发人员身份</p>
+<p>辨析：这里设置的签名和登录远程库的账密没有任何关系</p>
+<p>命令：</p>
+<pre><code>* 项目级别/仓库级别：仅在本地库范围内有效
+    * git config user.name llj
+    * git config user.email zz@qq.com
+    * 信息保存在当前项目下的config文件中
+* 系统用户级别：登录当前操作系统的用户范围
+    * git config --global user.name llj
+    * git config --global user.email zz@qq.com
+    * 信息保存在 ~/.gitconfig 文件
+* 项目级别优先系统用户级别，不允许二者都没有</code></pre>
+<h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><ol>
+<li><p>状态查看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+<p>查看工作区、暂存区状态</p>
+</li>
+<li><p>添加操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add [file name]</span><br></pre></td></tr></table></figure>
+<p>将工作区的新建/修改添加到暂存区</p>
+</li>
+<li><p>提交操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;commit message&quot; [file name]</span><br></pre></td></tr></table></figure>
+<p>将暂存区提交到本地库</p>
+</li>
+<li><p>查看历史记录操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">git log --pretty&#x3D;oneline</span><br><span class="line">git log --oneline</span><br><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4></li>
+<li><p>前进后退</p>
+</li>
+</ol>
+<p>基于索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 索引</span><br></pre></td></tr></table></figure>
+<p>使用^符号：只能后退</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^^</span><br></pre></td></tr></table></figure>
+<p>根据^符号的数量来回退几次<br>使用~符号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~2</span><br></pre></td></tr></table></figure>
+<p>根据~符号后的数字来回退几次<br>reset命令三个参数对比：</p>
+<pre><code>* --soft：
+    * 仅仅在本地库移动HEAD指针
+* --mixed：
+    * 在本地库移动HEAD指针
+    * 重置暂存区
+* --hard：
+    * 在本地库移动HEAD指针
+    * 重置暂存区
+    * 重置工作区</code></pre>
+<ol start="5">
+<li>删除文件并找回</li>
+</ol>
+<p>删除：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm good.txt</span><br><span class="line">git add good.txt</span><br><span class="line">git commit -m &quot;del good.txt&quot;</span><br></pre></td></tr></table></figure>
+<p>找回：</p>
+<p>已提交至本地库：回退一个版本</p>
+<p>未提交至本地库：git reset –hard HEAD</p>
+<ol start="6">
+<li><p>比较文件差异</p>
+<ul>
+<li>git diff [文件名]<ul>
+<li>将工作区中的文件与暂存区进行比较</li>
+</ul>
+</li>
+<li>git diff [本地库中历史文件] [文件名]<ul>
+<li>将工作区中的文件和本地库历史记录比较</li>
+</ul>
+</li>
+<li>git diff：比较多个文件</li>
+</ul>
+</li>
+</ol>
+<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><ol>
+<li>什么是分支</li>
+</ol>
+<p>在版本控制过程中，使用多条线同时推进多个任务</p>
+<ol start="2">
+<li><p>分支的好处</p>
+<ul>
+<li>同时并行推进多个功能开发，提高开发效率</li>
+<li>各个分支在开发过程中，某个分支开发失败，不会影响其他分支</li>
+</ul>
+</li>
+<li><p>分支操作</p>
+<ul>
+<li>创建分支<ul>
+<li>git branch [分支名]</li>
+</ul>
+</li>
+<li>查看分支<ul>
+<li>git branch -v</li>
+</ul>
+</li>
+<li>切换分支<ul>
+<li>git checkout [分支名]</li>
+</ul>
+</li>
+<li>合并分支<ul>
+<li>切换到被合并的分支上：git checkout [分支名]</li>
+<li>执行 merge 命令：git merge [分支名]</li>
+</ul>
+</li>
+<li>解决冲突<ul>
+<li>编辑文件，删除特殊符号</li>
+<li>把文件修改到满意的程度</li>
+<li>git add .</li>
+<li>git commit -m “日志信息”<ul>
+<li>commit 此时不能带文件名</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="Git基本原理"><a href="#Git基本原理" class="headerlink" title="Git基本原理"></a>Git基本原理</h1><ol>
+<li>哈希</li>
+</ol>
+<p>采用 SHA-1 哈希算法</p>
+<ol>
+<li>保存版本的机制</li>
+</ol>
+<p>集中式版本控制工具的文件管理机制（增量式）</p>
+<p>以文件变更列表的方式存储信息。这类系统讲他们保存的信息看做是一组基本文件和每个文件随时间逐步积累的差异</p>
+<p><img src="https://uploader.shimo.im/f/OwpxPL43akuyAmW5.png!thumbnail" alt="图片"></p>
+<p>Git 的文件管理机制（快照流）</p>
+<p>每次提交更新时 Git 都会对当前全部文件制作一个快照并保存这个快照的索引。如果文件没有修改，git 不再存储该文件，而是保留一个链接指向之前存储的文件</p>
+<p><img src="https://uploader.shimo.im/f/mT1iwpXOMJzVIhxg.png!thumbnail" alt="图片"></p>
+<ol>
+<li>分支管理机制</li>
+</ol>
+<p>本质是创建和移动指针</p>
+<h1 id="远程仓库基本操作"><a href="#远程仓库基本操作" class="headerlink" title="远程仓库基本操作"></a>远程仓库基本操作</h1><ol>
+<li>本地创建远程仓库别名</li>
+</ol>
+<p>在本地 gittest 仓库下创建远程仓库 gittest 别名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add lljtest https:&#x2F;&#x2F;github.com&#x2F;lilingj&#x2F;lljtest.git</span><br><span class="line">git remote -v  #查看已有别名</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>推送操作<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push 远程仓库地址或别名 分支名</span><br></pre></td></tr></table></figure>
+例子：将本地仓库 gittest 的 master 分支推送到远程仓库 gittest</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push lljtest master #通过别名</span><br><span class="line">git push https:&#x2F;&#x2F;github.com&#x2F;lilingj&#x2F;lljtest.git master #通过地址</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>克隆操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 远程仓库地址</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<ul>
+<li>完整地把远程库下载到本地</li>
+<li>创建 origin 远程地址别名</li>
+<li>初始化本地库</li>
+</ul>
+</li>
+<li><p>添加协作成员</p>
+</li>
+</ol>
+<p>在 github 中添加</p>
+<ol>
+<li><p>抓取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch 远程库地址或别名 分支名</span><br><span class="line">git merge 远程库地址别名&#x2F;远程分支名</span><br></pre></td></tr></table></figure>
+<p>上下两段代码等价</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull 远程库地址或别名 分支名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决冲突</p>
+<ul>
+<li>如果不是远程库最新版所做的修改，不能推送，必须先拉取</li>
+<li>拉取下来后如果进入冲突状态，解决冲突</li>
+</ul>
+</li>
+<li><p>跨团队协作</p>
+</li>
+</ol>
+<p>fork 远程仓库，协作人员以该远程仓库为基础，更新代码后，pull request 回被fork的仓库，经原仓库管理人员审核后，被 merge 到原仓库</p>
+<ol>
+<li>SSH 登录<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">rm -rf .ssh</span><br><span class="line">ssh-keygen -t rsa -C myemailaddr@qq.com</span><br></pre></td></tr></table></figure>
+在 .ssh 文件夹下生成 id_rsa 和 id_rsa.pub 公私钥对，将公钥复制到 github 上</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/20/Docker%E7%AE%80%E8%AE%B0/" rel="prev" title="Docker简记">
+      <i class="fa fa-chevron-left"></i> Docker简记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/20/Go%E7%AE%80%E8%AE%B0/" rel="next" title="Go简记">
+      Go简记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#git-%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">git 结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">本地库操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.0.0.1.</span> <span class="nav-text"></span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">分支管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">Git基本原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">6.</span> <span class="nav-text">远程仓库基本操作</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description">换菜刀换脸盆的博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
