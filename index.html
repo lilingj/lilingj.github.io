@@ -147,6 +147,273 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/06/Numpy%E3%80%81Pandas%E5%A4%87%E5%BF%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="换菜刀换脸盆的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="换菜刀换脸盆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/06/Numpy%E3%80%81Pandas%E5%A4%87%E5%BF%98/" class="post-title-link" itemprop="url">Numpy、Pandas备忘</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-06 10:28:42 / 修改时间：10:30:07" itemprop="dateCreated datePublished" datetime="2020-11-06T10:28:42+08:00">2020-11-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Numpy、Pandas备忘"><a href="#Numpy、Pandas备忘" class="headerlink" title="Numpy、Pandas备忘"></a>Numpy、Pandas备忘</h1><h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><h3 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h3><p><code>array</code>：多维数组</p>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">vector &#x3D; np.array([5, 6, 7, 5])</span><br><span class="line">matrix &#x3D; np.array([[4, 5, 9], [7, 4, 12], [5, 8, 11]])</span><br><span class="line"># 多维的依此类推</span><br></pre></td></tr></table></figure>
+
+
+
+<p>读取txt文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">world_alcohol &#x3D; np.genfromtxt(&quot;world_alcohol.txt&quot;, delimiter &#x3D; &quot;,&quot;, dtype &#x3D; str, skip_header &#x3D; 1)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="形状"><a href="#形状" class="headerlink" title="形状"></a>形状</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(vector.shape, matrix.shape)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(vector.dtype)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="修改数据类型"><a href="#修改数据类型" class="headerlink" title="修改数据类型"></a>修改数据类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 不是原地修改，而是返回一个新的array</span><br><span class="line">vector &#x3D; vector.astype(str)</span><br><span class="line">print(vector)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 打印 2 行 0 列元素</span><br><span class="line">print(matrix[2, 0])</span><br><span class="line">print(matrix[2][0])</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="一维数组切片"><a href="#一维数组切片" class="headerlink" title="一维数组切片"></a>一维数组切片</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(vector[1:2])</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="二维数组切片"><a href="#二维数组切片" class="headerlink" title="二维数组切片"></a>二维数组切片</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 第一行到最后一行，第二列</span><br><span class="line">print(matrix[:, 2])</span><br><span class="line">#print(matrix[:][2])</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id=""><a href="#" class="headerlink" title="+ - * / **"></a>+ - * / **</h4><p>全都是对应元素分别操作</p>
+<h4 id="lt-lt-gt-gt"><a href="#lt-lt-gt-gt" class="headerlink" title="== &lt; &lt;= &gt; &gt;= !="></a>== &lt; &lt;= &gt; &gt;= !=</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 逐项对比，返回一个同原数组shape相同的bool类型数组</span><br><span class="line">print(matrix &#x3D;&#x3D; 4)</span><br><span class="line">print(vector &#x3D;&#x3D; 6)</span><br><span class="line"></span><br><span class="line"># 应用</span><br><span class="line">boolIndex &#x3D; (matrix[:, 1] &#x3D;&#x3D; 4)</span><br><span class="line">print(boolIndex)</span><br><span class="line">print(matrix[boolIndex, :])</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="amp"><a href="#amp" class="headerlink" title="&amp; | !"></a>&amp; | !</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boolIndex &#x3D; (matrix[:, 1] &#x3D;&#x3D; 4) | (matrix[:, 1] &#x3D;&#x3D; 5)</span><br><span class="line">print(boolIndex)</span><br><span class="line">print(matrix[boolIndex, :])</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="批量赋值"><a href="#批量赋值" class="headerlink" title="批量赋值"></a>批量赋值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boolIndex &#x3D; (vector &#x3D;&#x3D; 5) | (vector &#x3D;&#x3D; 7)</span><br><span class="line">vector[boolIndex] &#x3D; -1</span><br><span class="line">print(vector)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="max-和-min"><a href="#max-和-min" class="headerlink" title="max 和 min"></a>max 和 min</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(matrix.max(), matrix.min())</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="sum"><a href="#sum" class="headerlink" title="sum"></a>sum</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(matrix.sum())</span><br><span class="line"># 1 为 x轴相加，0 为 y轴相加</span><br><span class="line">print(matrix.sum(axis &#x3D; 1))</span><br><span class="line">print(matrix.sum(axis &#x3D; 0))</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="ndim"><a href="#ndim" class="headerlink" title="ndim"></a>ndim</h4><p>一个整数，表示数组维度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(a.ndim)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="size"><a href="#size" class="headerlink" title="size"></a>size</h4><p>一个整数，表示数组元素数量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(a.size)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h3><h4 id="arange"><a href="#arange" class="headerlink" title="arange"></a>arange</h4><p>用法类似内置函数 range</p>
+<p>返回一个指定长度的一维数组，从0到指定值减1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">print(np.arange(15))</span><br><span class="line"></span><br><span class="line"># 指定区间，左闭右包，设置步长</span><br><span class="line">print(np.arange(10, 30, 5))</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="reshape、ravel"><a href="#reshape、ravel" class="headerlink" title="reshape、ravel"></a>reshape、ravel</h4><p>reshape：重塑数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 转换为 3 行 5 列数组</span><br><span class="line">a &#x3D; np.arange(15).reshape(3, 5)</span><br><span class="line">print(a)</span><br><span class="line"></span><br><span class="line"># 可以让一个参数为 -1，表示让系统自动求这个值</span><br><span class="line">a &#x3D; np.arange(15).reshape(-1, 5)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p>reval：reshape的逆操作，把多维数组拉直</p>
+<h4 id="zeros"><a href="#zeros" class="headerlink" title="zeros"></a>zeros</h4><p>接受一个表示shape的元组，生成该shape数组，初始化所有元素为0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 初始化一个 3 行 4 列数组，元素全为0</span><br><span class="line">print(np.zeros((3, 4)))</span><br><span class="line"></span><br><span class="line"># 可以指定类型，全为0.0</span><br><span class="line">print(np.zeros((3, 4), dtype &#x3D; np.float))</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="ones"><a href="#ones" class="headerlink" title="ones"></a>ones</h4><p>接受一个表示shape的元组，生成该shape数组，初始化所有元素为1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 初始化一个 2 层 3 行 4 列数组，元素全为1</span><br><span class="line">print(np.ones((2, 3, 4)))</span><br><span class="line"></span><br><span class="line"># 可以指定类型</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="random"><a href="#random" class="headerlink" title="random"></a>random</h4><p>用法类似 zeros 和 ones</p>
+<p>元素随机</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(np.random.random((2, 3)))</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="linspace"><a href="#linspace" class="headerlink" title="linspace"></a>linspace</h4><p>三个参数，start，end，份数。将区间[start, end]划分为指定份数，包括start和end</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(np.linspace(0, 10, 100))</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="常用数学操作函数"><a href="#常用数学操作函数" class="headerlink" title="常用数学操作函数"></a>常用数学操作函数</h4><h5 id="dot、T"><a href="#dot、T" class="headerlink" title="dot、T"></a>dot、T</h5><p>两个矩阵相乘若用<code> *</code>符号，则是对应元素相乘，不符合矩阵定义，dot函数提供矩阵乘操作。T表示矩阵转置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">A &#x3D; np.array([[1, 2], [3, 4]])</span><br><span class="line">B &#x3D; np.array([[1, 0], [0, 1]])</span><br><span class="line">print(A * B)</span><br><span class="line">print(A.dot(B))</span><br><span class="line">print(np.dot(A, B))</span><br><span class="line"></span><br><span class="line"># 矩阵的转置</span><br><span class="line">print(A.T)</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="exp、sqrt"><a href="#exp、sqrt" class="headerlink" title="exp、sqrt"></a>exp、sqrt</h5><p>求<code>e</code> 的次幂</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr &#x3D; np.arange(3)</span><br><span class="line">print(np.exp(arr))</span><br></pre></td></tr></table></figure>
+
+
+
+<p>开方</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(np.sqrt(arr))</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="floor、ceil"><a href="#floor、ceil" class="headerlink" title="floor、ceil"></a>floor、ceil</h5><p>向下取整、向上取整</p>
+<h5 id="hstack、vstack"><a href="#hstack、vstack" class="headerlink" title="hstack、vstack"></a>hstack、vstack</h5><p>hstack：接受一个元组，横向拼接其中矩阵</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; np.floor(10 * np.random.random((2, 2)))</span><br><span class="line">b &#x3D; np.floor(10 * np.random.random((2, 2)))</span><br><span class="line">c &#x3D; np.floor(10 * np.random.random((2, 3)))</span><br><span class="line">print(np.hstack((a, b, c)))</span><br></pre></td></tr></table></figure>
+
+<p>vstack：纵向拼接矩阵</p>
+<h5 id="hsplit、vsplit"><a href="#hsplit、vsplit" class="headerlink" title="hsplit、vsplit"></a>hsplit、vsplit</h5><p>hsplit：hstack的逆操作，可以指定均分份数，也可以指定切开点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 横向均分成三份</span><br><span class="line">a &#x3D; np.floor(10 * np.random.random((2, 12)))</span><br><span class="line">print(np.hsplit(a, 3))</span><br><span class="line"></span><br><span class="line"># 从下标 3 前切一刀，从下标 4 前切一刀</span><br><span class="line">print(np.hsplit(a, (3, 4)))</span><br></pre></td></tr></table></figure>
+
+<p>vsplit：同hsplit</p>
+<h4 id="view"><a href="#view" class="headerlink" title="view"></a>view</h4><p>复制操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; np.array([1, 2])</span><br><span class="line"></span><br><span class="line"># b 和 a是同一个，修改b会影响a</span><br><span class="line">b &#x3D; a</span><br><span class="line"></span><br><span class="line"># c 和 a不是同一个，但内容一样</span><br><span class="line">c &#x3D; a.view()</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="argmax"><a href="#argmax" class="headerlink" title="argmax"></a>argmax</h4><p>返回最大值的下标</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 1 为 x轴，0 为 y轴</span><br><span class="line">data &#x3D; np.floor(10 * np.random.random((5, 4)))</span><br><span class="line">print(data.argmax(axis &#x3D; 0))</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="tile"><a href="#tile" class="headerlink" title="tile"></a>tile</h4><p>扩展矩阵</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 扩展一个 3 行 5 列矩阵，每一个元素都是矩阵 a</span><br><span class="line">a &#x3D; np.array([0, 1, 2])</span><br><span class="line">b &#x3D; np.tile(a, (3, 5))</span><br><span class="line">print(b)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="sort、argsort"><a href="#sort、argsort" class="headerlink" title="sort、argsort"></a>sort、argsort</h4><p>排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 1 为 x轴，0 为 y轴</span><br><span class="line">data &#x3D; np.floor(10 * np.random.random((5, 4)))</span><br><span class="line">data.sort(axis &#x3D; 0)</span><br><span class="line">print(data)</span><br><span class="line"></span><br><span class="line"># argsort返回排序后的元素对应的之前的下标</span><br><span class="line">a &#x3D; np.array([3, 5, 4])</span><br><span class="line">print(np.argsort(a))</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h2><h3 id="基本数据结构-1"><a href="#基本数据结构-1" class="headerlink" title="基本数据结构"></a>基本数据结构</h3><p><code> Series</code>：一维数组</p>
+<p><code>DataFrame</code>：二维数组</p>
+<p><code>DataFrame</code>中的结构是<code> Series</code>，<code>Series</code>中的结构是<code> numpy.ndarray</code></p>
+<h3 id="基本操作-1"><a href="#基本操作-1" class="headerlink" title="基本操作"></a>基本操作</h3><h4 id="读入-csv-文件"><a href="#读入-csv-文件" class="headerlink" title="读入 csv 文件"></a>读入 csv 文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">food_info &#x3D; pd.read_csv(&quot;food_info.csv&quot;)</span><br><span class="line">print(food_info)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="数据类型-1"><a href="#数据类型-1" class="headerlink" title="数据类型"></a>数据类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(food_info.dtypes)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="head、tail"><a href="#head、tail" class="headerlink" title="head、tail"></a>head、tail</h4><p>从开始或结尾取指定的行数，默认取五行，不算表头</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(food_info.head())</span><br><span class="line">print(food_info.head(3))</span><br><span class="line">print(food_info.tail(6))</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="columns"><a href="#columns" class="headerlink" title="columns"></a>columns</h4><p>取表头</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(food_info.columns)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="shape"><a href="#shape" class="headerlink" title="shape"></a>shape</h4><p>用法同numpy</p>
+<h4 id="索引、切片"><a href="#索引、切片" class="headerlink" title="索引、切片"></a>索引、切片</h4><h5 id="行"><a href="#行" class="headerlink" title="行"></a>行</h5><p>有点特殊，不能直接用下标，而要使用loc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 第 3 行</span><br><span class="line">print(food_info.loc[3])</span><br><span class="line"></span><br><span class="line"># 第 0 行 2 列</span><br><span class="line">print(food_info.loc[0][2])</span><br><span class="line"></span><br><span class="line"># 第 2 行到第 5 行，第 3 列到第 4 列</span><br><span class="line">print(food_info.loc[2:5][3:4])</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="列"><a href="#列" class="headerlink" title="列"></a>列</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 取 NDB_No 列</span><br><span class="line">print(food_info[&quot;NDB_No&quot;])</span><br><span class="line"></span><br><span class="line"># 取 Zinc_(mg) 列和 Copper_(mg) 列</span><br><span class="line">print(food_info[[&quot;Zinc_(mg)&quot;, &quot;Copper_(mg)&quot;]])</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="-1"><a href="#-1" class="headerlink" title="+ - * /"></a>+ - * /</h4><p>同numpy</p>
+<h4 id="增加一列"><a href="#增加一列" class="headerlink" title="增加一列"></a>增加一列</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 增加一列 Iron_(g)</span><br><span class="line">iron_grams &#x3D; food_info[&quot;Iron_(mg)&quot;] &#x2F; 1000</span><br><span class="line">food_info[&quot;Iron_(g)&quot;] &#x3D; iron_grams</span><br><span class="line">print(food_info.shape)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="常用函数-1"><a href="#常用函数-1" class="headerlink" title="常用函数"></a>常用函数</h3><h4 id="max、min、sum"><a href="#max、min、sum" class="headerlink" title="max、min、sum"></a>max、min、sum</h4><p>同numpy</p>
+<h4 id="mean"><a href="#mean" class="headerlink" title="mean"></a>mean</h4><p>忽略缺失值，求平均数</p>
+<h4 id="sort-values"><a href="#sort-values" class="headerlink" title="sort_values"></a>sort_values</h4><p>对值排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">food_info.sort_values(&quot;Sodium_(mg)&quot;, inplace &#x3D; True, ascending &#x3D; False)</span><br><span class="line">print(food_info[&quot;Sodium_(mg)&quot;])</span><br><span class="line"></span><br><span class="line"># 删掉已经乱序的行号，生成新的行号</span><br><span class="line">food_info &#x3D; food_info.reset_index(drop &#x3D; True)</span><br></pre></td></tr></table></figure>
+
+<p>inplace：是否原地排序</p>
+<h4 id="isnull"><a href="#isnull" class="headerlink" title="isnull"></a>isnull</h4><p>判空</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">titanic_survival &#x3D; pd.read_csv(&quot;titanic_train.csv&quot;)</span><br><span class="line">age &#x3D; titanic_survival[&quot;Age&quot;]</span><br><span class="line">print(age.isnull())</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="pivot-table"><a href="#pivot-table" class="headerlink" title="pivot_table"></a>pivot_table</h4><p>分组，对每一组应用指定函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 求不同等级船舱的存活率</span><br><span class="line">p &#x3D; titanic_survival.pivot_table(index &#x3D; &quot;Pclass&quot;, values &#x3D; &quot;Survived&quot;, aggfunc &#x3D; np.mean)</span><br><span class="line">print(p)</span><br><span class="line"></span><br><span class="line">#可以看出，存活率：一级仓 &gt; 二级仓 &gt; 三级仓</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h4><p>应用自定义函数，自定义函数接受一个参数，apply调用自定义函数时将每一列或者每一行作为参数传给它，行或列可以由参数axis指定</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 统计每列元素为空的元素的数量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span>(<span class="params">column</span>):</span></span><br><span class="line">    column_null = pd.isnull(column)</span><br><span class="line">    <span class="keyword">return</span> len(column[column_null])</span><br><span class="line"></span><br><span class="line">column_null_count = titanic_survival.apply(func, axis = <span class="number">0</span>)</span><br><span class="line">print(column_null_count)</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示每一列的船舱等级</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span>(<span class="params">row</span>):</span></span><br><span class="line">    pclass = row[<span class="string">&quot;Pclass&quot;</span>]</span><br><span class="line">    <span class="keyword">if</span> pd.isnull(pclass):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Unknown&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> pclass == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;First Class&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> pclass == <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Second Class&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> pclass == <span class="number">3</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Third Class&quot;</span></span><br><span class="line">    </span><br><span class="line">classes = titanic_survival.apply(func, axis = <span class="number">1</span>)</span><br><span class="line">print(classes)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">series &#x3D; pd.Series([7.3, 4.5, 5.6], index &#x3D; [&quot;city of star&quot;, &quot;垃圾电影1&quot;, &quot;垃圾电影2&quot;])</span><br><span class="line">print(series)</span><br><span class="line">prinnt(series.index)</span><br><span class="line">print(series.values)</span><br><span class="line"></span><br><span class="line">print(series.sort_index())</span><br><span class="line">print(series.sort_values())</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fandango &#x3D; pd.read_csv(&quot;fandango_score_comparison.csv&quot;)</span><br><span class="line">fandango &#x3D; fandango.set_index(&quot;FILM&quot;, drop &#x3D; False)</span><br><span class="line">print(fandango[&quot;Avengers: Age of Ultron (2015)&quot;:&quot;Southpaw (2015)&quot;])</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/03/Gin%E5%A4%87%E5%BF%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1267,212 +1534,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/28/k8s%E7%AE%80%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="换菜刀换脸盆的博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="换菜刀换脸盆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/28/k8s%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">k8s简记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-28 20:26:28" itemprop="dateCreated datePublished" datetime="2020-08-28T20:26:28+08:00">2020-08-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-20 23:52:10" itemprop="dateModified" datetime="2020-09-20T23:52:10+08:00">2020-09-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h4 id="什么是k8s？"><a href="#什么是k8s？" class="headerlink" title="什么是k8s？"></a>什么是k8s？</h4><p>k8s 是一组服务器集群</p>
-<p>k8s所管理的是集群上的容器</p>
-<h4 id="k8s的作用和功能"><a href="#k8s的作用和功能" class="headerlink" title="k8s的作用和功能"></a>k8s的作用和功能</h4><pre><code>* 自我修复
-* 弹性伸缩：实时根据服务器的并发情况，增加或缩减容器数量
-* 自动部署
-* 回滚
-* 服务发现和负载均衡
-* 机密和配置管理
-* 存储编排
-* 批处理</code></pre>
-<h4 id="杂"><a href="#杂" class="headerlink" title="杂"></a>杂</h4><p>MESOS                        APACHE     分布式资源管理框架</p>
-<p>Docker Swarm              阿里云宣布剔除Docker Swarm</p>
-<p>K8s                                Google      10年容器化基础架构</p>
-<pre><code>* 轻量级：消耗资源小
-* 开源
-* 弹性伸缩
-* 负载均衡：IPVS</code></pre>
-<p>k8s本质上是一组服务器集群，k8s可以在集群的各个节点上运行特定的docker容器</p>
-<h1 id="组件说明"><a href="#组件说明" class="headerlink" title="组件说明"></a>组件说明</h1><pre><code>* APISERVER：所有服务访问统一入口
-* CrontrollerManager：维持副本期望数目
-* Scheduler：负责介绍人物，选择合适的节点进行分配任务
-* ETCD：键值对数据库，储存K8S集群所有重要信息（持久化）
-* Kubelet：直接跟容器引擎交互实现容器的生命周期管理
-* Kube-proxy：负责写入规则至 IPTABLES、IPVS，实现服务映射访问
-* COREDNS：可以为集群中的SVC创建一个域名IP的对应关系解析
-* DASHBOARD：给 K8S 集群提供一个 B/S 结构访问体系
-* INGRESS CONTROLLER：官方只能实现四层代理，INGRESS 可以实现七层代理
-* FEDERATION：提供一个可以跨集群中心多 K8S 统一管理功能
-* PROMETHEUS：提供 K8S 集群的监控能力
-* ELK：提供 K8S 集群日志统一分析介入平台</code></pre>
-<h1 id="K8S-架构"><a href="#K8S-架构" class="headerlink" title="K8S 架构"></a>K8S 架构</h1><p><img src="https://uploader.shimo.im/f/1MkOvikuPOyLEba2.png!thumbnail" alt="图片"></p>
-<h4 id="k8s-集群两类节点"><a href="#k8s-集群两类节点" class="headerlink" title="k8s 集群两类节点"></a>k8s 集群两类节点</h4><pre><code>* master node
-* worker node</code></pre>
-<h4 id="master-节点的组件（程序）"><a href="#master-节点的组件（程序）" class="headerlink" title="master 节点的组件（程序）"></a>master 节点的组件（程序）</h4><pre><code>* apiserver：接受客户端操作 k8s 的指令
-* schedulor：从多个 worker 节点的组件中选举一个来启动服务
-* controller manager：向 worker 节点的 kubelet 发送指令的</code></pre>
-<h4 id="worker-节点的组件（程序）"><a href="#worker-节点的组件（程序）" class="headerlink" title="worker 节点的组件（程序）"></a>worker 节点的组件（程序）</h4><pre><code>* kubelet：向 docker 发送指令管理 docker 容器的
-* kubeproxy：管理 docker 的网络</code></pre>
-<h4 id="k8s-用的数据库"><a href="#k8s-用的数据库" class="headerlink" title="k8s 用的数据库"></a>k8s 用的数据库</h4><p>etcd：键值对数据库，用来注册节点、服务、记录账户。。。</p>
-<h1 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h1><h4 id="Pod"><a href="#Pod" class="headerlink" title="Pod"></a>Pod</h4><pre><code>* Pod 是 k8s 的最小部署单元
-* 一组容器的集合
-* 一个 Pod 中的容器共享网络命名空间
-* Pod 是短暂的</code></pre>
-<h4 id="Controllers"><a href="#Controllers" class="headerlink" title="Controllers"></a>Controllers</h4><p>控制器：控制 Pod，启动、停止、删除</p>
-<pre><code>* ReplicaSet：确保预期的 Pod 副本数量
-* Deployment：无状态应用部署
-* StatefulSet：有状态应用部署
-* DaemonSet：确保所有 node 运行同一个 Pod
-* Job：一次性任务
-* Cronjob：定时任务</code></pre>
-<h4 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h4><pre><code>* 将一组 Pod 关联起来，提供一个统一入口，即使Pod地址发生改变，用户访问也不会发生变化![图片](https://uploader.shimo.im/f/pmZgTEqIVsYN6cA4.png!thumbnail)
-
-* 防止 Pod 失联
-* 定义一组 Pod 的访问策略</code></pre>
-<h4 id="Label"><a href="#Label" class="headerlink" title="Label"></a>Label</h4><pre><code>* 标签，附加到某个资源上，用于关联对象、查询和筛选
-* 一组 Pod 有一个统一的标签，Services 通过标签和一组 Pod 关联</code></pre>
-<h4 id="Namespace"><a href="#Namespace" class="headerlink" title="Namespace"></a>Namespace</h4><pre><code>* 命名空间，将对象逻辑上隔离（默认情况下，Pod 是可以互相访问的）
-    * 为不同的公司提供隔离的 Pod 运行环境
-    * 为开发环境、测试环境、生产环境分别准备不同的名称空间，进行隔离</code></pre>
-<h1 id="K8S部署"><a href="#K8S部署" class="headerlink" title="K8S部署"></a>K8S部署</h1><ol>
-<li>生产环境K8S平台规划</li>
-</ol>
-<p>多 master 集群，master 建议 3 台主机，etcd 必须 3 台以上（奇数：3、5、7。。。防止出现无法选举出主etcd节点），worker 节点越多越好</p>
-<pre><code>* 单 master 集群：master 单点故障宕机![图片](https://uploader.shimo.im/f/Xj741bvUHIagjKoa.png!thumbnail)
-* 多 master 集群（推荐使用）：通过 load balancer 实现负载均衡![图片](https://uploader.shimo.im/f/7xgcPBeHjwqaCLds.png!thumbnail)</code></pre>
-<ol>
-<li><p>服务器硬件配置推荐</p>
-</li>
-<li><p>官方提供三种部署方式</p>
-</li>
-</ol>
-<p><img src="https://uploader.shimo.im/f/FdwU9D7Ol4TZHNV9.png!thumbnail" alt="图片"></p>
-<p>初始化服务器：</p>
-<pre><code>* 关闭防火墙
-    * systemctl stop firewalld
-    * systemctl disable firewalld
-* 关闭交换分区
-    * swapoff -a
-    * vim /etc/fastab     删掉最后一行dev
-    * free -m        若显示最后一行为0，则已经关闭
-* 配置主机名
-    * hostnamectl set-hostname k8s-master1-llj
-* 配置名称解析
-    * 配置 /etc/hosts 文件
-* 关闭selinux
-    * 临时关闭 setenforce 0
-    * 永久关闭
-        * vim /etc/selinux/config
-        * 修改文件某行为 SELINUX=disabled
-* 配置时间同步
-    * 选择一个节点为服务端，剩下作为客户端
-        * 配置服务端
-            * yum install chrony -y
-            * vim /etc/chrony.conf
-                * 修改三项（这个我听不懂，不知道具体意义）
-                    * server 127.127.1.0 iburst
-                    * allow 192.168.31.0/24
-                    * local stratum 10
-            * systemctl start chronyd
-            * systemctl enable chronyd
-            * ss -unl | grep 123         有输出则成功
-        * 配置客户端
-            * yum install chrony -y
-            * vim /etc/chrony.conf
-                * 添加server 服务器地址 iburst
-            * systemctl start chronyd
-            * systemctl enable chronyd
-            * ss -unl | grep 123         有输出则成功</code></pre>
-<ol>
-<li>为Etcd和APIServer自签SSL证书</li>
-</ol>
-<p>三步：</p>
-<pre><code>    * 创建证书颁发机构
-    * 填写表单，写明etcd 所在节点的ip
-    * 向证书颁发机构申请证书</code></pre>
-<p>加密：</p>
-<pre><code>    * 对称加密：加密解密用相同秘钥
-    * 非对称加密：是用公钥私钥
-    * 单向加密：只能加密不能解密（哈希）</code></pre>
-<p>ssl证书来源：</p>
-<pre><code>    * 网络第三方机构购买
-    * 自签证书（内网使用，浏览器提示信息“不受信任”）</code></pre>
-<p>签证机构（CA）</p>
-<p>自建CA</p>
-<pre><code>    * openssl
-    * cfssl</code></pre>
-<ol>
-<li>Etcd数据库集群部署</li>
-</ol>
-<p>Etcd 需要三台虚拟机</p>
-<ol>
-<li><p>部署Master组件</p>
-</li>
-<li><p>部署Node组件</p>
-</li>
-<li><p>部署K8S集群网络</p>
-</li>
-<li><p>部署Web UI（Dashboard）</p>
-</li>
-<li><p>部署集群内部DNS解析服务（CoreDNS）</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1542,7 +1603,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
