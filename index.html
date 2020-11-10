@@ -147,6 +147,105 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/10/Matplotlib%E5%A4%87%E5%BF%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="换菜刀换脸盆的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="换菜刀换脸盆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/10/Matplotlib%E5%A4%87%E5%BF%98/" class="post-title-link" itemprop="url">Matplotlib备忘</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-10 21:27:15 / 修改时间：21:28:11" itemprop="dateCreated datePublished" datetime="2020-11-10T21:27:15+08:00">2020-11-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Matplotlib备忘"><a href="#Matplotlib备忘" class="headerlink" title="Matplotlib备忘"></a>Matplotlib备忘</h1><h2 id="Matplotlib"><a href="#Matplotlib" class="headerlink" title="Matplotlib"></a>Matplotlib</h2><h3 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h3><h4 id="失业率"><a href="#失业率" class="headerlink" title="失业率"></a>失业率</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line"># 读入数据</span><br><span class="line">unrate &#x3D; pd.read_csv(&quot;UNRATE.csv&quot;)</span><br><span class="line"></span><br><span class="line"># 处理数据</span><br><span class="line">unrate[&quot;DATE&quot;] &#x3D; pd.to_datetime(unrate[&quot;DATE&quot;])</span><br><span class="line"></span><br><span class="line"># 绘制</span><br><span class="line">plt.plot(unrate[&quot;DATE&quot;], unrate[&quot;VALUE&quot;])</span><br><span class="line"></span><br><span class="line"># 调整 x 轴坐标</span><br><span class="line">plt.xticks(rotation &#x3D; 45)</span><br><span class="line"></span><br><span class="line"># 添加 x 轴 y 轴标签和标题</span><br><span class="line">plt.xlabel(&quot;Month&quot;)</span><br><span class="line">plt.ylabel(&quot;Unemployment Rate&quot;)</span><br><span class="line">plt.title(&quot;Unemployment Trends&quot;)</span><br><span class="line"></span><br><span class="line"># 显示</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="sin曲线"><a href="#sin曲线" class="headerlink" title="sin曲线"></a>sin曲线</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(np.arange(-np.pi, np.pi, 0.1), np.sin(np.arange(-np.pi, np.pi, 0.1)))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="子图布局"><a href="#子图布局" class="headerlink" title="子图布局"></a>子图布局</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">fig &#x3D; plt.figure()</span><br><span class="line"></span><br><span class="line">ax1 &#x3D; fig.add_subplot(3, 3, 1)</span><br><span class="line">ax2 &#x3D; fig.add_subplot(3, 3, 2)</span><br><span class="line">ax3 &#x3D; fig.add_subplot(3, 3, 6)</span><br><span class="line">ax4 &#x3D; fig.add_subplot(3, 3, 9)</span><br><span class="line"></span><br><span class="line">ax1.plot(np.arange(-np.pi, np.pi, 0.1), np.sin(np.arange(-np.pi, np.pi, 0.1)), c &#x3D; &quot;red&quot;, label &#x3D; &quot;sin&quot;)</span><br><span class="line">ax1.plot(np.arange(-np.pi, np.pi, 0.1), np.cos(np.arange(-np.pi, np.pi, 0.1)), c &#x3D; &quot;blue&quot;, label &#x3D; &quot;cos&quot;)</span><br><span class="line">ax3.plot(np.arange(0.1, 10, 0.1), np.log(np.arange(0.1, 10, 0.1)))</span><br><span class="line">ax4.bar([1, 2, 3], [0.5, 1.6, 0.1])</span><br><span class="line"></span><br><span class="line">ax1.legend(loc &#x3D; &quot;upper right&quot;)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="条形图"><a href="#条形图" class="headerlink" title="条形图"></a>条形图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.bar([1, 2, 3], [0.5, 1.6, 0.1])</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">plt.barh([&quot;zhangsan&quot;, &quot;lisi&quot;, &quot;wangwu&quot;], [0.5, 1.6, 0.1])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(np.random.random((1000,)), np.random.random((1000,)))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="柱形图"><a href="#柱形图" class="headerlink" title="柱形图"></a>柱形图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.hist(np.random.random((100,)), bins&#x3D;10)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="盒图"><a href="#盒图" class="headerlink" title="盒图"></a>盒图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">plt.boxplot(np.arange(0, 100))</span><br><span class="line">#plt.boxplot([50, 60, 95, 96, 100])</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">data &#x3D; pd.read_csv(&quot;fandango_score_comparison.csv&quot;)</span><br><span class="line">plt.boxplot(data[[&quot;RT_user_norm&quot;, &#39;Metacritic_user_nom&#39;, &#39;IMDB_norm&#39;]].values)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Seaborn"><a href="#Seaborn" class="headerlink" title="Seaborn"></a>Seaborn</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>对matplotlib的封装，提供了丰富的模板。</p>
+<h3 id="指定画风"><a href="#指定画风" class="headerlink" title="指定画风"></a>指定画风</h3><h4 id="set-style"><a href="#set-style" class="headerlink" title="set_style"></a>set_style</h4><p>提供五种主题风格</p>
+<ul>
+<li>darkgrid</li>
+<li>whitegrid</li>
+<li>dark</li>
+<li>white</li>
+<li>ticks</li>
+</ul>
+<p>使用<code>sns.set_style</code>函数设置</p>
+<h4 id="despine"><a href="#despine" class="headerlink" title="despine"></a>despine</h4><p>去掉上面和右边的线，只保留 x 轴 y 轴</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import seaborn as sns</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/09/%E3%80%8A%E5%9B%BE%E8%A7%A3%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1502,260 +1601,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/28/git%E7%AE%80%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="换菜刀换脸盆的博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="换菜刀换脸盆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/28/git%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">git简记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-28 23:26:24" itemprop="dateCreated datePublished" datetime="2020-08-28T23:26:24+08:00">2020-08-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-20 23:51:51" itemprop="dateModified" datetime="2020-09-20T23:51:51+08:00">2020-09-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="git-结构"><a href="#git-结构" class="headerlink" title="git 结构"></a>git 结构</h1><pre><code>* 工作区：写代码，通过git add提交到暂存区
-* 暂存区：临时存储，通过git commit提交到本地库
-* 本地库：保存历史版本</code></pre>
-<h1 id="本地库操作"><a href="#本地库操作" class="headerlink" title="本地库操作"></a>本地库操作</h1><ol>
-<li><p>本地库初始化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-<p>初始化本地库后多了 .git 文件夹， .git 目录中存放的是本地库相关的子目录和文件</p>
-</li>
-<li><p>设置签名</p>
-</li>
-</ol>
-<p>形式：</p>
-<pre><code>* 用户名：llj
-* Email地址：zz@qq.com</code></pre>
-<p>作用：区分不同开发人员身份</p>
-<p>辨析：这里设置的签名和登录远程库的账密没有任何关系</p>
-<p>命令：</p>
-<pre><code>* 项目级别/仓库级别：仅在本地库范围内有效
-    * git config user.name llj
-    * git config user.email zz@qq.com
-    * 信息保存在当前项目下的config文件中
-* 系统用户级别：登录当前操作系统的用户范围
-    * git config --global user.name llj
-    * git config --global user.email zz@qq.com
-    * 信息保存在 ~/.gitconfig 文件
-* 项目级别优先系统用户级别，不允许二者都没有</code></pre>
-<h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><ol>
-<li><p>状态查看</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-<p>查看工作区、暂存区状态</p>
-</li>
-<li><p>添加操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add [file name]</span><br></pre></td></tr></table></figure>
-<p>将工作区的新建/修改添加到暂存区</p>
-</li>
-<li><p>提交操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;commit message&quot; [file name]</span><br></pre></td></tr></table></figure>
-<p>将暂存区提交到本地库</p>
-</li>
-<li><p>查看历史记录操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">git log --pretty&#x3D;oneline</span><br><span class="line">git log --oneline</span><br><span class="line">git reflog</span><br></pre></td></tr></table></figure>
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4></li>
-<li><p>前进后退</p>
-</li>
-</ol>
-<p>基于索引</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 索引</span><br></pre></td></tr></table></figure>
-<p>使用^符号：只能后退</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^^</span><br></pre></td></tr></table></figure>
-<p>根据^符号的数量来回退几次<br>使用~符号：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~2</span><br></pre></td></tr></table></figure>
-<p>根据~符号后的数字来回退几次<br>reset命令三个参数对比：</p>
-<pre><code>* --soft：
-    * 仅仅在本地库移动HEAD指针
-* --mixed：
-    * 在本地库移动HEAD指针
-    * 重置暂存区
-* --hard：
-    * 在本地库移动HEAD指针
-    * 重置暂存区
-    * 重置工作区</code></pre>
-<ol start="5">
-<li>删除文件并找回</li>
-</ol>
-<p>删除：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm good.txt</span><br><span class="line">git add good.txt</span><br><span class="line">git commit -m &quot;del good.txt&quot;</span><br></pre></td></tr></table></figure>
-<p>找回：</p>
-<p>已提交至本地库：回退一个版本</p>
-<p>未提交至本地库：git reset –hard HEAD</p>
-<ol start="6">
-<li><p>比较文件差异</p>
-<ul>
-<li>git diff [文件名]<ul>
-<li>将工作区中的文件与暂存区进行比较</li>
-</ul>
-</li>
-<li>git diff [本地库中历史文件] [文件名]<ul>
-<li>将工作区中的文件和本地库历史记录比较</li>
-</ul>
-</li>
-<li>git diff：比较多个文件</li>
-</ul>
-</li>
-</ol>
-<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><ol>
-<li>什么是分支</li>
-</ol>
-<p>在版本控制过程中，使用多条线同时推进多个任务</p>
-<ol start="2">
-<li><p>分支的好处</p>
-<ul>
-<li>同时并行推进多个功能开发，提高开发效率</li>
-<li>各个分支在开发过程中，某个分支开发失败，不会影响其他分支</li>
-</ul>
-</li>
-<li><p>分支操作</p>
-<ul>
-<li>创建分支<ul>
-<li>git branch [分支名]</li>
-</ul>
-</li>
-<li>查看分支<ul>
-<li>git branch -v</li>
-</ul>
-</li>
-<li>切换分支<ul>
-<li>git checkout [分支名]</li>
-</ul>
-</li>
-<li>合并分支<ul>
-<li>切换到被合并的分支上：git checkout [分支名]</li>
-<li>执行 merge 命令：git merge [分支名]</li>
-</ul>
-</li>
-<li>解决冲突<ul>
-<li>编辑文件，删除特殊符号</li>
-<li>把文件修改到满意的程度</li>
-<li>git add .</li>
-<li>git commit -m “日志信息”<ul>
-<li>commit 此时不能带文件名</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="Git基本原理"><a href="#Git基本原理" class="headerlink" title="Git基本原理"></a>Git基本原理</h1><ol>
-<li>哈希</li>
-</ol>
-<p>采用 SHA-1 哈希算法</p>
-<ol>
-<li>保存版本的机制</li>
-</ol>
-<p>集中式版本控制工具的文件管理机制（增量式）</p>
-<p>以文件变更列表的方式存储信息。这类系统讲他们保存的信息看做是一组基本文件和每个文件随时间逐步积累的差异</p>
-<p><img src="https://uploader.shimo.im/f/OwpxPL43akuyAmW5.png!thumbnail" alt="图片"></p>
-<p>Git 的文件管理机制（快照流）</p>
-<p>每次提交更新时 Git 都会对当前全部文件制作一个快照并保存这个快照的索引。如果文件没有修改，git 不再存储该文件，而是保留一个链接指向之前存储的文件</p>
-<p><img src="https://uploader.shimo.im/f/mT1iwpXOMJzVIhxg.png!thumbnail" alt="图片"></p>
-<ol>
-<li>分支管理机制</li>
-</ol>
-<p>本质是创建和移动指针</p>
-<h1 id="远程仓库基本操作"><a href="#远程仓库基本操作" class="headerlink" title="远程仓库基本操作"></a>远程仓库基本操作</h1><ol>
-<li>本地创建远程仓库别名</li>
-</ol>
-<p>在本地 gittest 仓库下创建远程仓库 gittest 别名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add lljtest https:&#x2F;&#x2F;github.com&#x2F;lilingj&#x2F;lljtest.git</span><br><span class="line">git remote -v  #查看已有别名</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>推送操作<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push 远程仓库地址或别名 分支名</span><br></pre></td></tr></table></figure>
-例子：将本地仓库 gittest 的 master 分支推送到远程仓库 gittest</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push lljtest master #通过别名</span><br><span class="line">git push https:&#x2F;&#x2F;github.com&#x2F;lilingj&#x2F;lljtest.git master #通过地址</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><p>克隆操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 远程仓库地址</span><br></pre></td></tr></table></figure>
-<p>效果：</p>
-<ul>
-<li>完整地把远程库下载到本地</li>
-<li>创建 origin 远程地址别名</li>
-<li>初始化本地库</li>
-</ul>
-</li>
-<li><p>添加协作成员</p>
-</li>
-</ol>
-<p>在 github 中添加</p>
-<ol>
-<li><p>抓取</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch 远程库地址或别名 分支名</span><br><span class="line">git merge 远程库地址别名&#x2F;远程分支名</span><br></pre></td></tr></table></figure>
-<p>上下两段代码等价</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull 远程库地址或别名 分支名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>解决冲突</p>
-<ul>
-<li>如果不是远程库最新版所做的修改，不能推送，必须先拉取</li>
-<li>拉取下来后如果进入冲突状态，解决冲突</li>
-</ul>
-</li>
-<li><p>跨团队协作</p>
-</li>
-</ol>
-<p>fork 远程仓库，协作人员以该远程仓库为基础，更新代码后，pull request 回被fork的仓库，经原仓库管理人员审核后，被 merge 到原仓库</p>
-<ol>
-<li>SSH 登录<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">rm -rf .ssh</span><br><span class="line">ssh-keygen -t rsa -C myemailaddr@qq.com</span><br></pre></td></tr></table></figure>
-在 .ssh 文件夹下生成 id_rsa 和 id_rsa.pub 公私钥对，将公钥复制到 github 上</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1825,7 +1670,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
