@@ -20,32 +20,30 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Numpy、Pandas备忘Numpy基本数据结构array：多维数组 基本操作初始化12345import numpy as npvector &#x3D; np.array([5, 6, 7, 5])matrix &#x3D; np.array([[4, 5, 9], [7, 4, 12], [5, 8, 11]])# 多维的依此类推    读取txt文件 1world_alcohol &amp;#x">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Numpy、Pandas备忘">
-<meta property="og:url" content="http://example.com/2020/11/06/Numpy%E3%80%81Pandas%E5%A4%87%E5%BF%98/index.html">
+  <meta name="description" content="昼短苦夜长，何不秉烛游？">
+<meta property="og:type" content="website">
+<meta property="og:title" content="换菜刀换脸盆">
+<meta property="og:url" content="http://example.com/page/3/index.html">
 <meta property="og:site_name" content="换菜刀换脸盆">
-<meta property="og:description" content="Numpy、Pandas备忘Numpy基本数据结构array：多维数组 基本操作初始化12345import numpy as npvector &#x3D; np.array([5, 6, 7, 5])matrix &#x3D; np.array([[4, 5, 9], [7, 4, 12], [5, 8, 11]])# 多维的依此类推    读取txt文件 1world_alcohol &amp;#x">
+<meta property="og:description" content="昼短苦夜长，何不秉烛游？">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-11-06T02:28:42.000Z">
-<meta property="article:modified_time" content="2020-11-06T02:30:07.665Z">
 <meta property="article:author" content="lilingj">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2020/11/06/Numpy%E3%80%81Pandas%E5%A4%87%E5%BF%98/">
+<link rel="canonical" href="http://example.com/page/3/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
-    isPost : true,
+    isHome : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Numpy、Pandas备忘 | 换菜刀换脸盆</title>
+  <title>换菜刀换脸盆</title>
   
 
 
@@ -148,10 +146,9 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content index posts-expand">
             
-
-    
+      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -167,9 +164,10 @@
       <meta itemprop="name" content="换菜刀换脸盆">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Numpy、Pandas备忘
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/06/Numpy%E3%80%81Pandas%E5%A4%87%E5%BF%98/" class="post-title-link" itemprop="url">Numpy、Pandas备忘</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -193,7 +191,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Numpy、Pandas备忘"><a href="#Numpy、Pandas备忘" class="headerlink" title="Numpy、Pandas备忘"></a>Numpy、Pandas备忘</h1><h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><h3 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h3><p><code>array</code>：多维数组</p>
+          <h1 id="Numpy、Pandas备忘"><a href="#Numpy、Pandas备忘" class="headerlink" title="Numpy、Pandas备忘"></a>Numpy、Pandas备忘</h1><h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><h3 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h3><p><code>array</code>：多维数组</p>
 <h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">vector &#x3D; np.array([5, 6, 7, 5])</span><br><span class="line">matrix &#x3D; np.array([[4, 5, 9], [7, 4, 12], [5, 8, 11]])</span><br><span class="line"># 多维的依此类推</span><br></pre></td></tr></table></figure>
 
 
@@ -403,54 +401,25 @@
 <h3 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fandango &#x3D; pd.read_csv(&quot;fandango_score_comparison.csv&quot;)</span><br><span class="line">fandango &#x3D; fandango.set_index(&quot;FILM&quot;, drop &#x3D; False)</span><br><span class="line">print(fandango[&quot;Avengers: Age of Ultron (2015)&quot;:&quot;Southpaw (2015)&quot;])</span><br></pre></td></tr></table></figure>
 
 
+      
     </div>
 
     
     
     
-        <div class="reward-container">
-  <div>给我一块钱，可以不可以</div>
-  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    打赏
-  </button>
-  <div id="qr" style="display: none;">
-      
-      <div style="display: inline-block;">
-        <img src="/images/wechatpay.jpg" alt="lilingj 微信支付">
-        <p>微信支付</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/alipay.jpg" alt="lilingj 支付宝">
-        <p>支付宝</p>
-      </div>
-
-  </div>
-</div>
-
-
       <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/11/03/Gin%E5%A4%87%E5%BF%98/" rel="prev" title="Gin备忘">
-      <i class="fa fa-chevron-left"></i> Gin备忘
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/11/09/%E3%80%8A%E5%9B%BE%E8%A7%A3%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B0/" rel="next" title="《图解密码技术》笔记">
-      《图解密码技术》笔记 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
+        <div class="post-eof"></div>
       </footer>
-    
   </article>
   
   
   
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -502,7 +471,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Numpy%E3%80%81Pandas%E5%A4%87%E5%BF%98"><span class="nav-number">1.</span> <span class="nav-text">Numpy、Pandas备忘</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Numpy"><span class="nav-number">1.1.</span> <span class="nav-text">Numpy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">基本数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.2.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%A2%E7%8A%B6"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">形状</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">修改数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E5%85%83%E7%B4%A0"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">访问元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E5%88%87%E7%89%87"><span class="nav-number">1.1.2.6.</span> <span class="nav-text">一维数组切片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%88%87%E7%89%87"><span class="nav-number">1.1.2.7.</span> <span class="nav-text">二维数组切片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.2.8.</span> <span class="nav-text">+ - * &#x2F; **</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-lt-gt-gt"><span class="nav-number">1.1.2.9.</span> <span class="nav-text">&#x3D;&#x3D; &lt; &lt;&#x3D; &gt; &gt;&#x3D; !&#x3D;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#amp"><span class="nav-number">1.1.2.10.</span> <span class="nav-text">&amp; | !</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E8%B5%8B%E5%80%BC"><span class="nav-number">1.1.2.11.</span> <span class="nav-text">批量赋值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#max-%E5%92%8C-min"><span class="nav-number">1.1.2.12.</span> <span class="nav-text">max 和 min</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sum"><span class="nav-number">1.1.2.13.</span> <span class="nav-text">sum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ndim"><span class="nav-number">1.1.2.14.</span> <span class="nav-text">ndim</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#size"><span class="nav-number">1.1.2.15.</span> <span class="nav-text">size</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.3.</span> <span class="nav-text">常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#arange"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">arange</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reshape%E3%80%81ravel"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">reshape、ravel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zeros"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">zeros</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ones"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">ones</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#random"><span class="nav-number">1.1.3.5.</span> <span class="nav-text">random</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#linspace"><span class="nav-number">1.1.3.6.</span> <span class="nav-text">linspace</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.3.7.</span> <span class="nav-text">常用数学操作函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#dot%E3%80%81T"><span class="nav-number">1.1.3.7.1.</span> <span class="nav-text">dot、T</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#exp%E3%80%81sqrt"><span class="nav-number">1.1.3.7.2.</span> <span class="nav-text">exp、sqrt</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#floor%E3%80%81ceil"><span class="nav-number">1.1.3.7.3.</span> <span class="nav-text">floor、ceil</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hstack%E3%80%81vstack"><span class="nav-number">1.1.3.7.4.</span> <span class="nav-text">hstack、vstack</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hsplit%E3%80%81vsplit"><span class="nav-number">1.1.3.7.5.</span> <span class="nav-text">hsplit、vsplit</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#view"><span class="nav-number">1.1.3.8.</span> <span class="nav-text">view</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#argmax"><span class="nav-number">1.1.3.9.</span> <span class="nav-text">argmax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tile"><span class="nav-number">1.1.3.10.</span> <span class="nav-text">tile</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sort%E3%80%81argsort"><span class="nav-number">1.1.3.11.</span> <span class="nav-text">sort、argsort</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pandas"><span class="nav-number">1.2.</span> <span class="nav-text">Pandas</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">基本数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%BB%E5%85%A5-csv-%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">读入 csv 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-1"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#head%E3%80%81tail"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">head、tail</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#columns"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">columns</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shape"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">shape</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E3%80%81%E5%88%87%E7%89%87"><span class="nav-number">1.2.2.6.</span> <span class="nav-text">索引、切片</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A1%8C"><span class="nav-number">1.2.2.6.1.</span> <span class="nav-text">行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%97"><span class="nav-number">1.2.2.6.2.</span> <span class="nav-text">列</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#-1"><span class="nav-number">1.2.2.7.</span> <span class="nav-text">+ - * &#x2F;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0%E4%B8%80%E5%88%97"><span class="nav-number">1.2.2.8.</span> <span class="nav-text">增加一列</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#max%E3%80%81min%E3%80%81sum"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">max、min、sum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mean"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">mean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sort-values"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">sort_values</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#isnull"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">isnull</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pivot-table"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">pivot_table</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#apply"><span class="nav-number">1.2.3.6.</span> <span class="nav-text">apply</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Series"><span class="nav-number">1.2.4.</span> <span class="nav-text">Series</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataFrame"><span class="nav-number">1.2.5.</span> <span class="nav-text">DataFrame</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

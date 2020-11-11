@@ -20,14 +20,14 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="换菜刀换脸盆的博客">
+  <meta name="description" content="昼短苦夜长，何不秉烛游？">
 <meta property="og:type" content="website">
 <meta property="og:title" content="换菜刀换脸盆">
 <meta property="og:url" content="http://example.com/page/2/index.html">
 <meta property="og:site_name" content="换菜刀换脸盆">
-<meta property="og:description" content="换菜刀换脸盆的博客">
+<meta property="og:description" content="昼短苦夜长，何不秉烛游？">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="lilingj">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://example.com/page/2/">
@@ -115,6 +115,11 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
@@ -147,12 +152,12 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/28/git%E7%AE%80%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/09/%E3%80%8A%E5%9B%BE%E8%A7%A3%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="换菜刀换脸盆的博客">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="lilingj">
+      <meta itemprop="description" content="昼短苦夜长，何不秉烛游？">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -161,7 +166,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/28/git%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">git简记</a>
+            <a href="/2020/11/09/%E3%80%8A%E5%9B%BE%E8%A7%A3%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">《图解密码技术》笔记</a>
         </h2>
 
         <div class="post-meta">
@@ -170,16 +175,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-08-28 23:26:24" itemprop="dateCreated datePublished" datetime="2020-08-28T23:26:24+08:00">2020-08-28</time>
+              <time title="创建时间：2020-11-09 23:00:00 / 修改时间：23:00:50" itemprop="dateCreated datePublished" datetime="2020-11-09T23:00:00+08:00">2020-11-09</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-20 23:51:51" itemprop="dateModified" datetime="2020-09-20T23:51:51+08:00">2020-09-20</time>
-              </span>
 
           
 
@@ -192,1669 +191,251 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="git-结构"><a href="#git-结构" class="headerlink" title="git 结构"></a>git 结构</h1><pre><code>* 工作区：写代码，通过git add提交到暂存区
-* 暂存区：临时存储，通过git commit提交到本地库
-* 本地库：保存历史版本</code></pre>
-<h1 id="本地库操作"><a href="#本地库操作" class="headerlink" title="本地库操作"></a>本地库操作</h1><ol>
-<li><p>本地库初始化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-<p>初始化本地库后多了 .git 文件夹， .git 目录中存放的是本地库相关的子目录和文件</p>
+          <h1 id="《图解密码技术》笔记"><a href="#《图解密码技术》笔记" class="headerlink" title="《图解密码技术》笔记"></a>《图解密码技术》笔记</h1><h2 id="学英语"><a href="#学英语" class="headerlink" title="学英语"></a>学英语</h2><ul>
+<li>cryptography：密码学。加密书写符号，安全传输消息的方法。  </li>
+<li>eavesdropper：窃听者  </li>
+<li>encrypt/decrypt：加密/解密  </li>
+<li>plaintext：明文  </li>
+<li>ciphertext：密文  </li>
+<li>confidentiality：机密性</li>
+<li>cryptanalysis：密码分析、破译  </li>
+<li>cryptanalyst：破译者  </li>
+<li>symmtric：对称的</li>
+<li>asymmetric：非对称的  </li>
+<li>hybrid：混合的  </li>
+<li>authentication：认证、身份认证</li>
+<li>spoofing：伪装、欺骗</li>
+<li>hash：古法语中的“斧子”</li>
+<li>collision：碰撞</li>
+<li>authentication：认证<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2></li>
+<li>密码算法：加密、解密算法合在一起称为~  </li>
+<li>完整性：或一致性。数据是正牌不是伪造的</li>
+<li>选择明文攻击（Chosen Plaintext Attack，CPA）：密码破译者能选择任意明文并得到其加密的结果</li>
+<li>隐蔽式安全性（security by obscurity）：公开加密算法，保密加密密钥</li>
+<li>密码算法：<ul>
+<li>分组密码（block cipher）：只能加密固定长度的明文。加密任意长度的明文就需要迭代，迭代方法被称为分组密码的<strong>模式（mode）</strong><ul>
+<li>DES、3DES</li>
+<li>AES</li>
+</ul>
 </li>
-<li><p>设置签名</p>
+<li>流密码（stream cipher）：对数据流进行连续处理的一类密码算法。<ul>
+<li>一次性密码本</li>
+</ul>
 </li>
-</ol>
-<p>形式：</p>
-<pre><code>* 用户名：llj
-* Email地址：zz@qq.com</code></pre>
-<p>作用：区分不同开发人员身份</p>
-<p>辨析：这里设置的签名和登录远程库的账密没有任何关系</p>
-<p>命令：</p>
-<pre><code>* 项目级别/仓库级别：仅在本地库范围内有效
-    * git config user.name llj
-    * git config user.email zz@qq.com
-    * 信息保存在当前项目下的config文件中
-* 系统用户级别：登录当前操作系统的用户范围
-    * git config --global user.name llj
-    * git config --global user.email zz@qq.com
-    * 信息保存在 ~/.gitconfig 文件
-* 项目级别优先系统用户级别，不允许二者都没有</code></pre>
-<h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><ol>
-<li><p>状态查看</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-<p>查看工作区、暂存区状态</p>
+</ul>
 </li>
-<li><p>添加操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add [file name]</span><br></pre></td></tr></table></figure>
-<p>将工作区的新建/修改添加到暂存区</p>
+<li>分组密码的模式<ul>
+<li>ECB模式：Electronic CodeBook mode（电子密码本模式）</li>
+<li>CBC模式：Cipher Block Chaining mode（密码分组链接模式）</li>
+<li>CFB模式：Cipher FeedBack mode（密文反馈模式）</li>
+<li>OFB模式：Output FeedBack mode（输出反馈模式）</li>
+<li>CTR模式：CounTeR mode（计数器模式）</li>
+</ul>
 </li>
-<li><p>提交操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;commit message&quot; [file name]</span><br></pre></td></tr></table></figure>
-<p>将暂存区提交到本地库</p>
+<li>密码劣化：随着计算机技术进步，以前被认为安全的密码会被破译</li>
+<li>密钥：<ul>
+<li>对称密码的密钥、公钥密码的密钥</li>
+<li>消息认证码的密钥、数字签名的密钥</li>
+<li>用于确保机密性的密钥、用于认证的密钥</li>
+<li>会话密钥、主密钥：一次性、重复使用</li>
+<li>用于加密内容的密钥（Contents Encrypting Key，内容加密密钥）、用于加密密钥的密钥（Key Encrypting Key，密钥加密密钥）：一般会话密钥是CEK，主密钥是KEK</li>
+</ul>
 </li>
-<li><p>查看历史记录操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">git log --pretty&#x3D;oneline</span><br><span class="line">git log --oneline</span><br><span class="line">git reflog</span><br></pre></td></tr></table></figure>
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4></li>
-<li><p>前进后退</p>
+<li>密码可以看做是压缩技术：<ul>
+<li>机密性压缩：加密</li>
+<li>完整性压缩：哈希</li>
+<li>认证的压缩：消息认证码</li>
+<li>不可预测性的压缩：用随机数种子对伪随机数赋予不可预测性</li>
+</ul>
 </li>
-</ol>
-<p>基于索引</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 索引</span><br></pre></td></tr></table></figure>
-<p>使用^符号：只能后退</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^^</span><br></pre></td></tr></table></figure>
-<p>根据^符号的数量来回退几次<br>使用~符号：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~2</span><br></pre></td></tr></table></figure>
-<p>根据~符号后的数字来回退几次<br>reset命令三个参数对比：</p>
-<pre><code>* --soft：
-    * 仅仅在本地库移动HEAD指针
-* --mixed：
-    * 在本地库移动HEAD指针
-    * 重置暂存区
-* --hard：
-    * 在本地库移动HEAD指针
-    * 重置暂存区
-    * 重置工作区</code></pre>
-<ol start="5">
-<li>删除文件并找回</li>
-</ol>
-<p>删除：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm good.txt</span><br><span class="line">git add good.txt</span><br><span class="line">git commit -m &quot;del good.txt&quot;</span><br></pre></td></tr></table></figure>
-<p>找回：</p>
-<p>已提交至本地库：回退一个版本</p>
-<p>未提交至本地库：git reset –hard HEAD</p>
-<ol start="6">
-<li><p>比较文件差异</p>
+</ul>
+<h2 id="历史上的密码"><a href="#历史上的密码" class="headerlink" title="历史上的密码"></a>历史上的密码</h2><ul>
+<li>凯撒密码：通过平移字母表加密。暴力破解。</li>
+<li>简单替换密码：手动设置字母对应关系。频率分析破译。</li>
+<li>Enigma：通过每日密码本的每日密码设置机器，再用机器加密。</li>
+<li>维纳斯密码：一次性密码本，通过随机数列与明文的xor操作来加密，无条件安全，理论上无法破译</li>
+</ul>
+<h2 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h2><ul>
+<li>暴力破解</li>
+<li>频率分析</li>
+<li>差分分析：改变一部分明文并分析密文如何随之改变</li>
+<li>线性分析：将明文和密文一些对应的比特进行XOR并计算其结果为0的概率。若密文足够随机，则概率应该为1/2。分析大幅偏离1/2的部分</li>
+<li>中间人攻击（man-in-the-middle attack）</li>
+<li>选择密文攻击：发送任意数据，服务器都会将其当做密文来解密并返回解密结果</li>
+</ul>
+<h2 id="常用密码技术"><a href="#常用密码技术" class="headerlink" title="常用密码技术"></a>常用密码技术</h2><h3 id="对称密码"><a href="#对称密码" class="headerlink" title="对称密码"></a>对称密码</h3><h4 id="一次性密码本"><a href="#一次性密码本" class="headerlink" title="一次性密码本"></a>一次性密码本</h4><p>​        使用XOR加密，不知道密码现实时间中无法破译。即使暴力破解出原文，由于所有组合都会试到，那也没办法从很多有规则的明文中选出真正的明文。需要安全地运输与原文等长的密钥，既然如此，何不直接运输明文。不实用。</p>
+<h4 id="DES"><a href="#DES" class="headerlink" title="DES"></a>DES</h4><p>Data Encryption Standard，分组密码（block cipher）</p>
+<p>基本结构：Feistel网络</p>
+<p>对64比特明文加密，每7比特设置1比特错误检查位，密钥56比特。将数据分组为64比特的组，分别加密。</p>
+<h4 id="3DES"><a href="#3DES" class="headerlink" title="3DES"></a>3DES</h4><p>将DES重复三次，用三个密钥进行 加密 -&gt; 解密 -&gt; 加密 的过程。三个密钥都相同则</p>
+<p>3DES退化成DES。加密相同解密不同，则此3DES称为<strong>DES-EDE2</strong>，三密钥都不同称为<strong>DES-EDE3</strong> 。速度慢，目前只有银行使用。</p>
+<h4 id="AES"><a href="#AES" class="headerlink" title="AES"></a>AES</h4><p>Advanced Encryption Standard，分组密码。为了取代前任标准DES的新标准。最终将<strong>Rijndael算法</strong>确定为AES</p>
+<h3 id="公钥密码"><a href="#公钥密码" class="headerlink" title="公钥密码"></a>公钥密码</h3><p>public-key cryptography</p>
+<p>基于数学上困难的问题来保证机密性</p>
+<h4 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h4><ul>
+<li><p>加密：密文 = 明文<sup>E</sup> mod N</p>
+</li>
+<li><p>解密：明文 = 密文<sup>D</sup>mod N</p>
+</li>
+<li><p>公钥：E 和 N 的组合</p>
+</li>
+<li><p>私钥：D 和 N 的组合</p>
+</li>
+<li><p>生成密钥对：求解 E 、D、N 三个数</p>
 <ul>
-<li>git diff [文件名]<ul>
-<li>将工作区中的文件与暂存区进行比较</li>
+<li>N = p * q：p、q为两个很大的质数，例如512b的质数</li>
+<li>L = lcm(p - 1, q - 1)：用来生成密钥对</li>
+<li>E：<ul>
+<li>1 &lt; E &lt; L</li>
+<li>E、L 互质。即 gcd(E, lcm(p - 1, q - 1)) = 1</li>
 </ul>
 </li>
-<li>git diff [本地库中历史文件] [文件名]<ul>
-<li>将工作区中的文件和本地库历史记录比较</li>
+<li>D：<ul>
+<li>1 &lt; D &lt; L</li>
+<li>E * D mod L =1</li>
 </ul>
 </li>
-<li>git diff：比较多个文件</li>
 </ul>
 </li>
-</ol>
-<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><ol>
-<li>什么是分支</li>
-</ol>
-<p>在版本控制过程中，使用多条线同时推进多个任务</p>
-<ol start="2">
-<li><p>分支的好处</p>
+</ul>
+<h4 id="其他公钥密码"><a href="#其他公钥密码" class="headerlink" title="其他公钥密码"></a>其他公钥密码</h4><ul>
+<li>ElGamal</li>
+<li>Rabin</li>
+<li>椭圆曲线密码（Elliptic Curve Cryptography，ECC）</li>
+</ul>
+<h3 id="混合密码系统"><a href="#混合密码系统" class="headerlink" title="混合密码系统"></a>混合密码系统</h3><p>hybrid crypto system</p>
+<p>对称密码加密明文，公钥密码加密对称密码密钥</p>
+<h3 id="单向散列函数"><a href="#单向散列函数" class="headerlink" title="单向散列函数"></a>单向散列函数</h3><p>one-way hash function，或称消息摘要函数（message digest function）、哈希函数、杂凑函数</p>
+<p>输入：消息（message）或称原像（pre-image)</p>
+<p>输出：散列值（hash value）或称消息摘要（message digest）、指纹（fingerprint）</p>
+<p>性质：</p>
 <ul>
-<li>同时并行推进多个功能开发，提高开发效率</li>
-<li>各个分支在开发过程中，某个分支开发失败，不会影响其他分支</li>
+<li><strong>抗碰撞性（collision resistance）</strong>：越强越好</li>
+<li>单向性（one-way）：不能被反推</li>
 </ul>
-</li>
-<li><p>分支操作</p>
+<h4 id="MD4、MD5"><a href="#MD4、MD5" class="headerlink" title="MD4、MD5"></a>MD4、MD5</h4><p>产生长度128b的散列值。已经不安全</p>
+<h4 id="SHA-1"><a href="#SHA-1" class="headerlink" title="SHA-1"></a>SHA-1</h4><p>输入长度最多2<sup>64</sup> - 1b，产生160b的散列值。已经不安全</p>
+<h4 id="SHA-2"><a href="#SHA-2" class="headerlink" title="SHA-2"></a>SHA-2</h4><p>输入长度最多2<sup>128</sup> - 1b，包括SHA-256、SHA-384、SHA-384、SHA-512等。尚未被攻破。</p>
+<h4 id="SHA-3"><a href="#SHA-3" class="headerlink" title="SHA-3"></a>SHA-3</h4><p>Keccak算法作为SHA-3标准。</p>
+<p>Keccak输入没有长度限制，可以产生任意长度散列值，为了配合SHA-2的散列长度，共设置了SHA3-224、SHA3-256、SHA3-384、SHA3-512四种版本。另规定两个可以输出任意长度散列值的函数（extendable-output function，XOF），分别死SHAKE128和SHAKE256</p>
+<h4 id="RIPEMD-160"><a href="#RIPEMD-160" class="headerlink" title="RIPEMD-160"></a>RIPEMD-160</h4><p>产生160b的散列值。比特币中使用的就是~</p>
+<h3 id="消息认证码"><a href="#消息认证码" class="headerlink" title="消息认证码"></a>消息认证码</h3><p>Message Authentication Code，MAC</p>
+<p>输入：任意长度的消息 + 发送者和接受者的一个共享的密钥</p>
+<p>输出：固定长度数据，称为MAC值</p>
+<p>实现：</p>
 <ul>
-<li>创建分支<ul>
-<li>git branch [分支名]</li>
+<li>使用SHA-2之类的单向散列函数可以实现消息认证码</li>
+<li>使用分组密码实现</li>
+<li>其他方法</li>
 </ul>
-</li>
-<li>查看分支<ul>
-<li>git branch -v</li>
-</ul>
-</li>
-<li>切换分支<ul>
-<li>git checkout [分支名]</li>
-</ul>
-</li>
-<li>合并分支<ul>
-<li>切换到被合并的分支上：git checkout [分支名]</li>
-<li>执行 merge 命令：git merge [分支名]</li>
-</ul>
-</li>
-<li>解决冲突<ul>
-<li>编辑文件，删除特殊符号</li>
-<li>把文件修改到满意的程度</li>
-<li>git add .</li>
-<li>git commit -m “日志信息”<ul>
-<li>commit 此时不能带文件名</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="Git基本原理"><a href="#Git基本原理" class="headerlink" title="Git基本原理"></a>Git基本原理</h1><ol>
-<li>哈希</li>
-</ol>
-<p>采用 SHA-1 哈希算法</p>
-<ol>
-<li>保存版本的机制</li>
-</ol>
-<p>集中式版本控制工具的文件管理机制（增量式）</p>
-<p>以文件变更列表的方式存储信息。这类系统讲他们保存的信息看做是一组基本文件和每个文件随时间逐步积累的差异</p>
-<p><img src="https://uploader.shimo.im/f/OwpxPL43akuyAmW5.png!thumbnail" alt="图片"></p>
-<p>Git 的文件管理机制（快照流）</p>
-<p>每次提交更新时 Git 都会对当前全部文件制作一个快照并保存这个快照的索引。如果文件没有修改，git 不再存储该文件，而是保留一个链接指向之前存储的文件</p>
-<p><img src="https://uploader.shimo.im/f/mT1iwpXOMJzVIhxg.png!thumbnail" alt="图片"></p>
-<ol>
-<li>分支管理机制</li>
-</ol>
-<p>本质是创建和移动指针</p>
-<h1 id="远程仓库基本操作"><a href="#远程仓库基本操作" class="headerlink" title="远程仓库基本操作"></a>远程仓库基本操作</h1><ol>
-<li>本地创建远程仓库别名</li>
-</ol>
-<p>在本地 gittest 仓库下创建远程仓库 gittest 别名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add lljtest https:&#x2F;&#x2F;github.com&#x2F;lilingj&#x2F;lljtest.git</span><br><span class="line">git remote -v  #查看已有别名</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>推送操作<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push 远程仓库地址或别名 分支名</span><br></pre></td></tr></table></figure>
-例子：将本地仓库 gittest 的 master 分支推送到远程仓库 gittest</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push lljtest master #通过别名</span><br><span class="line">git push https:&#x2F;&#x2F;github.com&#x2F;lilingj&#x2F;lljtest.git master #通过地址</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><p>克隆操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 远程仓库地址</span><br></pre></td></tr></table></figure>
-<p>效果：</p>
+<p>攻击方法：</p>
 <ul>
-<li>完整地把远程库下载到本地</li>
-<li>创建 origin 远程地址别名</li>
-<li>初始化本地库</li>
+<li>重放攻击（replay attack）</li>
+<li>密钥推测攻击</li>
 </ul>
-</li>
-<li><p>添加协作成员</p>
-</li>
-</ol>
-<p>在 github 中添加</p>
-<ol>
-<li><p>抓取</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch 远程库地址或别名 分支名</span><br><span class="line">git merge 远程库地址别名&#x2F;远程分支名</span><br></pre></td></tr></table></figure>
-<p>上下两段代码等价</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull 远程库地址或别名 分支名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>解决冲突</p>
+<h4 id="HMAC"><a href="#HMAC" class="headerlink" title="HMAC"></a>HMAC</h4><p>hash MAC</p>
+<h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><p>digital signature</p>
+<p>方法：</p>
 <ul>
-<li>如果不是远程库最新版所做的修改，不能推送，必须先拉取</li>
-<li>拉取下来后如果进入冲突状态，解决冲突</li>
+<li>直接对消息签名</li>
+<li>对消息的散列值签名</li>
 </ul>
-</li>
-<li><p>跨团队协作</p>
-</li>
-</ol>
-<p>fork 远程仓库，协作人员以该远程仓库为基础，更新代码后，pull request 回被fork的仓库，经原仓库管理人员审核后，被 merge 到原仓库</p>
-<ol>
-<li>SSH 登录<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">rm -rf .ssh</span><br><span class="line">ssh-keygen -t rsa -C myemailaddr@qq.com</span><br></pre></td></tr></table></figure>
-在 .ssh 文件夹下生成 id_rsa 和 id_rsa.pub 公私钥对，将公钥复制到 github 上</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/28/k8s%E7%AE%80%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="换菜刀换脸盆的博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="换菜刀换脸盆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/28/k8s%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">k8s简记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-28 20:26:28" itemprop="dateCreated datePublished" datetime="2020-08-28T20:26:28+08:00">2020-08-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-20 23:52:10" itemprop="dateModified" datetime="2020-09-20T23:52:10+08:00">2020-09-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h4 id="什么是k8s？"><a href="#什么是k8s？" class="headerlink" title="什么是k8s？"></a>什么是k8s？</h4><p>k8s 是一组服务器集群</p>
-<p>k8s所管理的是集群上的容器</p>
-<h4 id="k8s的作用和功能"><a href="#k8s的作用和功能" class="headerlink" title="k8s的作用和功能"></a>k8s的作用和功能</h4><pre><code>* 自我修复
-* 弹性伸缩：实时根据服务器的并发情况，增加或缩减容器数量
-* 自动部署
-* 回滚
-* 服务发现和负载均衡
-* 机密和配置管理
-* 存储编排
-* 批处理</code></pre>
-<h4 id="杂"><a href="#杂" class="headerlink" title="杂"></a>杂</h4><p>MESOS                        APACHE     分布式资源管理框架</p>
-<p>Docker Swarm              阿里云宣布剔除Docker Swarm</p>
-<p>K8s                                Google      10年容器化基础架构</p>
-<pre><code>* 轻量级：消耗资源小
-* 开源
-* 弹性伸缩
-* 负载均衡：IPVS</code></pre>
-<p>k8s本质上是一组服务器集群，k8s可以在集群的各个节点上运行特定的docker容器</p>
-<h1 id="组件说明"><a href="#组件说明" class="headerlink" title="组件说明"></a>组件说明</h1><pre><code>* APISERVER：所有服务访问统一入口
-* CrontrollerManager：维持副本期望数目
-* Scheduler：负责介绍人物，选择合适的节点进行分配任务
-* ETCD：键值对数据库，储存K8S集群所有重要信息（持久化）
-* Kubelet：直接跟容器引擎交互实现容器的生命周期管理
-* Kube-proxy：负责写入规则至 IPTABLES、IPVS，实现服务映射访问
-* COREDNS：可以为集群中的SVC创建一个域名IP的对应关系解析
-* DASHBOARD：给 K8S 集群提供一个 B/S 结构访问体系
-* INGRESS CONTROLLER：官方只能实现四层代理，INGRESS 可以实现七层代理
-* FEDERATION：提供一个可以跨集群中心多 K8S 统一管理功能
-* PROMETHEUS：提供 K8S 集群的监控能力
-* ELK：提供 K8S 集群日志统一分析介入平台</code></pre>
-<h1 id="K8S-架构"><a href="#K8S-架构" class="headerlink" title="K8S 架构"></a>K8S 架构</h1><p><img src="https://uploader.shimo.im/f/1MkOvikuPOyLEba2.png!thumbnail" alt="图片"></p>
-<h4 id="k8s-集群两类节点"><a href="#k8s-集群两类节点" class="headerlink" title="k8s 集群两类节点"></a>k8s 集群两类节点</h4><pre><code>* master node
-* worker node</code></pre>
-<h4 id="master-节点的组件（程序）"><a href="#master-节点的组件（程序）" class="headerlink" title="master 节点的组件（程序）"></a>master 节点的组件（程序）</h4><pre><code>* apiserver：接受客户端操作 k8s 的指令
-* schedulor：从多个 worker 节点的组件中选举一个来启动服务
-* controller manager：向 worker 节点的 kubelet 发送指令的</code></pre>
-<h4 id="worker-节点的组件（程序）"><a href="#worker-节点的组件（程序）" class="headerlink" title="worker 节点的组件（程序）"></a>worker 节点的组件（程序）</h4><pre><code>* kubelet：向 docker 发送指令管理 docker 容器的
-* kubeproxy：管理 docker 的网络</code></pre>
-<h4 id="k8s-用的数据库"><a href="#k8s-用的数据库" class="headerlink" title="k8s 用的数据库"></a>k8s 用的数据库</h4><p>etcd：键值对数据库，用来注册节点、服务、记录账户。。。</p>
-<h1 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h1><h4 id="Pod"><a href="#Pod" class="headerlink" title="Pod"></a>Pod</h4><pre><code>* Pod 是 k8s 的最小部署单元
-* 一组容器的集合
-* 一个 Pod 中的容器共享网络命名空间
-* Pod 是短暂的</code></pre>
-<h4 id="Controllers"><a href="#Controllers" class="headerlink" title="Controllers"></a>Controllers</h4><p>控制器：控制 Pod，启动、停止、删除</p>
-<pre><code>* ReplicaSet：确保预期的 Pod 副本数量
-* Deployment：无状态应用部署
-* StatefulSet：有状态应用部署
-* DaemonSet：确保所有 node 运行同一个 Pod
-* Job：一次性任务
-* Cronjob：定时任务</code></pre>
-<h4 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h4><pre><code>* 将一组 Pod 关联起来，提供一个统一入口，即使Pod地址发生改变，用户访问也不会发生变化![图片](https://uploader.shimo.im/f/pmZgTEqIVsYN6cA4.png!thumbnail)
-
-* 防止 Pod 失联
-* 定义一组 Pod 的访问策略</code></pre>
-<h4 id="Label"><a href="#Label" class="headerlink" title="Label"></a>Label</h4><pre><code>* 标签，附加到某个资源上，用于关联对象、查询和筛选
-* 一组 Pod 有一个统一的标签，Services 通过标签和一组 Pod 关联</code></pre>
-<h4 id="Namespace"><a href="#Namespace" class="headerlink" title="Namespace"></a>Namespace</h4><pre><code>* 命名空间，将对象逻辑上隔离（默认情况下，Pod 是可以互相访问的）
-    * 为不同的公司提供隔离的 Pod 运行环境
-    * 为开发环境、测试环境、生产环境分别准备不同的名称空间，进行隔离</code></pre>
-<h1 id="K8S部署"><a href="#K8S部署" class="headerlink" title="K8S部署"></a>K8S部署</h1><ol>
-<li>生产环境K8S平台规划</li>
-</ol>
-<p>多 master 集群，master 建议 3 台主机，etcd 必须 3 台以上（奇数：3、5、7。。。防止出现无法选举出主etcd节点），worker 节点越多越好</p>
-<pre><code>* 单 master 集群：master 单点故障宕机![图片](https://uploader.shimo.im/f/Xj741bvUHIagjKoa.png!thumbnail)
-* 多 master 集群（推荐使用）：通过 load balancer 实现负载均衡![图片](https://uploader.shimo.im/f/7xgcPBeHjwqaCLds.png!thumbnail)</code></pre>
-<ol>
-<li><p>服务器硬件配置推荐</p>
-</li>
-<li><p>官方提供三种部署方式</p>
-</li>
-</ol>
-<p><img src="https://uploader.shimo.im/f/FdwU9D7Ol4TZHNV9.png!thumbnail" alt="图片"></p>
-<p>初始化服务器：</p>
-<pre><code>* 关闭防火墙
-    * systemctl stop firewalld
-    * systemctl disable firewalld
-* 关闭交换分区
-    * swapoff -a
-    * vim /etc/fastab     删掉最后一行dev
-    * free -m        若显示最后一行为0，则已经关闭
-* 配置主机名
-    * hostnamectl set-hostname k8s-master1-llj
-* 配置名称解析
-    * 配置 /etc/hosts 文件
-* 关闭selinux
-    * 临时关闭 setenforce 0
-    * 永久关闭
-        * vim /etc/selinux/config
-        * 修改文件某行为 SELINUX=disabled
-* 配置时间同步
-    * 选择一个节点为服务端，剩下作为客户端
-        * 配置服务端
-            * yum install chrony -y
-            * vim /etc/chrony.conf
-                * 修改三项（这个我听不懂，不知道具体意义）
-                    * server 127.127.1.0 iburst
-                    * allow 192.168.31.0/24
-                    * local stratum 10
-            * systemctl start chronyd
-            * systemctl enable chronyd
-            * ss -unl | grep 123         有输出则成功
-        * 配置客户端
-            * yum install chrony -y
-            * vim /etc/chrony.conf
-                * 添加server 服务器地址 iburst
-            * systemctl start chronyd
-            * systemctl enable chronyd
-            * ss -unl | grep 123         有输出则成功</code></pre>
-<ol>
-<li>为Etcd和APIServer自签SSL证书</li>
-</ol>
-<p>三步：</p>
-<pre><code>    * 创建证书颁发机构
-    * 填写表单，写明etcd 所在节点的ip
-    * 向证书颁发机构申请证书</code></pre>
-<p>加密：</p>
-<pre><code>    * 对称加密：加密解密用相同秘钥
-    * 非对称加密：是用公钥私钥
-    * 单向加密：只能加密不能解密（哈希）</code></pre>
-<p>ssl证书来源：</p>
-<pre><code>    * 网络第三方机构购买
-    * 自签证书（内网使用，浏览器提示信息“不受信任”）</code></pre>
-<p>签证机构（CA）</p>
-<p>自建CA</p>
-<pre><code>    * openssl
-    * cfssl</code></pre>
-<ol>
-<li>Etcd数据库集群部署</li>
-</ol>
-<p>Etcd 需要三台虚拟机</p>
-<ol>
-<li><p>部署Master组件</p>
-</li>
-<li><p>部署Node组件</p>
-</li>
-<li><p>部署K8S集群网络</p>
-</li>
-<li><p>部署Web UI（Dashboard）</p>
-</li>
-<li><p>部署集群内部DNS解析服务（CoreDNS）</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/25/Linux%E7%AE%80%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="换菜刀换脸盆的博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="换菜刀换脸盆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/25/Linux%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">Linux简记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-25 23:26:29" itemprop="dateCreated datePublished" datetime="2020-08-25T23:26:29+08:00">2020-08-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-20 23:51:31" itemprop="dateModified" datetime="2020-09-20T23:51:31+08:00">2020-09-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://uploader.shimo.im/f/HPJEUBJrSVgiODaJ.png!thumbnail" alt="图片"></p>
-<h1 id="目录结构"><a href="#目录结构" class="headerlink" title="# 目录结构"></a># 目录结构</h1><hr>
-<p>采用层级式的树状目录。Linux里面，一切皆文件</p>
-<p><img src="https://uploader.shimo.im/f/07Y1dplWPIKiUV0U.png!thumbnail" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/KJVPqr8UcYrLmaOY.png!thumbnail" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/yCWUI0tYYj1Dwawi.png!thumbnail" alt="图片"><img src="https://uploader.shimo.im/f/piiIzmzyanqGDqzA.png!thumbnail" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/mgzY7ifEx6uEJXnI.png!thumbnail" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/3bxsvUiJwzzSXJtw.png!thumbnail" alt="图片"></p>
-<p>重点：</p>
-<pre><code>* linux 的目录中只有一个根目录 /
-* linux 的各个目录存放的内容是规划好，不要乱放文件
-* linux 是以文件形式管理设备，一切皆文件
-* linux 每个文件目录下存放什么内容，已经规定好了</code></pre>
-<h1 id="Vi-和-Vim-的使用"><a href="#Vi-和-Vim-的使用" class="headerlink" title="Vi 和 Vim 的使用"></a>Vi 和 Vim 的使用</h1><hr>
-<h4 id="vi-和-vim-常用的三种模式"><a href="#vi-和-vim-常用的三种模式" class="headerlink" title="vi 和 vim 常用的三种模式"></a>vi 和 vim 常用的三种模式</h4><pre><code>* 正常模式
-* 插入模式
-* 命令行模式</code></pre>
-<p><img src="https://uploader.shimo.im/f/AlAVPfeUaWSbht02.png!thumbnail" alt="图片"></p>
-<h1 id="开机、重启、用户登录注销"><a href="#开机、重启、用户登录注销" class="headerlink" title="开机、重启、用户登录注销"></a>开机、重启、用户登录注销</h1><hr>
-<h4 id="开机流程"><a href="#开机流程" class="headerlink" title="开机流程"></a>开机流程</h4><p>开机 -&gt; BIOS -&gt; /boot -&gt; init进程 -&gt; 运行级别 -&gt; 运行级对应的服务</p>
-<h4 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h4><p>shutdown</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shutdown -h now     :立即关机</span><br><span class="line">shutdown -h 1       :一分钟后关机</span><br><span class="line">shutdown -r now     :立即重启</span><br></pre></td></tr></table></figure>
-<p>halt：直接使用，等价于关机</p>
-<p>reboot：重启</p>
-<p>sync：把内存数据同步到磁盘上（关机前使用）</p>
-<p>logout：注销用户</p>
-<h1 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h1><hr>
-<h4 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h4><p>man 指令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">man [命令或配置文件] </span><br><span class="line">#获得帮助信息</span><br></pre></td></tr></table></figure>
-<p>help 指令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">help 命令</span><br><span class="line">#获得 shell 内置命令的帮助信息</span><br></pre></td></tr></table></figure>
-
-<h4 id="文件目录类"><a href="#文件目录类" class="headerlink" title="文件目录类"></a>文件目录类</h4><pre><code>* pwd：显示当前路径
-* ls：
-    * -a：显示当前目录所有文件和目录（以点开头的为隐藏文件）
-    * -l：以列表方式显示信息
-* cd：cd ~ 回到home目录
-* mkdir：
-    * -p：创建多级目录
-* rmdir：删除空目录
-* rm -rf：删除非空目录
-* touch：创建一个空文件
-* cp：cp [选项] source dest
-    * -r：递归复制整个文件夹
-* rm：移除文件或目录
-    * -r：递归删除整个文件夹
-    * -f：强制删除不提示
-* mv：移动文件与目录 或 重命名
-    * mv oldNameFile newNameFile
-    * mv source dest
-* cat：查看文件内容
-    * -n：显示行号
-* more：分页显示
-    * cat aaa.txt | more
-    * 空格：向下翻一页
-    * Enter：向下翻一行
-    * q：离开more
-    * ctrl + F：向下滚动一屏
-    * ctrl + B：向上滚动一屏
-    * =：输出当前行号
-    * :f：输出当前文件名和行号
-* less：和more类似，根据显示需要加载内容，适合查看大文件
-    * 空格：下翻一页
-    * pagedown键：下翻一页
-    * pageup键：上翻一页
-    * /字符串：向下查找字符串。n：向下；N：向上
-    * ?字符串：向上查找字符串。n：向上；N：向下
-    * q：离开less
-* &gt;：输出重定向
-    * ls -l &gt; a.txt      ：列表内容覆盖到a.txt
-* &gt;&gt;：追加
-    * ls -l &gt;&gt; a.txt    ：列表内容追加到a.txt
-* echo：输出内容到控制台
-* head：显示文件开头部分内容，默认显示文件前十行
-    * head -n 5 a.txt
-* tail：同head
-    * tail -n 5 a.txt
-    * tail -f 文件        实时追踪该文档的所有更新
-* ln：创建软连接指令
-    * ln -s 原文件或目录 软连接名
-* history：显示历史上执行过的指令
-    * history | tail -n 5        显示最近使用的5条指令
-    * history 5                    显示最近使用的5条指令
-    * !100                           执行histroy中的第一百条指令
-* date：显示当前日期
-    * date +%Y        显示当前年份
-    * date +%m       显示当前月份
-    * date +%d        显示当前是哪一天
-    * date &quot;+%Y-%m-%d %H:%M:%S&quot;      显示年月日时分秒
-    * date -s “2020-8-27 16:34:59”    设置时间
-* cal：显示日历
-    * cal 2020           显示2020年全年日历
-* find：从指定目录下查找满足要求的文件
-    * find [搜索范围] [选项]
-    * -name：按文件名
-    * -user：按用户名
-    * -size：按文件大小
-        * find / -size +20m       找大于20m的
-        * find / -size -20m        找小于20m的
-        * find / -size 20m         找等于20m的
-* locate：我的docker上的centos没有这条命令
-* grep：过滤查找
-    * grep [选项] 查找内容 源文件
-    * -n：显示匹配行及行号
-    * -i：忽略字母大小写
-* gzip：压缩文件，只能将文件压缩为&quot;.gz文件&quot;
-    * gzip 文件
-* gunzip：解压缩文件
-    * gzip 文件.gz
-* zip：压缩文件
-    * -r：递归压缩
-    * zip -r dest.zip /home/*
-* unzip：解压缩文件
-    * -d:指定解压后的目录
-    * unzip -d /home/myfile dest.zip
-* tar：打包指令，最后打包后的文件是.tar.gz
-    * tar [选项] XXX.tar.gz 打包的内容
-    * tar -zcvf a.tar.gz a1.txt a2.txt      打包a1.txt 和a2.txt
-    * tar -zcvf myhome.tar.gz /home/  打包home下的所有文件
-    * tar -zxvf a.tar.gz                          解压文件到当前目录
-    * tar -zxvf a.tar.gz -C /dest/            解压到指定目录，指定目录必须存在
-    * -c：产生.tar打包文件
-    * -v：显示详细信息
-    * -f：指定压缩后的文件名
-    * -z：打包同时压缩
-    * -x：解包tar文件</code></pre>
-<h4 id="运行级别"><a href="#运行级别" class="headerlink" title="运行级别"></a>运行级别</h4><p>七个运行级别：</p>
-<pre><code>* 0：关机
-* 1：单用户（找回丢失密码）
-* 2：多用户无网络服务（用的最少）
-* 3：多用户有网络（用的最多）
-* 4：未使用，保留
-* 5：图形界面
-* 6：重启</code></pre>
-<p>系统的运行级别配置文件：/etc/inittab（在Ubuntu中，inittab软件包已经被<a target="_blank" rel="noopener" href="http://upstart.ubuntu.com/">Upstart</a>软件包替换了，所有的配置信息都在/etc/event.d/目录下。因为debian 系衍生出来的linux 一向是没有使用/etc/inittab 作为登入状态文档来使用的）</p>
-<p>运行级别切换：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init [0123456]</span><br></pre></td></tr></table></figure>
-<p>面试题：如何找回丢失的 root 密码？</p>
-<p>进入单用户模式，修改 root 密码。单用户模式不需要密码即可登陆。不能远程操作。</p>
-<p>（拿到电脑就可以随意进入）</p>
-<h1 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h1><hr>
-<ol>
-<li><p>添加用户</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">useradd [选项] 用户名 </span><br><span class="line">#useradd -m lilingj</span><br><span class="line">#useradd -g 组名 -m lilingjie</span><br><span class="line">#-d 指定家目录</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>指定密码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd 用户名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除用户</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">userdel 用户名</span><br><span class="line">#删除用户，但保留家目录</span><br><span class="line">userdel lilingj</span><br><span class="line">#都删</span><br><span class="line">userdel -r lilingj</span><br></pre></td></tr></table></figure>
-<p>实际开发中，保留家目录</p>
-</li>
-</ol>
-<ol>
-<li><p>查询用户指令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id 用户名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>切换用户</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su - 用户名</span><br></pre></td></tr></table></figure>
-<p>高权限进入低权限用户不需要输入密码</p>
-</li>
-</ol>
-<h1 id="组管理"><a href="#组管理" class="headerlink" title="组管理"></a>组管理</h1><hr>
-<p>Linux 中每个用户必须属于一个组，不能独立于组外。在 Linux 中每个文件有所在者、所在组、其他组的概念</p>
-<h4 id="增加组"><a href="#增加组" class="headerlink" title="增加组"></a>增加组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd 组名</span><br></pre></td></tr></table></figure>
-<h4 id="删除组"><a href="#删除组" class="headerlink" title="删除组"></a>删除组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupdel 组名</span><br></pre></td></tr></table></figure>
-<h4 id="切换组、家目录"><a href="#切换组、家目录" class="headerlink" title="切换组、家目录"></a>切换组、家目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">usermod -g 组名 lilingjie</span><br><span class="line">usermod -d 目录名 lilingjie #改变用户登陆的初始目录</span><br></pre></td></tr></table></figure>
-<h4 id="用户和组的相关文件"><a href="#用户和组的相关文件" class="headerlink" title="用户和组的相关文件"></a>用户和组的相关文件</h4><pre><code>* /etc/passwd文件
-    * user 的配置文件，记录用户的各种信息
-    * 每行含义：用户名:口令:用户标识号:组标识号:注释性描述:主目录:登陆shell
-* /etc/shadow文件
-    * 口令配置文件
-    * 每行含义：登录名:加密口令:最后一次修改时间:最小时间间隔:最大时间间隔:警告时间:不活动时间:失效时间:标志
-* /etc/group文件
-    * 组的配置文件，记录Linux包含的组的信息
-    * 每行含义：组名:口令:组标识号:组内用户:组内用户列表</code></pre>
-<h4 id="查看文件所有者"><a href="#查看文件所有者" class="headerlink" title="查看文件所有者"></a>查看文件所有者</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -ahl</span><br></pre></td></tr></table></figure>
-<h4 id="修改文件所有者"><a href="#修改文件所有者" class="headerlink" title="修改文件所有者"></a>修改文件所有者</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chown 用户名 文件名</span><br><span class="line">chown 用户名:组名 文件名</span><br><span class="line">#-R：如果是目录，则使其下所有子文件或目录递归生效</span><br></pre></td></tr></table></figure>
-<h4 id="修改文件所在组"><a href="#修改文件所在组" class="headerlink" title="修改文件所在组"></a>修改文件所在组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chgrp 组名 文件名</span><br><span class="line">#-R：如果是目录，则使其下所有子文件或目录递归生效</span><br></pre></td></tr></table></figure>
-<h4 id="其他组"><a href="#其他组" class="headerlink" title="其他组"></a>其他组</h4><p>除文件所有者和所在组的用户外，系统的其他用户都是文件的其他组</p>
-<h1 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h1><hr>
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="权限格式"><a href="#权限格式" class="headerlink" title="权限格式"></a>权限格式</h4><p>例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-rw-rw-r--  1</span><br></pre></td></tr></table></figure>
-
+<h4 id="RSA-1"><a href="#RSA-1" class="headerlink" title="RSA"></a>RSA</h4><p>使用RSA，私钥生成签名，公钥验证</p>
+<h4 id="其他数字签名算法"><a href="#其他数字签名算法" class="headerlink" title="其他数字签名算法"></a>其他数字签名算法</h4><ul>
+<li>ElGamal</li>
+<li>DSA（Digital Signature Algorithm）</li>
+<li>ECDSA：椭圆曲线DSA</li>
+<li>Rabin</li>
+</ul>
+<h3 id="随机数生成器"><a href="#随机数生成器" class="headerlink" title="随机数生成器"></a>随机数生成器</h3><p>密码技术中不可预测性的源泉</p>
+<p>随机数的性质</p>
 <ul>
-<li><p>文件类型：0位</p>
+<li>随机性（randomness）：弱伪随机数</li>
+<li>不可预测性（unpredictability）：无法通过之前生成的序列推测出下一个数，强伪随机数</li>
+<li>不可重现性：运行软件的计算机本身只具有有限的内部状态，而内部状态相同的情况下，软件必然只能生成相同的数。因此软件所生成的数列在某个时刻一定会出现重复。对于软件所生成的数列，其<strong>周期</strong>一定是有限的。凡是具有周期的数列，都不具备不可重现性。要生成具有该性质的数列，需要从不可重现的物理现象中获取信息，例如采集CPU的热噪声。具备该性质的随机数称之为<strong>真随机数</strong></li>
+</ul>
+<h4 id="真随机数"><a href="#真随机数" class="headerlink" title="真随机数"></a>真随机数</h4><p>通过硬件生成。这样的硬件设备称为<strong>随机数生成器（Random Number Generator，RNG）</strong></p>
+<h4 id="伪随机数"><a href="#伪随机数" class="headerlink" title="伪随机数"></a>伪随机数</h4><p>通过软件生成。这样的软件称为<strong>伪随机数生成器（Pseudo Random Number Generator，PRNG）</strong></p>
+<p><strong>种子（seed）</strong>：用来对伪随机数生成器<strong>内部状态</strong>进行初始化</p>
+<h5 id="线性同余法"><a href="#线性同余法" class="headerlink" title="线性同余法"></a>线性同余法</h5><p>linear congruential method</p>
+<p>算法：</p>
 <ul>
-<li>-：普通文件</li>
-<li>d：目录（目录大小总是 4096B）</li>
-<li>l：软连接</li>
-<li>c：字符设备</li>
-<li>b：块文件</li>
+<li>第一伪随机数：R<sub>0</sub> = (A * 种子 + C) mod M，A、C、M都是常量，且A、C都小于M</li>
+<li>R<sub>i + 1</sub> = (A * R<sub>i</sub> + C) mod M，i = 0、1、2……</li>
 </ul>
-</li>
-<li><p>文件所有者权限：1 - 3 位</p>
+<p>说明：</p>
 <ul>
-<li>rw-</li>
+<li>线性同余法不具备不可预测性，是弱随机数，不可用于密码技术</li>
+<li>C语言库函数rand，以及Java的java.util.Random类都是用线性同余法写的，不能用于密码技术</li>
 </ul>
+<h5 id="单向散列函数法"><a href="#单向散列函数法" class="headerlink" title="单向散列函数法"></a>单向散列函数法</h5><p>通过单向散列函数可以编写出生成强伪随机数的生成器。</p>
+<p>算法：将种子作为计数器初始值，每次计数器加一，并对当前数生成单向散列值，作为伪随机数输出</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyRandom</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, seed = <span class="number">0</span></span>):</span></span><br><span class="line">        self.__count = seed</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">seed</span>(<span class="params">self, seed_</span>):</span></span><br><span class="line">        self.__count = seed_</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">random</span>(<span class="params">self</span>):</span></span><br><span class="line">        ret = hashlib.md5(str(self.__count).encode(<span class="string">&quot;utf-8&quot;</span>)).hexdigest()</span><br><span class="line">        self.__count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> int(ret, <span class="number">16</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="密码法"><a href="#密码法" class="headerlink" title="密码法"></a>密码法</h5><p>算法：将种子拆分成两部分使用，分别是计数器初始值和密钥，每次计数器加一，并对当前数使用密钥加密，密文作为伪随机数输出</p>
+<h5 id="其他算法"><a href="#其他算法" class="headerlink" title="其他算法"></a>其他算法</h5><h2 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h2><p><strong>公钥证书（Public-Key Certificate，PKC）</strong>记有姓名、组织、邮箱、地址等个人信息，以及属于此人的公钥，并由认证机构（Authentication Authority、Certifyint Authority，CA）施加数字签名。简称<strong>证书（certificate）</strong></p>
+<h3 id="公钥基础设施"><a href="#公钥基础设施" class="headerlink" title="公钥基础设施"></a>公钥基础设施</h3><p>Public-Key Infrastructure，PKI</p>
+<p>一个总称</p>
+<h4 id="PKI组成要素"><a href="#PKI组成要素" class="headerlink" title="PKI组成要素"></a>PKI组成要素</h4><ul>
+<li>用户：使用PKI的实体</li>
+<li>认证机构：颁发证书的实体</li>
+<li>仓库：保存证书的数据库</li>
+</ul>
+<h2 id="密钥的管理"><a href="#密钥的管理" class="headerlink" title="密钥的管理"></a>密钥的管理</h2><h3 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h3><ul>
+<li>用随机数生成密钥</li>
+<li>用口令生成密钥</li>
+</ul>
+<h3 id="更新密钥"><a href="#更新密钥" class="headerlink" title="更新密钥"></a>更新密钥</h3><p>key updating</p>
+<p>发送者和接受者定期同时改变密钥。用当前密钥的散列值作为下一个密钥。可以防止破译过去的通信内容机制，称之为<strong>后向安全（backward security）</strong> </p>
+<h3 id="配送密钥"><a href="#配送密钥" class="headerlink" title="配送密钥"></a>配送密钥</h3><ul>
+<li><p>通过事先共享</p>
 </li>
-<li><p>文件所在组的权限：4 - 6 位</p>
+<li><p>通过密钥分配中心</p>
 <ul>
-<li>r–：只读</li>
+<li>中心化数据库保存所有人的密钥</li>
 </ul>
 </li>
-<li><p>文件的其他组用户拥有的权限：7 - 9 位</p>
+<li><p>通过公钥密码</p>
+</li>
+<li><p>通过 DIffie-Hellman密钥交换：通信双方可以通过交换一些可以公开的信息就能够生成出共享的秘密数字。这一秘密数字就可以作为对称密码的密钥</p>
+</li>
+</ul>
+<h3 id="保存密钥"><a href="#保存密钥" class="headerlink" title="保存密钥"></a>保存密钥</h3><h3 id="作废密钥"><a href="#作废密钥" class="headerlink" title="作废密钥"></a>作废密钥</h3><p>向证书颁发机构申请作废密钥，证书机构维护一张已作废密钥表</p>
+<h2 id="PGP"><a href="#PGP" class="headerlink" title="PGP"></a>PGP</h2><p>PGP（Pretty Good Privacy）是一款商业密码软件，不能自由使用。后自由软件基金会决定开发一个PGP的替代品，GunPG，简称GPG。</p>
+<p><a target="_blank" rel="noopener" href="https://www.gnupg.org/">https://www.gnupg.org/</a></p>
+<h2 id="SSL-TLS"><a href="#SSL-TLS" class="headerlink" title="SSL/TLS"></a>SSL/TLS</h2><p>Secure Socket Layer/Transport Layer Security</p>
+<p>以前是http协议直接通信，https是让http协议通过SSL/TLS通信</p>
+<p>工作流程：使用<strong>伪随机数生成器</strong>生成<strong>会话密钥</strong>作为<strong>对称密码</strong>的密钥，使用<strong>对称密码</strong>加密<strong>通信消息</strong>，使用<strong>消息认证码</strong>保证信息的完整性，使用<strong>公钥密码</strong>配送<strong>会话密钥</strong>，使用<strong>证书</strong>来保证公钥密码的公钥的合法性。</p>
+<p>TLS 1.0 相当于 SSL 3.1，SSL 3.0 已经不安全了。</p>
+<h3 id="TLS"><a href="#TLS" class="headerlink" title="TLS"></a>TLS</h3><p>TLS分为两层协议，下层是TLS记录协议（TLS record protocal），上层是TLS握手协议（TLS handshake protocal）。TLS握手协议又分为四个并列协议：握手协议、密码规格变更协议、警告协议、应用数据协议。</p>
+<h4 id="TLS记录协议"><a href="#TLS记录协议" class="headerlink" title="TLS记录协议"></a>TLS记录协议</h4><p>位于TLS握手协议的下层，负责使用<strong>对称密码</strong>对信息进行加密通信；负责消息的压缩、加密以及数据的认证。使用了对称密码和消息认证码。具体的算法和共享密码则是通过握手协议在服务器和客户端协商决定的。</p>
+<h4 id="TLS握手协议"><a href="#TLS握手协议" class="headerlink" title="TLS握手协议"></a>TLS握手协议</h4><h5 id="握手协议"><a href="#握手协议" class="headerlink" title="握手协议"></a>握手协议</h5><p>负责在客户端和服务器之间协商决定密码算法和共享密钥。基于证书的认证操作也是在这个协议中完成的。</p>
+<h5 id="密码规格变更协议"><a href="#密码规格变更协议" class="headerlink" title="密码规格变更协议"></a>密码规格变更协议</h5><p>负责向通信对象传达变更密码方式的信号。当协议中途发生错误时，通过警告协议传达给对方</p>
+<h5 id="警告协议"><a href="#警告协议" class="headerlink" title="警告协议"></a>警告协议</h5><p>比如消息无法解密是通知服务器。如果没有错误，通过应用数据协议来进行通信</p>
+<h5 id="应用数据协议"><a href="#应用数据协议" class="headerlink" title="应用数据协议"></a>应用数据协议</h5><h2 id="量子密码和量子计算机"><a href="#量子密码和量子计算机" class="headerlink" title="量子密码和量子计算机"></a>量子密码和量子计算机</h2><p>量子密码利用了两个事实：</p>
 <ul>
-<li>r–：只读</li>
+<li>从原理上来说，无法准确测出光子的偏振方向<ul>
+<li>窃听者听到的内容可能不正确</li>
 </ul>
 </li>
-<li><p>数字</p>
+<li>测量行为本身会导致光子的状态发生改变<ul>
+<li>接受者可以判断通信是否被监听</li>
+</ul>
+</li>
+</ul>
+<p>如果量子密码进入使用领域，可以使用量子密码来实现一次性密码本，从而产生完美的密码技术。</p>
+<p>量子计算机：一个粒子可以同时具有多种状态，如果一个粒子能够计算0、1两种状态，那么128个粒子就可以同时计算2<sup>128</sup>种状态。这就是一台超级并行计算机，密码破译者的终极工具</p>
+<h2 id="椭圆曲线密码"><a href="#椭圆曲线密码" class="headerlink" title="椭圆曲线密码"></a>椭圆曲线密码</h2><p>源自于求椭圆弧长的椭圆积分的反函数</p>
+<p>实数域上方程：y<sup>2</sup> = ax<sup>3</sup> + bx<sup>2</sup> + cx + d</p>
+<p>有限域（23）上方程：y<sup>2</sup> ≡ ax<sup>3</sup> + bx<sup>2</sup> + cx + d （mod 23）</p>
+<p>包括：</p>
 <ul>
-<li>如果是文件，则表示硬链接数目</li>
-<li>如果是目录，则表示该目录的子目录的个数<h4 id="rwx权限详解"><a href="#rwx权限详解" class="headerlink" title="rwx权限详解"></a>rwx权限详解</h4></li>
+<li>基于椭圆曲线的公钥密码</li>
+<li>基于椭圆曲线的数字签名</li>
+<li>基于椭圆曲线的密钥交换</li>
 </ul>
-</li>
-</ul>
-<p>对文件：</p>
-<pre><code>* r：可读
-* w：可写，不代表可删除，对文件所在目录有 w 权限才可删除
-* x：可执行</code></pre>
-<p>对目录：</p>
-<pre><code>* r：可读，ls查看目录内容
-* w：可写，修改、创建、删除、重命名目录
-* x：可执行，可以进入该目录</code></pre>
-<h4 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h4><p>通过 chmod ，可以修改文件或者目录的权限</p>
-<p>u：所有者</p>
-<p>g：所有组</p>
-<p>o：其他人</p>
-<p>a：所有人（u、g、o的总和）</p>
-<p>第一种：通过 +、-、= 变更权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod u&#x3D;rwx,g&#x3D;rx,o&#x3D;x 文件目录名</span><br><span class="line">chmod o+w 文件目录名</span><br><span class="line">chmod a-x 文件目录名</span><br></pre></td></tr></table></figure>
-<p>第二种：通过数字变更权限</p>
-<p>所有者、所在组、其他组用三个三位二进制数字表示，即三个十进制数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 751 文件目录名</span><br><span class="line">#等价 chmod u&#x3D;rwx,g&#x3D;rx,o&#x3D;x 文件目录名</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="任务调度crond"><a href="#任务调度crond" class="headerlink" title="任务调度crond"></a>任务调度crond</h1><hr>
-<p>任务调度：指系统在某个时间执行的特定的命令或程序</p>
-<ol>
-<li>系统工作：有些重要的工作必须周而复始地执行。如病毒扫描。</li>
-<li>个别用户工作：如对数据库备份。<h4 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h4></li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">crontab [选项]</span><br><span class="line">#-e 编辑crontab定时任务</span><br><span class="line">#-l 查询crontab定时任务</span><br><span class="line">#-r 删除当前用户所有的crontab任务</span><br></pre></td></tr></table></figure>
-<p>例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*&#x2F;1 * * * * ls -l &#x2F;etc &gt;&gt; &#x2F;tmp&#x2F;to.txt</span><br></pre></td></tr></table></figure>
-<p>每隔一分钟执行一次</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l &#x2F;etc &gt;&gt; &#x2F;tmp&#x2F;to.txt</span><br></pre></td></tr></table></figure>
-<p>五个*代表：分 时 天 月 星期几</p>
-<h4 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h4><pre><code>* *  ：代表任何时间
-* ,  ：代表不连续时间。&quot;0 8,12,16 * * * 命令&quot;：代表每天8点0分、12点0分、16点0分都执行一次命令
-* -  ：代表连续的时间范围。&quot;0 5 * * 1-6 命令&quot;：代表周一到周六每天5点0分执行一次命令
-* */n  ：代表每隔多久执行一次。&quot;*/10 * * * * 命令&quot;：代表每隔10分钟执行一遍命令</code></pre>
-<h4 id="修改crontab下的编辑器"><a href="#修改crontab下的编辑器" class="headerlink" title="修改crontab下的编辑器"></a>修改crontab下的编辑器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select-editor</span><br></pre></td></tr></table></figure>
-<h4 id="重启任务调度"><a href="#重启任务调度" class="headerlink" title="重启任务调度"></a>重启任务调度</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service crond restart</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="磁盘分区和挂载"><a href="#磁盘分区和挂载" class="headerlink" title="磁盘分区和挂载"></a>磁盘分区和挂载</h1><hr>
-<p>Linux采用一种叫“载入”的处理方法，将一个分区和一个目录联系起来</p>
-<h4 id="分区基本知识"><a href="#分区基本知识" class="headerlink" title="分区基本知识"></a>分区基本知识</h4><ol>
-<li><p>MBR分区</p>
-<ul>
-<li>最多支持四个主分区</li>
-<li>系统只能安装在主分区</li>
-<li>扩展分区要占一个主分区</li>
-<li>MBR最大只支持2TB，但拥有最好的兼容性</li>
-</ul>
-</li>
-<li><p>GTP分区</p>
-<ul>
-<li>支持无限多个主分区（但操作系统可能限制，如 windows下最多支持128个分区）</li>
-<li>最大支持18EB，（1EB = 1024PB， 1PB = 1024TB）</li>
-<li>windows 7 64位以后支持GTP<h4 id="硬盘种类"><a href="#硬盘种类" class="headerlink" title="硬盘种类"></a>硬盘种类</h4></li>
-</ul>
-</li>
-</ol>
-<p>分为IDE硬盘和SCSI硬盘，目前基本上是SCSI硬盘</p>
-<h4 id="查看系统的分区和挂载情况"><a href="#查看系统的分区和挂载情况" class="headerlink" title="查看系统的分区和挂载情况"></a>查看系统的分区和挂载情况</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsblk -f</span><br></pre></td></tr></table></figure>
-<h4 id="-1"><a href="#-1" class="headerlink" title=""></a></h4><h4 id="如何增加一块硬盘？"><a href="#如何增加一块硬盘？" class="headerlink" title="如何增加一块硬盘？"></a>如何增加一块硬盘？</h4><p>！理解了再用，不要乱搞</p>
-<pre><code>* 插入硬盘
-* 分区：fdisk /dev/sdb
-* 格式化：mkfs -t ext4 /dev/sdb1
-* 挂载：先创建一个/home/newdisk，挂载 mount /dev/sdb1 /home/newdisk
-    * 说明：只是临时挂载，重启后失效
-* 设置可以自动挂载：永久挂载，编辑/etc/fstab，执行mount -a</code></pre>
-<h4 id="取消挂载"><a href="#取消挂载" class="headerlink" title="取消挂载"></a>取消挂载</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">umount 设备名称或者挂载目录</span><br><span class="line">#例如 umount &#x2F;dev&#x2F;sdb1 或者 umount &#x2F;newdisk</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="磁盘状态查询"><a href="#磁盘状态查询" class="headerlink" title="磁盘状态查询"></a>磁盘状态查询</h1><hr>
-<h4 id="查询系统整体磁盘使用情况"><a href="#查询系统整体磁盘使用情况" class="headerlink" title="查询系统整体磁盘使用情况"></a>查询系统整体磁盘使用情况</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
-<h4 id="查询指定目录的磁盘占用情况"><a href="#查询指定目录的磁盘占用情况" class="headerlink" title="查询指定目录的磁盘占用情况"></a>查询指定目录的磁盘占用情况</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">du -h 目录</span><br><span class="line">#-s：制定目录占用大小汇总</span><br><span class="line">#-a：含文件</span><br><span class="line">#-h：带计量单位</span><br><span class="line">#--max-depth&#x3D;1：子目录深度</span><br><span class="line">#-c：列出明细的同时，增加汇总量</span><br></pre></td></tr></table></figure>
-<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><ol>
-<li>当前目录下文件数目<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l . | grep &quot;^-&quot; | wc -l</span><br></pre></td></tr></table></figure></li>
-<li>统计当前文件夹下的目录的个数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l . | grep &quot;^d&quot; | wc -l</span><br></pre></td></tr></table></figure></li>
-<li>统计当前文件夹下文件的个数，包括子文件夹里的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lR . | grep &quot;^-&quot; | wc -l</span><br></pre></td></tr></table></figure></li>
-<li>统计文件夹下目录的个数，包括子文件夹里的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lR . | grep &quot;^d&quot; | wc -l</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<h1 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h1><hr>
-<h4 id="获取ip"><a href="#获取ip" class="headerlink" title="获取ip"></a>获取ip</h4><ol>
-<li><p>自动获取ip：每次自动获取的ip地址可能不一样</p>
-</li>
-<li><p>获取静态ip：直接修改配置文件来指定ip</p>
-<ul>
-<li>编辑/etc/sysconfig/network-scripts/ifcfg-eth0</li>
-<li>我用的 Ubuntu 20.04，需要修改的文件是/etc/netplan/01-network-manager-all.yaml</li>
-</ul>
-</li>
-</ol>
-<h1 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h1><hr>
-<p>进程都可能以两种方式存在，前台和后台</p>
-<h4 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ps</span><br><span class="line">#-a：所有</span><br><span class="line">#-u：以用户的格式显示</span><br><span class="line">#-x：显示后台进程运行的参数</span><br><span class="line">#-e：所有</span><br><span class="line">#-f：全格式</span><br></pre></td></tr></table></figure>
-<p>字段说明：</p>
-<pre><code>* USER：用户名
-
-* PID：进程识别号
-* PPID：父进程的PID
-* %CPU：占用CPU
-* %MEM：占用内存
-* VSZ：使用的虚拟内存，单位KB
-* RSS：使用物理内存情况，单位KB
-* TTY：终端机号
-* STAT：进程状态，S为休眠，s为该进程是会话的先导进程，N表示进程拥有比普通优先级更低的优先级，R为运行，D为短期等待，Z为僵死进程，T为被跟踪或被停止
-* START：启动时间
-* TIME：此进程消耗的CPU时间
-* COMMAND：进程执行时的命令行
-* C：CPU用于计算执行优先级的因子。数值越大，CPU密集型运算，执行优先级降低；数值越小，I/O密集型运算，执行优先级提高。</code></pre>
-<h4 id="查看进程树"><a href="#查看进程树" class="headerlink" title="查看进程树"></a>查看进程树</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pstree [选项]</span><br><span class="line">#-p：显示进程PID</span><br><span class="line">#-u：显示进程所属用户</span><br></pre></td></tr></table></figure>
-<h4 id="终止进程"><a href="#终止进程" class="headerlink" title="终止进程"></a>终止进程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#通过进程号来终止进程</span><br><span class="line">kill [选项] 进程号</span><br><span class="line">#-9：强制终止</span><br><span class="line">#通过进程名称来会终止进程，支持通配符</span><br><span class="line">killall 进程名称</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h1><hr>
-<p>服务的本质是后台进程，通常会监听某个端口，等待其他程序的请求，比如 mysql， sshd， 防火墙。因此又称为守护进程</p>
-<h4 id="service管理命令"><a href="#service管理命令" class="headerlink" title="service管理命令"></a>service管理命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service 服务名 [start|stop|restart|reload|status]</span><br></pre></td></tr></table></figure>
-<p>CentOS 7.0 后，不再使用service，而是 systemctl<br>案例：</p>
-<p>（这个课程使用的CentOS 6.0，CentOS7.0后和我用的Ubuntu 20.04都没有使用iptables）</p>
-<ol>
-<li>查看防火墙<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables status</span><br></pre></td></tr></table></figure></li>
-<li>关闭防火墙（临时关闭，重启后失效）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables stop</span><br></pre></td></tr></table></figure></li>
-<li>重启防火墙<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables restart</span><br></pre></td></tr></table></figure>
-<h4 id="查看服务名"><a href="#查看服务名" class="headerlink" title="查看服务名"></a>查看服务名</h4></li>
-</ol>
-<p>Ubuntu 20.04没有这个命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setup</span><br></pre></td></tr></table></figure>
-<p>直接查看</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l &#x2F;etc&#x2F;init.d&#x2F;</span><br></pre></td></tr></table></figure>
-<h4 id="服务运行级别"><a href="#服务运行级别" class="headerlink" title="服务运行级别"></a>服务运行级别</h4><p>和系统运行级别相同，见 常用指令 -&gt; 运行级别</p>
-<p>查看或者修改默认级别（我用的Ubuntu 20.04没有此文件）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi &#x2F;etc&#x2F;inittab</span><br></pre></td></tr></table></figure>
-<h4 id="chkconfig指令"><a href="#chkconfig指令" class="headerlink" title="chkconfig指令"></a>chkconfig指令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --list</span><br><span class="line">chkconfig 服务名 --list</span><br><span class="line">chkconfig --level 5 服务名 on&#x2F;off #在系统级别在5的时候，服务启动或者不启动</span><br></pre></td></tr></table></figure>
-<h4 id="动态监控进程"><a href="#动态监控进程" class="headerlink" title="动态监控进程"></a>动态监控进程</h4><p>top 命令和 ps 命令类似，top在执行一段时间后可以更新正在运行的进程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">top [选项]</span><br><span class="line">#-d：制定top命令每隔几秒更新，默认是3秒</span><br><span class="line">#-i：使top不显示任何闲置和僵死进程</span><br><span class="line">#-p：通过指定进程ID来监控某个进程状态</span><br></pre></td></tr></table></figure>
-<p>交互操作说明</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">P：以CPU使用率排序，默认是此项</span><br><span class="line">M：以内存使用率排序</span><br><span class="line">N：以PID排序</span><br><span class="line">q：退出</span><br><span class="line">u：监视特定用户</span><br><span class="line">k：终止指定进程</span><br></pre></td></tr></table></figure>
-<h4 id="监控网络状态"><a href="#监控网络状态" class="headerlink" title="监控网络状态"></a>监控网络状态</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netstat [选项]</span><br><span class="line">#-an 按一定顺序排列输出</span><br><span class="line">#-p 显示哪个进程在调用</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="apt软件包管理"><a href="#apt软件包管理" class="headerlink" title="apt软件包管理"></a>apt软件包管理</h1><hr>
-<h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>/etc/apt/source.list：指定了官方软件仓库地址</p>
-<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">apt-get update #更新源</span><br><span class="line">apt-get install package #安装包</span><br><span class="line">apt-get remove package #删除包</span><br><span class="line">apt-cache search package #搜索软件包</span><br><span class="line">apt-cache show package #获取包的相关信息，如说明、大小、版本</span><br><span class="line">apt-get install package --reinstall #重新安装包</span><br><span class="line">apt-get -f install #修复安装</span><br><span class="line">apt-get remove package --purge #删除包，包括配置文件</span><br><span class="line">apt-get build-dep package #安装相关的编译环境</span><br><span class="line">apt-get upgrade #更新已安装的包</span><br><span class="line">apt-get dist-upgrade #升级系统</span><br><span class="line">apt-cache depends package #了解使用该包依赖哪些包</span><br><span class="line">apt-cache rdepends package #查看该包被哪些包依赖</span><br><span class="line">apt-get source package #下载该包的源代码</span><br></pre></td></tr></table></figure>
-
-<h1 id="ssh远程登录"><a href="#ssh远程登录" class="headerlink" title="ssh远程登录"></a>ssh远程登录</h1><hr>
-<p>SSH为Secure Shell 的缩写</p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>需安装openssh-server，并启动sshd服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br><span class="line">service sshd start</span><br></pre></td></tr></table></figure>
-<h4 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#基本语法</span><br><span class="line">ssh 用户名@ip</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/20/Docker%E7%AE%80%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="换菜刀换脸盆的博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="换菜刀换脸盆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/20/Docker%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">Docker简记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-20 11:26:23" itemprop="dateCreated datePublished" datetime="2020-08-20T11:26:23+08:00">2020-08-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-20 23:51:12" itemprop="dateModified" datetime="2020-09-20T23:51:12+08:00">2020-09-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Docker为什么出现？"><a href="#Docker为什么出现？" class="headerlink" title="Docker为什么出现？"></a>Docker为什么出现？</h1><p>传统模式下，运维部署开发的代码时，环境不一样，容易出错，两者扯皮。Docker将软件代码和环境整体打包递交给运维。</p>
-<p><img src="https://uploader.shimo.im/f/VuatyY0RNnv42kYM.png!thumbnail" alt="图片"><img src="https://uploader.shimo.im/f/tLu0hN9C3xWvi5xx.png!thumbnail" alt="图片"></p>
-<h1 id="Docker是什么？"><a href="#Docker是什么？" class="headerlink" title="Docker是什么？"></a>Docker是什么？</h1><p>解决了运行环境和配置问题软件容器，方便做持续集成并有助于整体发布的容器虚拟化技术</p>
-<h1 id="Docker能干什么？"><a href="#Docker能干什么？" class="headerlink" title="Docker能干什么？"></a>Docker能干什么？</h1><p>替代虚拟机</p>
-<p>虚拟机缺点：资源占用多，冗余步骤多，启动慢</p>
-<h1 id="Docker三要素"><a href="#Docker三要素" class="headerlink" title="Docker三要素"></a>Docker三要素</h1><p>Docker架构图<img src="https://uploader.shimo.im/f/7P3BnNiom3BSRhbe.png!thumbnail" alt="图片"></p>
-<p>三要素：镜像、容器、仓库</p>
-<p>镜像类比于类，容器类比于类的实例，容器是用镜像创建的运行实例</p>
-<p>容器可以看做是一个简易版的Linux环境</p>
-<p>仓库是集中存放镜像文件的场所</p>
-<h1 id="Docker运行底层原理"><a href="#Docker运行底层原理" class="headerlink" title="Docker运行底层原理"></a>Docker运行底层原理</h1><p>Docker 是一个Client-Server 结构的系统，Docker 守护进程运行在主机上，然后通过Socket连接从客户端访问，守护进程从客户端接收命令并管理运行在主机上的容器</p>
-<p>相比于虚拟机，Docker 没有硬件虚拟化，减少了抽象层<img src="https://uploader.shimo.im/f/0NHh8nivaFmRLueq.png!thumbnail" alt="图片"></p>
-<h1 id="Docker常用命令"><a href="#Docker常用命令" class="headerlink" title="Docker常用命令"></a>Docker常用命令</h1><ol>
-<li><p>帮助命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br><span class="line">docker info</span><br><span class="line">docker --help</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>镜像命令</p>
-</li>
-</ol>
-<p>显示镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line">#-a 显示所有</span><br><span class="line">#-q 显示id</span><br><span class="line">#--digests 显示镜像摘要信息</span><br><span class="line">#-no-trunc 显示镜像完整信息</span><br></pre></td></tr></table></figure>
-<p>查找镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker search</span><br><span class="line">#--no-trunc 显示完整的镜像描述</span><br><span class="line">#-s 列出收藏数不小于指定值的镜像</span><br><span class="line">#--automated 只列出automated build类型的镜像</span><br></pre></td></tr></table></figure>
-<p>拉取镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull</span><br></pre></td></tr></table></figure>
-<p>删除镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker rmi</span><br><span class="line">#-f 强制删除</span><br><span class="line">docker rmi -f $(docker images -qa) #删除全部镜像</span><br></pre></td></tr></table></figure>
-<p>容器封装成镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -m&#x3D;&quot;提交描述信息&quot; -a&#x3D;&quot;作者&quot; 容器ID 要创建的目标镜像名:[标签名]</span><br></pre></td></tr></table></figure>
-
-
-<ol>
-<li>容器命令</li>
-</ol>
-<p>新建并启动容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -it centos</span><br><span class="line">#-i 以交互模式运行容器</span><br><span class="line">#-t 为容器重新分配一个伪输入终端</span><br><span class="line">#-p 主机端口:docker容器端口</span><br><span class="line">#-P 随机分配端口</span><br><span class="line">#-d 启动守护容器</span><br></pre></td></tr></table></figure>
-<p>列出所有正在运行的容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br><span class="line">#-a 正在运行和历史上运行的所有容器</span><br><span class="line">#-l 上一个运行的</span><br><span class="line">#-n 上指定次运行的</span><br></pre></td></tr></table></figure>
-<p>退出容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#容器停止退出</span><br><span class="line">exit</span><br><span class="line">#容器不停止退出</span><br><span class="line">ctrl + P + Q</span><br></pre></td></tr></table></figure>
-<p>启动容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start 容器ID</span><br></pre></td></tr></table></figure>
-<p>重启容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart 容器ID</span><br></pre></td></tr></table></figure>
-<p>停止容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#正常停止</span><br><span class="line">docker stop 容器ID</span><br><span class="line">#强制停止</span><br><span class="line">docker kill 容器ID</span><br></pre></td></tr></table></figure>
-<p>删除已经停止容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker rm 容器ID</span><br><span class="line">#-f 强制删除</span><br><span class="line">#一次性删除多容器</span><br><span class="line">docker rm -f $(docker ps -aq)</span><br><span class="line">docker ps -aq | xargs docker rm</span><br></pre></td></tr></table></figure>
-<p>查看容器日志</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f -t --tail 容器ID</span><br><span class="line">#-t 加入时间戳</span><br><span class="line">#-f 跟随最新日志打印</span><br><span class="line">#--tail 数字 显示最后多少条</span><br></pre></td></tr></table></figure>
-<p>查看容器内运行的进程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker top 容器ID</span><br></pre></td></tr></table></figure>
-<p>查看容器内部细节</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect 容器ID</span><br></pre></td></tr></table></figure>
-<p>进入正在运行的容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker attach 容器ID</span><br></pre></td></tr></table></figure>
-<p>从容器内拷贝文件到主机上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp 容器ID:容器内路径 目的主机路径</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="Docker镜像是什么"><a href="#Docker镜像是什么" class="headerlink" title="Docker镜像是什么"></a>Docker镜像是什么</h1><p>轻量级、可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，包括代码、运行时、库、环境变量、配置文件</p>
-<p>UnionFS（联合文件系统）:Union文件系统是一种分层、轻量级并且搞性能的文件系统，它支持对文件系统的修改作为一次提交来一层一层叠加，同时将不同目录挂载到同一个虚拟文件系统下</p>
-<p>UnionFS是Docker镜像的基础，镜像可以通过分层来继承，基于基础镜像</p>
-<p><img src="https://uploader.shimo.im/f/ds0OkbgMznc2ev11.png!thumbnail" alt="图片"></p>
-<h1 id="Docker容器数据卷"><a href="#Docker容器数据卷" class="headerlink" title="Docker容器数据卷"></a>Docker容器数据卷</h1><p>Docker容器产生的数据，如果不通过docker commit生成新的镜像，使数据作为镜像一部分保存下来，那么容器删除后，数据自然也就没有了</p>
-<ul>
-<li>将运用与运行环境打包成容器运行，运行可以伴随着容器，但我们对数据的要求是希望持久化的</li>
-<li>容器之前希望有可能共享数据</li>
-</ul>
-<p>直接命令添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -v &#x2F;宿主机绝对路径:&#x2F;容器内目录 镜像名</span><br><span class="line">#两个文件夹将共享数据</span><br><span class="line">docker run -it -v &#x2F;宿主机绝对路径:&#x2F;容器内目录:ro 镜像名</span><br><span class="line">#容器内对共享目录只读</span><br></pre></td></tr></table></figure>
-<p>dockerfile添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">略</span><br><span class="line">--volume-from 容器间传递共享</span><br></pre></td></tr></table></figure>
-
-<h1 id="DockerFile"><a href="#DockerFile" class="headerlink" title="DockerFile"></a>DockerFile</h1><p>DockerFile 是用来构建Docker镜像的构建文件，是由一系列命令和参数构成的脚本。</p>
-<p>构建三步骤：</p>
-<pre><code>* 编写DockerFile文件
-* docker build
-* docker run</code></pre>
-<p>scratch 是元镜像</p>
-<h4 id="DockerFile基础知识："><a href="#DockerFile基础知识：" class="headerlink" title="DockerFile基础知识："></a>DockerFile基础知识：</h4><pre><code>* 每条保留字指令都必须为大写字母且后面要跟随至少一个参数
-* 指令从上到下，顺序执行
-* #表示注释
-* 每条指令都会创建一个新的镜像层，并对镜像进行提交</code></pre>
-<h4 id="DockerFile执行的大致流程"><a href="#DockerFile执行的大致流程" class="headerlink" title="DockerFile执行的大致流程"></a>DockerFile执行的大致流程</h4><pre><code>* docker从基础镜像运行一个容器
-* 执行一条指令并对容器做出修改
-* 执行类似docker commit的操作提交一个新的镜像层
-* docker再基于刚提交的镜像运行一个新容器
-* 执行dockerfile中的下一条指令知道所有指令都执行完成</code></pre>
-<h4 id="DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段"><a href="#DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段" class="headerlink" title="DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段"></a>DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段</h4><pre><code>* DockerFile 是软件的原材料
-* Docker镜像是软件的交付品
-* Docker容器则可以认为世软件的运行态</code></pre>
-<p>DockerFile面向开发，Docker镜像成为交付标准，Docker容器则涉及到部署与运维<img src="https://uploader.shimo.im/f/49a8vK8yeIvKwTVP.png!thumbnail" alt="图片"></p>
-<h1 id="DockerFile保留字指令"><a href="#DockerFile保留字指令" class="headerlink" title="DockerFile保留字指令"></a>DockerFile保留字指令</h1><p><img src="https://uploader.shimo.im/f/XQy1Oekt7xZhtZpY.png!thumbnail" alt="图片"></p>
-<ol>
-<li><p>FROM：基础镜像，当前镜像是基于哪个镜像的</p>
-</li>
-<li><p>MAINTAINER：镜像维护者的姓名和邮箱地址</p>
-</li>
-<li><p>RUN：容器构建时需要运行的命令</p>
-</li>
-<li><p>EXPOSE：当前容器对外暴露的端口号</p>
-</li>
-<li><p>WORKDIR：指定在创建容器后，终端默认登录的进来工作目录，一个落脚点</p>
-</li>
-<li><p>ENV：用来构建镜像过程中设置环境变量</p>
-</li>
-<li><p>ADD：将宿主机目录下的文件拷贝进镜像且ADD命令会自动处理URL和解压tar压缩包</p>
-</li>
-<li><p>COPY：类似ADD，拷贝文件和目录到镜像中</p>
-<ul>
-<li>COPY src dest</li>
-<li>COPY [“src”, “dest”]</li>
-</ul>
-</li>
-<li><p>VOLUME：容器数据卷，用于数据保存和持久化工作</p>
-</li>
-<li><p>CMD：容器启动时要运行的命令，可以有多个，CMD会被docker run之后的参数替换</p>
-<ul>
-<li>shell格式：CMD &lt;命令&gt;</li>
-<li>exec格式：CMD [“可执行文件“， ”参数1”,  “参数2”…]</li>
-<li>参数列表格式：CMD [”参数1”,  “参数2”…]，在指定ENTRYPOINT指令后，用CMD指定具体参数</li>
-</ul>
-</li>
-<li><p>ENTRYPOINT：同CMD，但是docker run 之后的参数会追加到该命令行中</p>
-</li>
-<li><p>ONBUILD：当构建一个被继承的dockerfile时运行命令，父镜像在被子继承后父镜像的onbuild会被触发</p>
-<h4 id="例子1："><a href="#例子1：" class="headerlink" title="例子1："></a>例子1：</h4></li>
-</ol>
-<p>阿里云pull下的centos没有vim，也没有ifconfig。制作一个包含这些工具的centos镜像</p>
-<p>第一步：</p>
-<p>DockerFile文件编写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#DockerFile文件编写</span><br><span class="line">FROM centos</span><br><span class="line">MAINTAINER llj&lt;lilingjie_nefu@qq.com&gt;</span><br><span class="line">ENV MYPATH &#x2F;tmp</span><br><span class="line">WORKDIR $MYPATH</span><br><span class="line">RUN yum -y install vim</span><br><span class="line">RUN yum -y install net-tools</span><br><span class="line">EXPOSE 80</span><br><span class="line">CMD echo &quot;success!!!&quot;</span><br><span class="line">CMD &#x2F;bin&#x2F;bash</span><br><span class="line">ONBUILD RUN echo &quot;Dad is looking at you&quot;</span><br></pre></td></tr></table></figure>
-<p>第二步：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f &#x2F;mydocker&#x2F;DockerFile -t llj_centos:1.0 .</span><br></pre></td></tr></table></figure>
-<p>注意：</p>
-<pre><code>    * 最后那个&quot;.&quot;必须加，不然报错
-    * 我使用的Docker toolbox，创建了mydocker文件夹，创建DockerFile文件，运行，报错，大意是找不到该文件，有&quot;D:\mydocker&quot;字样，我去D盘下创建了mydocker文件夹，DockerFile文件，然后可以正常运行
-    * 对上一条，我发现我用的是git bash，没进入docker toolbox提供的虚拟机，进入就好了</code></pre>
-<h4 id="例子2："><a href="#例子2：" class="headerlink" title="例子2："></a>例子2：<img src="https://uploader.shimo.im/f/RVYO3ikJaRFqzOlY.png!thumbnail" alt="图片"></h4><h1 id="本地镜像发布到阿里云"><a href="#本地镜像发布到阿里云" class="headerlink" title="本地镜像发布到阿里云"></a>本地镜像发布到阿里云</h1><p><img src="https://uploader.shimo.im/f/XCFKiIalEcbvU9Zy.png!thumbnail" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/8AkjqUWoeXN6h1Lb.png!thumbnail" alt="图片"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/15/Go%E7%AE%80%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="换菜刀换脸盆的博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="换菜刀换脸盆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/15/Go%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">Go简记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-15 23:50:25" itemprop="dateCreated datePublished" datetime="2020-08-15T23:50:25+08:00">2020-08-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-20 23:50:38" itemprop="dateModified" datetime="2020-09-20T23:50:38+08:00">2020-09-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="变量声明-5种"><a href="#变量声明-5种" class="headerlink" title="变量声明   5种"></a>变量声明   5种</h1><ol>
-<li><strong>一行一个</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var name string &#x3D; &quot;Hello World!&quot;</span><br></pre></td></tr></table></figure>
-使用    var    会对变量进行隐式初始化</li>
-</ol>
-<pre><code>* string：空字符串（双引号和单引号不等价）
-* int：0
-* float：0.0
-* bool：false
-* 指针：nil</code></pre>
-<p>简化：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var name &#x3D; &quot;Hello World&quot;</span><br><span class="line">var rate float32 &#x3D; 0.1</span><br></pre></td></tr></table></figure>
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4><ol>
-<li><p>多个变量同时声明</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var (</span><br><span class="line">    name string &#x3D; &quot;duang!&quot;</span><br><span class="line">    age int</span><br><span class="line">    gender string</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用 := ，推导声明写法 或者 短类型声明法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name :&#x3D; &quot;duang!&quot;</span><br><span class="line">integer :&#x3D; 15</span><br></pre></td></tr></table></figure>
-<p>编译器会自动根据右值类型推断出左值的对应类型，只能用于函数内部</p>
-</li>
-<li><p>声明和初始化多个变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name, age :&#x3D; &quot;zhangwei&quot;, 18</span><br></pre></td></tr></table></figure>
-<p>与python类似，可用于变量交换</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a, b :&#x3D; 1, 2</span><br><span class="line">a, b &#x3D; b, a     &#x2F;&#x2F;swap(a, b)</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>new函数创建指针变量<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ptr :&#x3D; new(int)</span><br><span class="line">fmt.Println(&quot;ptr address: &quot;, ptr)</span><br><span class="line">fmt.Println(&quot;ptr value: &quot;, *ptr)</span><br></pre></td></tr></table></figure>
-或者<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var age int &#x3D; 18</span><br><span class="line">var ptr &#x3D; &amp;age</span><br></pre></td></tr></table></figure>
-与C/C++指针相同<br>new函数只是个语法糖</li>
-</ol>
-<h1 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h1><ol>
-<li>整形 和 无符号整形</li>
-</ol>
-<p><img src="https://uploader.shimo.im/f/HCElhDv3eryJ2fHu.png!thumbnail" alt="图片"></p>
-<p>int 和 uint 在 32位系统 下占4个字节，在64位下占8个字节，为避免歧义，使用时表明位数，如 int32、uint64</p>
-<p>不同进制表示方法：</p>
-<p>2进制：0b 或 0B 为前缀</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var num int32 &#x3D; 0b10010</span><br></pre></td></tr></table></figure>
-<p>8进制：0o 或 0O为前缀</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var num int64 &#x3D; 0o77777</span><br></pre></td></tr></table></figure>
-<p>16进制：0x</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var num int8 &#x3D; 0xFFC8</span><br></pre></td></tr></table></figure>
-<p>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line">import (</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">)</span><br><span class="line">func main() &#123;</span><br><span class="line">    var num01 int &#x3D; 0b1100</span><br><span class="line">    var num02 int &#x3D; 0o14</span><br><span class="line">    var num03 int &#x3D; 0xC</span><br><span class="line">    fmt.Printf(&quot;2进制数 %b 表示的是: %d \n&quot;, num01, num01)</span><br><span class="line">    fmt.Printf(&quot;8进制数 %o 表示的是: %d \n&quot;, num02, num02)</span><br><span class="line">    fmt.Printf(&quot;16进制数 %X 表示的是: %d \n&quot;, num03, num03)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>fmt包格式化功能：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">%b    表示为二进制</span><br><span class="line">%c    该值对应的unicode码值</span><br><span class="line">%d    表示为十进制</span><br><span class="line">%o    表示为八进制</span><br><span class="line">%q    该值对应的单引号括起来的go语法字符字面值，必要时会采用安全的转义表示</span><br><span class="line">%x    表示为十六进制，使用a-f</span><br><span class="line">%X    表示为十六进制，使用A-F</span><br><span class="line">%U    表示为Unicode格式：U+1234，等价于&quot;U+%04X&quot;</span><br><span class="line">%T    显示数据类型</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>浮点型</li>
-</ol>
-<p>只能由十进制表示，分两种精度，float32 和 float 64</p>
-<ul>
-<li>float32：1位符号位，8位指数，23位尾数。精度只能提供大约6个十进制数</li>
-<li>float64:1位符号，11位指数，52位尾数。精度只能提供大约15个十进制数</li>
-</ul>
-<ol>
-<li>byte 和 rune</li>
-</ol>
-<p>byte占1字节，表示一个ASCII字符，与 uint8 没有本质区别</p>
-<p>rune占4字节，表示一个Unicode字符，与 int32 没有本质区别。用单引号</p>
-<ol>
-<li>string</li>
-</ol>
-<p>多个字符组成，本质是一个 byte 数组：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import &quot;fmt&quot;</span><br><span class="line">func main() &#123;</span><br><span class="line">    var mystr01 sting &#x3D; &quot;hello&quot;</span><br><span class="line">    var mystr02 [5]byte &#x3D; [5]byte&#123;104, 101, 108, 108, 111&#125;</span><br><span class="line">    fmt.Printf(&quot;mystr01: %s\n&quot;, mystr01)</span><br><span class="line">    fmt.Printf(&quot;mystr02: %s&quot;, mystr02)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出相同</p>
-<ol>
-<li>数组</li>
-</ol>
-<p>一个数组可以由0个或多个元素组成，由于数组长度固定，Go中很少使用数组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var arr [3]int&#123;1, 3, 0&#125;</span><br></pre></td></tr></table></figure>
-<p>使用…让Go自己根据实际情况分配空间</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var arr [...]int&#123;1, 4, 2, 3&#125;</span><br></pre></td></tr></table></figure>
-<p>定义类型别名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type arr_with_len_3 [3]int</span><br><span class="line">var arr arr_with_len_3&#123;1, 3, 2&#125;</span><br><span class="line">&#x2F;&#x2F;初始化长度为3的数组 arr</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>切片</li>
-</ol>
-<p>引用类型，是数组的一个引用</p>
-<p>3种声明方法：</p>
-<p>对数组的片段截取</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr :&#x3D; [...]int&#123;1, 2, 3&#125;</span><br><span class="line">sli :&#x3D; arr[0:2]</span><br></pre></td></tr></table></figure>
-<p>从头声明</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var string_sli []string</span><br><span class="line">var num_sli []int&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>使用make函数构造，make函数格式：make([]Type, size, cap)，（类型，长度，容量）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a :&#x3D; make([]int, 2)&#x2F;&#x2F;省略的cap &#x3D; size</span><br><span class="line">b :&#x3D; make([]int, 2, 10)</span><br><span class="line">&#x2F;&#x2F;显然cap &gt;&#x3D; size，当cap &gt; size时，多出来的空间可以使用append追加元素后访问</span><br><span class="line">myarr &#x3D; append(myarr, 2)&#x2F;&#x2F; 追加一个元素</span><br><span class="line">myarr &#x3D; append(myarr, 3, 4)&#x2F;&#x2F; 追加多个元素</span><br><span class="line">myarr &#x3D; append(myarr, []int&#123;7, 8&#125;...)&#x2F;&#x2F; 追加一个切片, ... 表示解包，不能省略</span><br><span class="line">myarr &#x3D; append([]int&#123;0&#125;, myarr...)&#x2F;&#x2F; 在第一个位置插入元素</span><br><span class="line">myarr &#x3D; append(myarr[:5], append([]int&#123;5,6&#125;, myarr[5:]...)...)&#x2F;&#x2F; 在中间插入一个切片(两个元素)</span><br></pre></td></tr></table></figure>
-<p>注意：</p>
-<p>切片引用的依旧是原数组，利用切片修改数组值修改到原来数组值，这点与python的切片是复制一部分数组不同</p>
-<p>切片参数说明 sli := arr[start : end : max]，如 sli := arr[4:6:8]，表示切片从原数组下标 4 到 6，最多访问到原数组下标为 8 的位置，意思是，sli[0] 到 sli[3] 都可以被访问到，若省略，则 max = end，其中 sli 的地址等于 arr[start] 的地址</p>
-<ol>
-<li>字典</li>
-</ol>
-<p>三种初始化方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 第一种方法</span><br><span class="line">var scores map[string]int &#x3D; map[string]int&#123;&quot;english&quot;: 80, &quot;chinese&quot;: 85&#125;</span><br><span class="line">&#x2F;&#x2F; 第二种方法</span><br><span class="line">scores :&#x3D; map[string]int&#123;&quot;english&quot;: 80, &quot;chinese&quot;: 85&#125;</span><br><span class="line">&#x2F;&#x2F; 第三种方法</span><br><span class="line">scores :&#x3D; make(map[string]int)</span><br><span class="line">scores[&quot;english&quot;] &#x3D; 80</span><br><span class="line">scores[&quot;chinese&quot;] &#x3D; 85</span><br></pre></td></tr></table></figure>
-<p>key必须可哈希，不能是切片、字典、函数<br>相关操作</p>
-<p>添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scores[&quot;math&quot;] &#x3D; 95</span><br></pre></td></tr></table></figure>
-<p>更新</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scores[&quot;math&quot;] &#x3D; 100</span><br></pre></td></tr></table></figure>
-<p>读取若不存在，返回value类型的零值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(scores[&quot;math&quot;])</span><br></pre></td></tr></table></figure>
-<p>删除</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete(scores, &quot;math&quot;)</span><br></pre></td></tr></table></figure>
-<p>判断key是否存在</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">math, ok :&#x3D; scores[&quot;math&quot;]</span><br><span class="line">&#x2F;&#x2F;若ok为true，则存在</span><br></pre></td></tr></table></figure>
-<p>遍历</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  1. 获取 key 和 val</span><br><span class="line">for key, val :&#x3D; range scores &#123;</span><br><span class="line">    solve(key, val)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;  2.只获取 key, 注意不用占位符</span><br><span class="line">for key :&#x3D; range scores &#123;</span><br><span class="line">    solve(key)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;  3只获取 value，使用占位符</span><br><span class="line">for _, val :&#x3D; range scores &#123;</span><br><span class="line">    solve(val)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>bool类型</li>
-</ol>
-<p>bool 和 int 不能直接转换，用法同C/C++</p>
-<ol>
-<li>指针</li>
-</ol>
-<p>零值为 nil，其余同C/C++。建议切片传值，而不用指针</p>
-<h1 id="面向对象：结构体-和-组合"><a href="#面向对象：结构体-和-组合" class="headerlink" title="面向对象：结构体 和 组合"></a>面向对象：结构体 和 组合</h1><ol>
-<li><p>定义结构体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type Person struct &#123;</span><br><span class="line">   name   string</span><br><span class="line">   age       int</span><br><span class="line">   father *Person</span><br><span class="line">   mother *Person</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="-1"><a href="#-1" class="headerlink" title=""></a></h4></li>
-<li><p>定义方法</p>
-</li>
-</ol>
-<p>注意：Person 和 <em>Person定义的变量 person 调用内部成员，一律是 person.age 这种形式，在方法中，若要修改结构体变量，必须用</em>Person定义person，建议使用指针</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line">type Person struct &#123;</span><br><span class="line">   name   string</span><br><span class="line">   age       int</span><br><span class="line">   father *Person</span><br><span class="line">   mother *Person</span><br><span class="line">&#125;</span><br><span class="line">func (person Person)GetAge() (int) &#123;</span><br><span class="line">   return person.age</span><br><span class="line">&#125;</span><br><span class="line">func (person *Person)SetAge(age int) &#123;</span><br><span class="line">   person.age &#x3D; age</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">   llj :&#x3D; Person&#123;name:&quot;llj&quot;, age:18&#125;</span><br><span class="line">   llj.SetAge(20)</span><br><span class="line">   fmt.Println(llj.GetAge())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>组合</li>
-</ol>
-<p>将几个结构体组合在一起</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">type company struct &#123;</span><br><span class="line">    companyName string</span><br><span class="line">    companyAddr string</span><br><span class="line">&#125;</span><br><span class="line">type staff struct &#123;</span><br><span class="line">    name string</span><br><span class="line">    age int</span><br><span class="line">    gender string</span><br><span class="line">    position string</span><br><span class="line">    company   &#x2F;&#x2F; 匿名字段 </span><br><span class="line">&#125;</span><br><span class="line">func main()  &#123;</span><br><span class="line">    myCom :&#x3D; company&#123;</span><br><span class="line">        companyName: &quot;Tencent&quot;,</span><br><span class="line">        companyAddr: &quot;深圳市南山区&quot;,</span><br><span class="line">    &#125;</span><br><span class="line">    staffInfo :&#x3D; staff&#123;</span><br><span class="line">        name:     &quot;小明&quot;,</span><br><span class="line">        age:      28,</span><br><span class="line">        gender:   &quot;男&quot;,</span><br><span class="line">        position: &quot;云计算开发工程师&quot;,</span><br><span class="line">        company: myCom,</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;调用staffInfo.companyName 或 staffInfo.company.companyName</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>内部方法 和 外部方法</li>
-</ol>
-<p>首字母大写，这个方法可以被所有包调用</p>
-<p>首字母小写，这个方法其他包无法访问</p>
-<h1 id="面向对象：接口和多态"><a href="#面向对象：接口和多态" class="headerlink" title="面向对象：接口和多态"></a>面向对象：接口和多态</h1><ol>
-<li>接口</li>
-</ol>
-<p>Go中，接口是方法签名（Method Signature）的集合</p>
-<p>定义接口：使用type关键字</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type Phone interface &#123;</span><br><span class="line">   call()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>实现接口：接口实现是隐式的，不需要显示声明。如果一个结构体实现了一个接口的所有方法，就可以称它实现了该接口</p>
-<ol>
-<li>多态</li>
-</ol>
-<p>使用接口来实现多态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line">&#x2F;&#x2F;接口</span><br><span class="line">type Jiao interface &#123;</span><br><span class="line">   call()</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;父类</span><br><span class="line">type Animal struct &#123;</span><br><span class="line">   name string</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;子类cat</span><br><span class="line">type Cat struct &#123;</span><br><span class="line">   Animal</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;子类cat实现Jiao接口</span><br><span class="line">func (cat Cat) call() &#123;</span><br><span class="line">   fmt.Println(cat.name + &quot; miao miao&quot;)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;子类dog</span><br><span class="line">type Dog struct &#123;</span><br><span class="line">   Animal</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;子类dog实现Jiao接口</span><br><span class="line">func (dog Dog) call()  &#123;</span><br><span class="line">   </span><br><span class="line">   fmt.Println(dog.name + &quot; wangwang&quot;)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;用接口接受参数，实现多态</span><br><span class="line">func KillAnimal(jiao Jiao) &#123;</span><br><span class="line">   jiao.call()</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">   cat :&#x3D; Cat&#123;Animal&#123;name:&quot;cat&quot;&#125;&#125;</span><br><span class="line">   dog :&#x3D; Dog&#123;Animal&#123;name:&quot;dog&quot;&#125;&#125;</span><br><span class="line">   KillAnimal(cat)</span><br><span class="line">   KillAnimal(dog)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><ol>
-<li>可变参数</li>
-</ol>
-<p>类型一致：使用…int表示该类型的一个切片，…也可用来解序列</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">func sum(args ...int) int &#123;</span><br><span class="line">    var sum int</span><br><span class="line">    for _, v :&#x3D; range args &#123;</span><br><span class="line">        sum +&#x3D; v</span><br><span class="line">    &#125;</span><br><span class="line">    return sum</span><br><span class="line">&#125;</span><br><span class="line">func Sum(args ...int) int &#123;</span><br><span class="line">    &#x2F;&#x2F; 利用 ... 来解序列</span><br><span class="line">    result :&#x3D; sum(args...)</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">    fmt.Println(sum(1, 2, 3))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>类型不一致：使用…interface{}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import &quot;fmt&quot;</span><br><span class="line">func MyPrintf(args ...interface&#123;&#125;) &#123;</span><br><span class="line">    for _, arg :&#x3D; range args &#123;</span><br><span class="line">        switch arg.(type) &#123;</span><br><span class="line">            case int:</span><br><span class="line">                fmt.Println(arg, &quot;is an int value.&quot;)</span><br><span class="line">            case string:</span><br><span class="line">                fmt.Println(arg, &quot;is a string value.&quot;)</span><br><span class="line">            case int64:</span><br><span class="line">                fmt.Println(arg, &quot;is an int64 value.&quot;)</span><br><span class="line">            default:</span><br><span class="line">                fmt.Println(arg, &quot;is an unknown type.&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">    var v1 int &#x3D; 1</span><br><span class="line">    var v2 int64 &#x3D; 234</span><br><span class="line">    var v3 string &#x3D; &quot;hello&quot;</span><br><span class="line">    var v4 float32 &#x3D; 1.234</span><br><span class="line">    MyPrintf(v1, v2, v3, v4)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>匿名函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func(参数列表)(返回参数列表)&#123;</span><br><span class="line">    函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-例子<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 第二个参数为函数</span><br><span class="line">func visit(list []int, f func(int)) &#123;</span><br><span class="line">    for _, v :&#x3D; range list &#123;</span><br><span class="line">        &#x2F;&#x2F; 执行回调函数</span><br><span class="line">        f(v)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">    &#x2F;&#x2F; 使用匿名函数直接做为参数</span><br><span class="line">    visit([]int&#123;1, 2, 3, 4&#125;, func(v int) &#123;</span><br><span class="line">        fmt.Println(v)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h1 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h1><ol>
-<li>if-else 语句</li>
-</ol>
-<p>对 { 和 } 有严格要求，else if 或 else 两边的花括号必须在同一行</p>
-<p>模型：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if 条件 1 &#123;</span><br><span class="line">  分支 1</span><br><span class="line">&#125; else if 条件 2 &#123;</span><br><span class="line">  分支 2</span><br><span class="line">&#125; else if 条件 ... &#123;</span><br><span class="line">  分支 ...</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  分支 else</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>特殊写法：先运行一个表达式，获得变量后再对其进行判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if age :&#x3D; 20;age &gt; 18 &#123;</span><br><span class="line">    fmt.Println(&quot;已经成年了&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>swith-case 语句</li>
-</ol>
-<p>知道有就行，学习各种语言从没用过这个语法</p>
-<ol>
-<li>循环语句：for</li>
-</ol>
-<p>三种用法</p>
-<p>接一个表达式，即当别的语言的while用，没有表达式时相当于表达式是true</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a :&#x3D; 1</span><br><span class="line">for a &lt;&#x3D; 5 &#123;</span><br><span class="line">    fmt.Println(a)</span><br><span class="line">    a ++ </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接三个，正常用法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for i :&#x3D; 1; i &lt;&#x3D; 5; i++ &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>for-range 语句<br>range 后可接数组、切片、字符串等，返回两个值：索引、数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">myarr :&#x3D; [...]string&#123;&quot;world&quot;, &quot;python&quot;, &quot;go&quot;&#125;</span><br><span class="line">for _, item :&#x3D; range myarr &#123;</span><br><span class="line">    fmt.Printf(&quot;hello, %s\n&quot;, item)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>goto语句</li>
-</ol>
-<p>例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">    goto flag</span><br><span class="line">    fmt.Println(&quot;B&quot;)</span><br><span class="line">flag:</span><br><span class="line">    fmt.Println(&quot;A&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，goto语句和标签之间不能有变量声明</p>
-<ol>
-<li>defer延迟调用</li>
-</ol>
-<p>用法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defer func()</span><br></pre></td></tr></table></figure>
-<p>效果：记录当前函数需要的参数，压入栈中，当前函数执行完后（return后），依次弹栈执行</p>
-<h1 id="关键字-make-和-new"><a href="#关键字-make-和-new" class="headerlink" title="关键字 make 和 new"></a>关键字 make 和 new</h1><ol>
-<li>new</li>
-</ol>
-<p>接受一个参数，该参数为一个任意类型，返回这个类型的指针，具体做三件事：</p>
-<pre><code>    * 分配内存
-    * 设置零值
-    * 返回指针</code></pre>
-<p>new 不常用</p>
-<ol>
-<li>make</li>
-</ol>
-<p>专为 slice，map，chan 类型分配内存和初始化一个对象，返回类型本身</p>
-<p>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;切片</span><br><span class="line">a :&#x3D; make([]int, 2, 10)  </span><br><span class="line">&#x2F;&#x2F; 字典</span><br><span class="line">b :&#x3D; make(map[string]int)</span><br><span class="line">&#x2F;&#x2F; 通道</span><br><span class="line">c :&#x3D; make(chan int, 10)</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><p>类C/C++</p>
-<h1 id="Go协程：goroutine"><a href="#Go协程：goroutine" class="headerlink" title="Go协程：goroutine"></a>Go协程：goroutine</h1><ol>
-<li>简介</li>
-</ol>
-<p>Go 从语言层面天生支持并发。goroutine 是Go 语言程序并发执行的基本单元，它本身是一个函数，直接调用时是一个普通函数，调用前加一个关键字 go ，就开启了一个goroutine</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 执行一个函数</span><br><span class="line">func()</span><br><span class="line">&#x2F;&#x2F; 开启一个协程执行这个函数</span><br><span class="line">go func()</span><br></pre></td></tr></table></figure>
-<p>一个 Go 程序入口通常是 main 函数，程序启动后，main最先运行，称之为 main goroutine</p>
-<ol>
-<li>信道</li>
-</ol>
-<p>多个 goroutine 的通信需要依赖 channel，它是一种队列式的数据结构，遵循先入先出的规则。每个信道只能传递一种数据类型的数据</p>
-<p>不要通过共享内存来通信，而通过通信来共享内存</p>
-<ol>
-<li><p>信道的声明</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var 信道实例 chan 信道类型 &#x3D; make(chan 信道类型)</span><br><span class="line">信道实例 :&#x3D; make(chan 信道实例)</span><br><span class="line">&#x2F;&#x2F;如：</span><br><span class="line">pipline :&#x3D; make(chan int)</span><br></pre></td></tr></table></figure>
-<p>chan的类型零值为nil</p>
-</li>
-<li><p>关闭信道</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">close(pipline)</span><br></pre></td></tr></table></figure>
-<p>只能关闭一次，重复关闭会报错</p>
-</li>
-<li><p>信道的数据操作</p>
-<ul>
-<li>发送数据</li>
-<li>读取数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;往信道中发送数据</span><br><span class="line">pipline&lt;- 200</span><br><span class="line">&#x2F;&#x2F;从信道中取出数据，并复制给mydata</span><br><span class="line">mydata :&#x3D; &lt;-pipline</span><br><span class="line">mydata, ok :&#x3D; &lt;-pipline</span><br></pre></td></tr></table></figure>
-ok 表示信道是否被关闭，关闭：false，未关：true</li>
-</ul>
-</li>
-<li><p>信道的容量和长度</p>
-</li>
-</ol>
-<p>使用make函数创建信道，需要两个参数，第二个信道容量，选填，不填为0</p>
-<pre><code>* 容量为 0 时，称为无缓冲信道，信道不能存放数据，发送时必须马上有人接受，否则报错。
-* 容量为 1 时，只能缓存一个数据。若已有一个数据，再发送数据会造成程序阻塞。利用这点让信道来做锁
-* 容量大于 1 时，用于多个协程之间，成为他们的通信管道，共享资源</code></pre>
-<p>可以使用 cap 函数获取信道容量，len 函数获取信道长度</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cap(pipline)</span><br><span class="line">len(pipline)</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>缓冲信道和无缓冲信道</li>
-</ol>
-<p>缓冲信道：允许信道存储一个或多个数据，发送端和接收端可以处于异步状态</p>
-<p>无缓冲信道：容量为0，接收端必须先于发送端准备好，否则发送端会阻塞</p>
-<ol>
-<li>双向信道和单向信道</li>
-</ol>
-<p>双向信道：可读可写</p>
-<p>单向信道：可读或可写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var pipline &#x3D; make(chan int)</span><br><span class="line">type Receiver &#x3D; &lt;-chan int &#x2F;&#x2F; 关键代码：定义别名类型</span><br><span class="line">var receiver Receiver &#x3D; pipline</span><br><span class="line">type Sender &#x3D; chan&lt;- int  &#x2F;&#x2F; 关键代码：定义别名类型</span><br><span class="line">var sender Sender &#x3D; pipline</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>遍历信道</li>
-</ol>
-<p>for-range遍历信道，要确保信道关闭，否则循环会阻塞</p>
-<ol>
-<li><p>信道做锁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line">import &#123;</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;time&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 由于 x&#x3D;x+1 不是原子操作</span><br><span class="line">&#x2F;&#x2F; 所以应避免多个协程对x进行操作</span><br><span class="line">&#x2F;&#x2F; 使用容量为1的信道可以达到锁的效果</span><br><span class="line">func increment(ch chan bool, x *int) &#123;  </span><br><span class="line">    ch &lt;- true</span><br><span class="line">    *x &#x3D; *x + 1</span><br><span class="line">    &lt;- ch</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">    &#x2F;&#x2F; 注意要设置容量为 1 的缓冲信道</span><br><span class="line">    pipline :&#x3D; make(chan bool, 1)</span><br><span class="line">    var x int</span><br><span class="line">    for i:&#x3D;0;i&lt;1000;i++&#123;</span><br><span class="line">        go increment(pipline, &amp;x)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 确保所有的协程都已完成</span><br><span class="line">    &#x2F;&#x2F; 以后会介绍一种更合适的方法（Mutex），这里暂时使用sleep</span><br><span class="line">    time.Sleep(3)</span><br><span class="line">    fmt.Println(&quot;x 的值：&quot;, x)</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>WaitGroup</p>
-</li>
-</ol>
-<p>使用WaitGroup 来保证所有 goroutine 都执行完</p>
-<p>WaitGroup在 sync 包中，实例化了就能用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var 实例名 sync.WaitGroup</span><br></pre></td></tr></table></figure>
-<p>有三个方法：</p>
-<pre><code>* Add：计数器初始值为0，传入值后会往计数器上加，传入子协程数量即可
-* Done：某个子协程完成后，可调用此方法，会从计数器上减一，通常使用 defer 调用
-* Wait：阻塞当前协程，知道实例里的计数器归零</code></pre>
-<p>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import (</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;sync&quot;</span><br><span class="line">)</span><br><span class="line">func worker(x int, wg *sync.WaitGroup) &#123;</span><br><span class="line">    defer wg.Done()</span><br><span class="line">    for i :&#x3D; 0; i &lt; 5; i++ &#123;</span><br><span class="line">        fmt.Printf(&quot;worker %d: %d\n&quot;, x, i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">    var wg sync.WaitGroup</span><br><span class="line">    wg.Add(2)</span><br><span class="line">    go worker(1, &amp;wg)</span><br><span class="line">    go worker(2, &amp;wg)</span><br><span class="line">    wg.Wait()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>读写锁和互斥锁</li>
-</ol>
-<p>面对并发问题，应该优先考虑使用信道，如果必须共享内存，那只能利用Go 中的锁机制</p>
-<p>互斥锁：Mutex</p>
-<p>声明：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 第一种</span><br><span class="line">var lock *sync.Mutex</span><br><span class="line">lock &#x3D; new(sync.Mutex)</span><br><span class="line">&#x2F;&#x2F; 第二种</span><br><span class="line">lock :&#x3D; &amp;sync.Mutex&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import (</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;sync&quot;</span><br><span class="line">)</span><br><span class="line">func add(count *int, wg *sync.WaitGroup, lock *sync.Mutex) &#123;</span><br><span class="line">    for i :&#x3D; 0; i &lt; 1000; i++ &#123;</span><br><span class="line">        lock.Lock()</span><br><span class="line">        *count &#x3D; *count + 1</span><br><span class="line">        lock.Unlock()</span><br><span class="line">    &#125;</span><br><span class="line">    wg.Done()</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">    var wg sync.WaitGroup</span><br><span class="line">    lock :&#x3D; &amp;sync.Mutex&#123;&#125;</span><br><span class="line">    count :&#x3D; 0</span><br><span class="line">    wg.Add(3)</span><br><span class="line">    go add(&amp;count, &amp;wg, lock)</span><br><span class="line">    go add(&amp;count, &amp;wg, lock)</span><br><span class="line">    go add(&amp;count, &amp;wg, lock)</span><br><span class="line">    wg.Wait()</span><br><span class="line">    fmt.Println(&quot;count 的值为：&quot;, count)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>读写锁：RWMutex</p>
-<p>互斥锁傻瓜式操作，效率低下，读写锁分解了互斥锁的步骤，进行更精细的权限分派</p>
-<p>将程序对资源的访问分为读操作和写操作</p>
-<p>规定：</p>
-<pre><code>* 规定有人读时，不允许有人写，可以多人读
-* 规定有人写时，不允许有人读写</code></pre>
-<p>即，有多个读锁和一个写锁提供，获取某个锁时另一种锁必须在全部归还状态</p>
-<p>声明：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 第一种</span><br><span class="line">var lock *sync.RWMutex</span><br><span class="line">lock &#x3D; new(sync.RWMutex)</span><br><span class="line">&#x2F;&#x2F; 第二种</span><br><span class="line">lock :&#x3D; &amp;sync.RWMutex&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>使用：</p>
-<pre><code>* 读锁：调用RLock获取，RUnlock释放
-* 写锁：调用WLock获取，WUnlock释放</code></pre>
-<h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><ol>
-<li><p>触发 panic</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">panic(&quot;fuck you!&quot;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>捕获panic</p>
-</li>
-</ol>
-<p>使用内建函数 recover 捕获 panic，recover必须在 defer 函数中才能生效</p>
-<p>没有 recover， 触发 panic 之前调用的 defer 函数也会执行完，若有上一级函数调用，上一级函数调用该函数之前调用的 defer 函数也会执行完，以此类推</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import &quot;fmt&quot;</span><br><span class="line">func set_data(x int) &#123;</span><br><span class="line">    defer func() &#123;</span><br><span class="line">        &#x2F;&#x2F; recover() 可以将捕获到的panic信息打印</span><br><span class="line">        if err :&#x3D; recover(); err !&#x3D; nil &#123;</span><br><span class="line">            fmt.Println(err)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;()</span><br><span class="line">    &#x2F;&#x2F; 故意制造数组越界，触发 panic</span><br><span class="line">    var arr [10]int</span><br><span class="line">    arr[x] &#x3D; 88</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">    set_data(20)</span><br><span class="line">    &#x2F;&#x2F; 如果能执行到这句，说明panic被捕获了</span><br><span class="line">    &#x2F;&#x2F; 后续的程序能继续运行</span><br><span class="line">    fmt.Println(&quot;everything is ok&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>recover 无法跨协程</li>
-</ol>
-<p>同上，层级调用会依次触发上一级的之前调用的 defer 函数，但协程之间不会</p>
-<h1 id="包"><a href="#包" class="headerlink" title="包"></a>包</h1><p>略</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/05/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="换菜刀换脸盆的博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="换菜刀换脸盆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/05/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">区块链笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-05 08:26:31" itemprop="dateCreated datePublished" datetime="2020-08-05T08:26:31+08:00">2020-08-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-20 23:50:03" itemprop="dateModified" datetime="2020-09-20T23:50:03+08:00">2020-09-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p>比特币：密码学原理</p>
-<pre><code> * 哈希
- * 签名</code></pre>
-</li>
-<li><p>比特币：数据结构</p>
-<pre><code> * 区块链：使用哈希指针，每一个区块都包含指向前一个区块的哈希指针，改变任一区块，后续所有区块中的哈希指针都会变
- * merkle tree：![图片](https://uploader.shimo.im/f/Z3BqaY2sG2Ug7Zb8.png!thumbnail)最下面一层为数据块，其余每个节点保存两个子节点的哈希值</code></pre>
-</li>
-<li><p>比特币：共识协议</p>
-<pre><code> * 分为区块头和区块体，只对区块头取hash![图片](https://uploader.shimo.im/f/HFzXtAFWLmzU3xUB.png!thumbnail)
- * 分布式共识：CAP Theorem
- * 按计算力投票
- * 最长合法链 longest valid chain：区块链中可能临时存在分叉![图片](https://uploader.shimo.im/f/op1K2uki9EvaW3Jk.png!thumbnail)
- * 区块奖励(block reward)：发行新比特币的唯一方法
- * 共识机制要取得的共识是什么？</code></pre>
-</li>
-<li><p>比特币：实现</p>
-<pre><code> * 维护UTXO（Unspent Transaction Output）集合  区块奖励  交易费
- * 两种激励机制（每隔10分钟产生一个新的区块）
-     * 区块奖励
-     * 交易费
- * 挖矿纯粹比拼算力，没有实际意义
- * 假设大部分算力掌握在诚实的矿工手里。
- * 写一个交易，称为one confirmation，此区块后随区块链每接一个区块，多一重confirmation，规定six confirmation后，此交易合法（防止交易被回滚），因为每产生一个区块等待十分钟，完成一个交易需要60分钟。</code></pre>
-</li>
-<li><p>比特币：网络</p>
-<pre><code> * 比特币协议工作在应用层，所有节点平等。加入网络需要知道一个种子节点，进而知道它知道的节点，以此类推，从来融入网络。
- * 简单，鲁棒，而不是高效（simple，robust， but not efficient）
- * 区块大小限制1M</code></pre>
-</li>
-<li><p>比特币：挖矿难度</p>
-<pre><code> * H(block header) &lt;= target 增加挖矿难度即减小target的值。
- * 采用哈希算法是SHA-256，输出空间为2^256
- * 出块时间不是越短越好，否则会分散好矿工算力，增加selfish attack
- * 2016个区块调整一下区块难度，大概2016 * 10 / （60 * 24） = 14天调整一次
- * 调整难度，即调整target，具体策略：target = target * actual time / expected time
- * 算力-时间图![图片](https://uploader.shimo.im/f/mpwGo9pheM3TbYvV.png!thumbnail)
- * 挖矿难度-时间图![图片](https://uploader.shimo.im/f/cZc1CSVFNNgjiSis.png!thumbnail)与算力增长基本同步</code></pre>
-</li>
-<li><p>比特币：挖矿</p>
-<pre><code> * 全节点和轻节点![图片](https://uploader.shimo.im/f/5lIo9rO2QTrV0U8L.png!thumbnail)![图片](https://uploader.shimo.im/f/yhNtYYjttStGA1eL.png!thumbnail)
- * 比特币安全保证：
-     * 密码学上的保证：没有私钥，不能伪造签名，就不能盗取比特币（前提：大多数矿工是好的，不会接受非法交易）
-     * 共识机制
- * 挖矿设备演化：越来越专业，由CPU转向GPU，再转向ASIC（Application Specific IntegratedCircuit 专用集成电路），由个人挖矿转向矿池挖矿
- * 集中式矿池和分布式矿池
- * 大矿池可进行的攻击：（大矿池可能的危害）
-     * 分叉攻击：double spent
-
-     * Boycott：强制分叉抵制某一账</code></pre>
-</li>
-<li><p>比特币：脚本</p>
-<pre><code> * 为了安全，输入脚本和输出脚本分开执行
- * 比特币脚本语言非常简单，功能有限</code></pre>
-</li>
-<li><p>比特币：分叉</p>
-<pre><code> * 修改比特币协议产生的分叉
-     * 硬分叉：永久分叉
-         * 区块大小增大![图片](https://uploader.shimo.im/f/73zjcOmQ8tazxkuZ.png!thumbnail)由此导致分家（真实事件），分开的两条链只有协议不同，一个交易涉及的签名两条链都认可，会导致安全问题，后来加入链标识，问题已经解决
-     * 软分叉：不会永久分叉（半数以上的节点更新软件，就不会造成永久性分叉
-         * 区块大小减小![图片](https://uploader.shimo.im/f/qFIb5904w40DkOau.png!thumbnail)不会永久分叉</code></pre>
-</li>
-<li><p>比特币：问答</p>
-<pre><code> * 转账时接受者不在线会怎样？无所谓
- * 无法重置密码
- * 私钥泄露：只能赶紧转钱到安全账户
- * 转错账：无解
- * 交易费收款人怎么确定？挖到区块的矿工获得该区块内所有交易的交易费</code></pre>
-</li>
-<li><p>比特币：匿名性（Bitcoin and anonimity）</p>
-<pre><code> * 黑产层面来说，无法保证
- * 零知识证明数学基础：同态隐藏![图片](https://uploader.shimo.im/f/75rMOh40tKoBscoh.png!thumbnail)
- * 零币和零钞![图片](https://uploader.shimo.im/f/j1TamV8X1EUBfqZ1.png!thumbnail)</code></pre>
-</li>
-<li><p>比特币：思考</p>
-<pre><code> * 哈希指针：指针中的地址只在本地内存有意义，区块链中，实际上只有哈希，没有指针。在主节点中，使用键值数据库实现指针的功能。
- * 区块恋：恋人各自保存半段私钥，安全性下降。
- * 取得的共识随时可能被推翻，比特币并没有绕过分布式系统已经证明的不可能结论。
- * 比特币的稀缺性：稀缺的东西不适合做货币
- * 量子计算：量子计算机出现后会不会破坏加密货币？量子计算离实用还远，其次，它首先冲击的是传统金融业；比特币没有将公钥直接暴露出来，通过私钥可以单向退出公钥，即使计算力足够通过公钥推出私钥，但是比特币使用的是公钥的哈希，哈希一般不可逆。（即使是公钥，也不要随便泄露）</code></pre>
-</li>
-</ol>
-<ol>
-<li><p>以太坊：概论</p>
-<pre><code> * 比特币和以太坊是最主要的两种加密货币，以太坊针对比特币进行了改进，有一些革命性的改变。
- * 以太坊（Ethereum）由比特币的工作量证明（proof of work）转为权益性证明（proof of stake），ASIC resistance，支持智能合约（smart contract）
- * BTC最小单位为1 Satoshi，ETH最小单位为1 Wei
- * 智能合约：
-     * 使用技术手段取代司法手段。
-     * 有些逻辑比较简单清晰可以写成智能合约的形式。
-     * 某些情况下，使用司法手段维护合同有效性比较困难，比较麻烦。</code></pre>
-</li>
-<li><p>以太坊：账户</p>
-<pre><code> * 比特币基于账本，没有显式的记录某个账户有多少货币，可能自己都不清楚自己有多少钱。      以太坊基于账户。
- * 比特币有回滚攻击double spending attack，转账的人将同一个比特币用两次
- * 以太坊有回放攻击replay attack，收账的人将一个交易再发布一次获得两份转账
- * 以太坊两类账户
-     * 外部账户（externally owned account）
-     * 合约账户（smart contract account）</code></pre>
-</li>
-<li><p>以太坊：状态树</p>
-<pre><code> * Patricia trie 和 Merkle Patricia trie
- * 区块结构：![图片](https://uploader.shimo.im/f/gRqqyFD3yjuzaaxi.png!thumbnail)</code></pre>
-</li>
-<li><p>以太坊：交易树和收据树</p>
-</li>
-<li><p>以太坊：GHOST协议</p>
-<pre><code> * 以太坊出块时间短，容易分叉，小矿工挖到的区块容易不在主链中，为防止此类事件，不在主链的区块也可能获得区块奖励（主链中的区块最多可以合并两个uncle区块）![图片](https://uploader.shimo.im/f/wU5xaaw5bEoC0rRv.png!thumbnail)![图片](https://uploader.shimo.im/f/Hq71GnyFb6s73x2t.png!thumbnail)合法的叔父限制七代，近代合并奖励大，鼓励出现分叉后及早合并</code></pre>
-</li>
-<li><p>以太坊：挖矿算法</p>
-<pre><code> * 要实现ASIC resistance，可以设计需要频繁访问内存的puzzle，因为ASIC和普通计算机访存时间差别不大
- * 挖矿保存1G大数据，主节点保存16M数据用于验证，这两种数据集大小随时间增长
- * 大数据集每个位置的数据都可以独立地生成出来
- * 大数据集让以太币用GPU挖矿比较多，ASIC resistance比较成功</code></pre>
-</li>
-<li><p>以太坊：难度调整</p>
-<pre><code> * 区块难度![图片](https://uploader.shimo.im/f/QEykWYOVIDEPqn36.png!thumbnail)
- * 难度炸弹（由工作量证明转向权益证明的保证）![图片](https://uploader.shimo.im/f/kU63hRzGpmuwdv1R.png!thumbnail)权益证明的机制还未开发出来，但是难度炸弹已经显现，与当初预期不符，只能临时增加第二条公式以修正![图片](https://uploader.shimo.im/f/TaCr4zcImuQe1rPw.png!thumbnail)
- * 以太坊发展的四个阶段![图片](https://uploader.shimo.im/f/DRU3njOum449RdV7.png!thumbnail)</code></pre>
-</li>
-<li><p>以太坊：PoS（Proof of stake）</p>
-<pre><code> * 基于工作量证明浪费电，比特币一个交易目前耗费大约1000度电，以太坊一个交易67度电
- * 这些能耗是否是必须的？
- * 以太坊准备采用的PoS协议：FFG（Casper the Friendly Finality Gadget）
- * 要想成为Validator，需要交保证金，以保证金的多少来确定投票的权重，决定哪条分叉为主链</code></pre>
-</li>
-<li><p>以太坊：智能合约</p>
-<pre><code> * 智能合约是运行在区块链上的一段代码，代码的逻辑定义了合约的内容
- * 智能合约的账户保存了合约当前的运行状态
-     * balance：当前余额
-     * nonce：交易次数
-     * code：合约代码
-     * storage：存储，数据结构是一棵MPT
- * Solidity是智能合约最常用的语言，语法上与JavaScript很接近![图片](https://uploader.shimo.im/f/x5X4sTLVDx2bWkDO.png!thumbnail)
- * 外部账户如何调用智能合约？![图片](https://uploader.shimo.im/f/NDV3Yn6uIuXDyVdz.png!thumbnail)
- * ![图片](https://uploader.shimo.im/f/lPGKPBW8vfZ8CoUD.png!thumbnail)![图片](https://uploader.shimo.im/f/ZNGQ3vBIiG8Q2lIC.png!thumbnail)停机问题不可解
- * 以太坊错误处理：出现错误汽油费不退![图片](https://uploader.shimo.im/f/2X2YlO6GrZROEUhL.png!thumbnail)![图片](https://uploader.shimo.im/f/70SLajKi66oepQZr.png!thumbnail)
- * 只能先执行智能合约，再挖矿，可能得不到汽油费，这样导致挖矿慢的矿工吃亏。
- * 发布的交易不一定是执行成功的，因为执行不成功也要收汽油费
- * Solidity不支持多线程
- * 重入攻击![图片](https://uploader.shimo.im/f/GxFFompZXsojINsh.png!thumbnail)</code></pre>
-</li>
-<li><p>以太坊：The DAO（Decentralized Autonomous Organization）</p>
-<pre><code> * 要取回钱只能拆分
- * The DAO受到攻击后进行了软件升级，造成软分叉，但是有bug，方案失败，新方案升级软件，强行转账，造成硬分叉，旧软件认为新软件记录的交易非法。硬分叉后旧链依旧有矿工继续挖，新链以太币继承原来的名字ETH，旧链改为ETC。
- * 新旧链使用chainID标识，防止重放攻击</code></pre>
-</li>
-<li><p>以太坊：反思</p>
-<pre><code> * 智能合约真的智能吗？不智能。自动合约，如ATM机
- * 不可篡改是把双刃剑，如The DAO被攻击事件。（没有什么是不可篡改的）
- * solidity是否是好的编程语言？需要改进
- * 图灵完备语言是否适合？不太合适
- * 智能合约走向模板化，由专门的人编写
- * 硬分叉是一种权利
- * 去中心化不等价分布式，去中心化一定是分布式，分布式不一定是去中心化。
- * 比特币&amp;以太坊：交易驱动的状态机。上千台机器重复同一种操作，同步状态，而分布式系统更多是让多台机器合作而非竞争。</code></pre>
-</li>
-<li><p>以太坊：美链</p>
-<pre><code> * 背景![图片](https://uploader.shimo.im/f/KC6kwBjBfiFeZbNI.png!thumbnail)黑客通过乘法溢出来攻击了美链</code></pre>
-</li>
-<li><p>总结</p>
-<pre><code> * 信息传播和价值交换渐渐融合
- * 加密货币本就不该和已有的支付方式竞争
- * 程序化是一个大趋势</code></pre>
-</li>
-</ol>
 
       
     </div>
@@ -1873,7 +454,7 @@ ok 表示信道是否被关闭，关闭：false，未关：true</li>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1931,8 +512,10 @@ ok 表示信道是否被关闭，关闭：false，未关：true</li>
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">John Doe</p>
-  <div class="site-description" itemprop="description">换菜刀换脸盆的博客</div>
+    <img class="site-author-image" itemprop="image" alt="lilingj"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">lilingj</p>
+  <div class="site-description" itemprop="description">昼短苦夜长，何不秉烛游？</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -1971,7 +554,7 @@ ok 表示信道是否被关闭，关闭：false，未关：true</li>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">lilingj</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>

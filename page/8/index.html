@@ -23,27 +23,27 @@
   <meta name="description" content="昼短苦夜长，何不秉烛游？">
 <meta property="og:type" content="website">
 <meta property="og:title" content="换菜刀换脸盆">
-<meta property="og:url" content="http://example.com/archives/2020/index.html">
+<meta property="og:url" content="http://example.com/page/8/index.html">
 <meta property="og:site_name" content="换菜刀换脸盆">
 <meta property="og:description" content="昼短苦夜长，何不秉烛游？">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="lilingj">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/archives/2020/">
+<link rel="canonical" href="http://example.com/page/8/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
+    isHome : true,
     isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | 换菜刀换脸盆</title>
+  <title>换菜刀换脸盆</title>
   
 
 
@@ -146,233 +146,140 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/20/hyperledger%E7%AE%80%E8%AE%B0/">
 
-  
-  
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 16 篇日志。 继续努力。</span>
-      </div>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="lilingj">
+      <meta itemprop="description" content="昼短苦夜长，何不秉烛游？">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="换菜刀换脸盆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/20/hyperledger%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">hyperledger简记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-20 23:26:27 / 修改时间：23:37:16" itemprop="dateCreated datePublished" datetime="2020-09-20T23:26:27+08:00">2020-09-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+          <h3 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h3><ul>
+<li>理解Hyperledger fabric 1.1的基本概念和软件架构；</li>
+<li>能根据企业业务情况，分析Hyperledger fabric 的应用场景；</li>
+<li>熟悉Hyperledger fabric的关键组件：peer，ordering service，ca和msp。</li>
+<li>能够建立测试网络，使用node sdk编写应用程序。</li>
+<li>能够使用nodejs编写链码。</li>
+<li>能够参与到Hyperledger fabric开源项目的讨论和开发中</li>
+</ul>
+<h1 id="Hyperledger-fabric-简介"><a href="#Hyperledger-fabric-简介" class="headerlink" title="Hyperledger fabric 简介"></a>Hyperledger fabric 简介</h1><p>hyperledger fabric 是基于区块链的企业级分布式账本技术，通过智能合约解决多个组织之间的信任问题</p>
+<ul>
+<li>模块化</li>
+<li>可扩展</li>
+<li>超安全</li>
+</ul>
+<h1 id="重要名词"><a href="#重要名词" class="headerlink" title="重要名词"></a>重要名词</h1><ul>
+<li>Hyperledger：由linux基金会孵化的区块链技术</li>
+<li>Hyperledger Fabirc：第一个孵化出的商用DLT框架</li>
+<li>Hyperledger composer：一个在DLT框架上创建的商业应用的工具</li>
+<li>MSP（Membership Service Provider）：只是一个接口，管理Roles 和 Access Restrictions</li>
+<li>fabric ca：一个高质量工具，帮助我们自动生成证书。ca可以为不同用户生成不同证书。支持链式继承，上一级别的ca可以很容易作废下一级证书</li>
+<li>chaincode：chaincode可以获取用户证书</li>
+</ul>
+<h1 id="Hyperledger为什么特别适合企业级开发"><a href="#Hyperledger为什么特别适合企业级开发" class="headerlink" title="Hyperledger为什么特别适合企业级开发"></a>Hyperledger为什么特别适合企业级开发</h1><ul>
+<li>premissioned network 授权网络<ul>
+<li>access control</li>
+</ul>
+</li>
+<li>transaction 是可以控制可见性的</li>
+<li>no cryptocurrency 无数字货币<ul>
+<li>没有矿工，低成本，验证操作灵活 </li>
+</ul>
+</li>
+<li>programmable 可编程<ul>
+<li>chaincode（smart contract 智能合约）</li>
+</ul>
+</li>
+<li>使用Hyperledger可以创建私有链、联盟链和公有链 </li>
+<li>Hyperledger 没有 51% 攻击，没有挖矿的概念，因为 Hyperledger 采用了独特的共识协议，每个共识协议的参与者都是由CA来认证的</li>
+</ul>
+<h1 id="Assets，chaincode-amp-ledger"><a href="#Assets，chaincode-amp-ledger" class="headerlink" title="Assets，chaincode&amp;ledger"></a>Assets，chaincode&amp;ledger</h1><ul>
+<li>assets：有价值的东西，可以被交易的东西，json表示</li>
+<li>chaincode：transaction | business logic</li>
+<li>ledger：记录了所有的transaction，所有的状态 ，所有参与者都保存了ledger</li>
+</ul>
+<h1 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h1><p>Hyperledger 中 node 分为三种：</p>
+<ul>
+<li>client：实例化 transaction<ul>
+<li>cli</li>
+<li>node sdk</li>
+<li>java sdk</li>
+</ul>
+</li>
+<li>peer：用来存储和同步 ledger 的数据</li>
+<li>orderer：用来排序分发 transaction</li>
+</ul>
+<h1 id="channel"><a href="#channel" class="headerlink" title="channel"></a>channel</h1><p>每个 channel 可以理解成独立的 Hyperledger fabri 的实例（其他区块链系统里没有channel的概念），理解成 私有子网</p>
+<h1 id="chaincode"><a href="#chaincode" class="headerlink" title="chaincode"></a>chaincode</h1><h4 id="1-是什么"><a href="#1-是什么" class="headerlink" title="1.是什么"></a>1.是什么</h4><p>chaincode 就是智能合约，是应用程序，是代码，是business logic。用来更新账本数据。可以用 nodejs、java、go 编写。在Hyperledger里，读取和更新数据必须通过 chaincode 来完成</p>
+<h4 id="2-生命周期"><a href="#2-生命周期" class="headerlink" title="2.生命周期"></a>2.生命周期</h4><p>chaincode需要先安装，然后必须实例化，实例化chaincode会启动docker容器，在这个容器里面运行chaincode</p>
+<ul>
+<li>安装 install</li>
+<li>实例化 init</li>
+<li>调用 invoke</li>
+</ul>
+<h4 id="3-背书策略"><a href="#3-背书策略" class="headerlink" title="3.背书策略"></a>3.背书策略</h4><p>通过 AND 或者 OR 关键字定义背书策略</p>
+<h4 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h4><ul>
+<li>每个 peer 可以属于多个 channel</li>
+<li>每个 channel 有独立的ledger</li>
+<li>每个 channel 可以有一个或者多个 chaincode</li>
+<li>每个 chaincode 可以有不同的背书策略</li>
+</ul>
+
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-11-10T21:27:15+08:00"
-              content="2020-11-10">
-          11-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/11/10/Matplotlib%E5%A4%87%E5%BF%98/" itemprop="url">
-            <span itemprop="name">Matplotlib备忘</span>
-          </a>
-      </div>
-
-    </header>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-11-09T23:00:00+08:00"
-              content="2020-11-09">
-          11-09
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/11/09/%E3%80%8A%E5%9B%BE%E8%A7%A3%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B0/" itemprop="url">
-            <span itemprop="name">《图解密码技术》笔记</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-11-06T10:28:42+08:00"
-              content="2020-11-06">
-          11-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/11/06/Numpy%E3%80%81Pandas%E5%A4%87%E5%BF%98/" itemprop="url">
-            <span itemprop="name">Numpy、Pandas备忘</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-11-03T08:45:01+08:00"
-              content="2020-11-03">
-          11-03
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/11/03/Gin%E5%A4%87%E5%BF%98/" itemprop="url">
-            <span itemprop="name">Gin备忘</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-10-22T12:49:53+08:00"
-              content="2020-10-22">
-          10-22
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/10/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95Java%E5%AE%9E%E7%8E%B0/" itemprop="url">
-            <span itemprop="name">排序算法Java实现</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-10-13T21:15:57+08:00"
-              content="2020-10-13">
-          10-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/10/13/%E4%BF%9D%E7%A0%94%E8%AE%B0%E5%BD%95/" itemprop="url">
-            <span itemprop="name">保研记录</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-09-20T23:55:29+08:00"
-              content="2020-09-20">
-          09-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/20/%E4%BB%A5%E4%B8%8B%E6%96%87%E7%AB%A0%E6%8E%92%E7%89%88%E6%9C%89%E9%97%AE%E9%A2%98%EF%BC%8C%E7%9C%8B%E8%BF%99%E9%87%8C/" itemprop="url">
-            <span itemprop="name">以下文章排版有问题，看这里</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-09-20T23:26:27+08:00"
-              content="2020-09-20">
-          09-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/20/hyperledger%E7%AE%80%E8%AE%B0/" itemprop="url">
-            <span itemprop="name">hyperledger简记</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-09-16T22:51:30+08:00"
-              content="2020-09-16">
-          09-16
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/16/Shell%E7%AE%80%E8%AE%B0/" itemprop="url">
-            <span itemprop="name">Shell简记</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-09-15T21:26:33+08:00"
-              content="2020-09-15">
-          09-15
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/15/%E5%A4%A7%E5%AD%A6%E8%B5%9A%E9%92%B1/" itemprop="url">
-            <span itemprop="name">大学赚钱</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-
-    </div>
-  </div>
   
   
   
+
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2020/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
