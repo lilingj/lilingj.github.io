@@ -152,7 +152,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/06/Numpy%E3%80%81Pandas%E5%A4%87%E5%BF%98/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/09/%E3%80%8A%E5%9B%BE%E8%A7%A3%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -166,7 +166,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/06/Numpy%E3%80%81Pandas%E5%A4%87%E5%BF%98/" class="post-title-link" itemprop="url">Numpy、Pandas备忘</a>
+            <a href="/2020/11/09/%E3%80%8A%E5%9B%BE%E8%A7%A3%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">《图解密码技术》笔记</a>
         </h2>
 
         <div class="post-meta">
@@ -177,7 +177,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-11-06 10:28:42 / 修改时间：10:30:07" itemprop="dateCreated datePublished" datetime="2020-11-06T10:28:42+08:00">2020-11-06</time>
+              <time title="创建时间：2020-11-09 23:00:00 / 修改时间：23:00:50" itemprop="dateCreated datePublished" datetime="2020-11-09T23:00:00+08:00">2020-11-09</time>
             </span>
 
           
@@ -191,215 +191,251 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Numpy、Pandas备忘"><a href="#Numpy、Pandas备忘" class="headerlink" title="Numpy、Pandas备忘"></a>Numpy、Pandas备忘</h1><h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><h3 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h3><p><code>array</code>：多维数组</p>
-<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">vector &#x3D; np.array([5, 6, 7, 5])</span><br><span class="line">matrix &#x3D; np.array([[4, 5, 9], [7, 4, 12], [5, 8, 11]])</span><br><span class="line"># 多维的依此类推</span><br></pre></td></tr></table></figure>
-
-
-
-<p>读取txt文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">world_alcohol &#x3D; np.genfromtxt(&quot;world_alcohol.txt&quot;, delimiter &#x3D; &quot;,&quot;, dtype &#x3D; str, skip_header &#x3D; 1)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="形状"><a href="#形状" class="headerlink" title="形状"></a>形状</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(vector.shape, matrix.shape)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(vector.dtype)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="修改数据类型"><a href="#修改数据类型" class="headerlink" title="修改数据类型"></a>修改数据类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 不是原地修改，而是返回一个新的array</span><br><span class="line">vector &#x3D; vector.astype(str)</span><br><span class="line">print(vector)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 打印 2 行 0 列元素</span><br><span class="line">print(matrix[2, 0])</span><br><span class="line">print(matrix[2][0])</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="一维数组切片"><a href="#一维数组切片" class="headerlink" title="一维数组切片"></a>一维数组切片</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(vector[1:2])</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="二维数组切片"><a href="#二维数组切片" class="headerlink" title="二维数组切片"></a>二维数组切片</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 第一行到最后一行，第二列</span><br><span class="line">print(matrix[:, 2])</span><br><span class="line">#print(matrix[:][2])</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id=""><a href="#" class="headerlink" title="+ - * / **"></a>+ - * / **</h4><p>全都是对应元素分别操作</p>
-<h4 id="lt-lt-gt-gt"><a href="#lt-lt-gt-gt" class="headerlink" title="== &lt; &lt;= &gt; &gt;= !="></a>== &lt; &lt;= &gt; &gt;= !=</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 逐项对比，返回一个同原数组shape相同的bool类型数组</span><br><span class="line">print(matrix &#x3D;&#x3D; 4)</span><br><span class="line">print(vector &#x3D;&#x3D; 6)</span><br><span class="line"></span><br><span class="line"># 应用</span><br><span class="line">boolIndex &#x3D; (matrix[:, 1] &#x3D;&#x3D; 4)</span><br><span class="line">print(boolIndex)</span><br><span class="line">print(matrix[boolIndex, :])</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="amp"><a href="#amp" class="headerlink" title="&amp; | !"></a>&amp; | !</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boolIndex &#x3D; (matrix[:, 1] &#x3D;&#x3D; 4) | (matrix[:, 1] &#x3D;&#x3D; 5)</span><br><span class="line">print(boolIndex)</span><br><span class="line">print(matrix[boolIndex, :])</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="批量赋值"><a href="#批量赋值" class="headerlink" title="批量赋值"></a>批量赋值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boolIndex &#x3D; (vector &#x3D;&#x3D; 5) | (vector &#x3D;&#x3D; 7)</span><br><span class="line">vector[boolIndex] &#x3D; -1</span><br><span class="line">print(vector)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="max-和-min"><a href="#max-和-min" class="headerlink" title="max 和 min"></a>max 和 min</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(matrix.max(), matrix.min())</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="sum"><a href="#sum" class="headerlink" title="sum"></a>sum</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(matrix.sum())</span><br><span class="line"># 1 为 x轴相加，0 为 y轴相加</span><br><span class="line">print(matrix.sum(axis &#x3D; 1))</span><br><span class="line">print(matrix.sum(axis &#x3D; 0))</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="ndim"><a href="#ndim" class="headerlink" title="ndim"></a>ndim</h4><p>一个整数，表示数组维度</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(a.ndim)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="size"><a href="#size" class="headerlink" title="size"></a>size</h4><p>一个整数，表示数组元素数量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(a.size)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h3><h4 id="arange"><a href="#arange" class="headerlink" title="arange"></a>arange</h4><p>用法类似内置函数 range</p>
-<p>返回一个指定长度的一维数组，从0到指定值减1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">print(np.arange(15))</span><br><span class="line"></span><br><span class="line"># 指定区间，左闭右包，设置步长</span><br><span class="line">print(np.arange(10, 30, 5))</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="reshape、ravel"><a href="#reshape、ravel" class="headerlink" title="reshape、ravel"></a>reshape、ravel</h4><p>reshape：重塑数组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 转换为 3 行 5 列数组</span><br><span class="line">a &#x3D; np.arange(15).reshape(3, 5)</span><br><span class="line">print(a)</span><br><span class="line"></span><br><span class="line"># 可以让一个参数为 -1，表示让系统自动求这个值</span><br><span class="line">a &#x3D; np.arange(15).reshape(-1, 5)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
-
-<p>reval：reshape的逆操作，把多维数组拉直</p>
-<h4 id="zeros"><a href="#zeros" class="headerlink" title="zeros"></a>zeros</h4><p>接受一个表示shape的元组，生成该shape数组，初始化所有元素为0</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 初始化一个 3 行 4 列数组，元素全为0</span><br><span class="line">print(np.zeros((3, 4)))</span><br><span class="line"></span><br><span class="line"># 可以指定类型，全为0.0</span><br><span class="line">print(np.zeros((3, 4), dtype &#x3D; np.float))</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="ones"><a href="#ones" class="headerlink" title="ones"></a>ones</h4><p>接受一个表示shape的元组，生成该shape数组，初始化所有元素为1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 初始化一个 2 层 3 行 4 列数组，元素全为1</span><br><span class="line">print(np.ones((2, 3, 4)))</span><br><span class="line"></span><br><span class="line"># 可以指定类型</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="random"><a href="#random" class="headerlink" title="random"></a>random</h4><p>用法类似 zeros 和 ones</p>
-<p>元素随机</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(np.random.random((2, 3)))</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="linspace"><a href="#linspace" class="headerlink" title="linspace"></a>linspace</h4><p>三个参数，start，end，份数。将区间[start, end]划分为指定份数，包括start和end</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(np.linspace(0, 10, 100))</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="常用数学操作函数"><a href="#常用数学操作函数" class="headerlink" title="常用数学操作函数"></a>常用数学操作函数</h4><h5 id="dot、T"><a href="#dot、T" class="headerlink" title="dot、T"></a>dot、T</h5><p>两个矩阵相乘若用<code> *</code>符号，则是对应元素相乘，不符合矩阵定义，dot函数提供矩阵乘操作。T表示矩阵转置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">A &#x3D; np.array([[1, 2], [3, 4]])</span><br><span class="line">B &#x3D; np.array([[1, 0], [0, 1]])</span><br><span class="line">print(A * B)</span><br><span class="line">print(A.dot(B))</span><br><span class="line">print(np.dot(A, B))</span><br><span class="line"></span><br><span class="line"># 矩阵的转置</span><br><span class="line">print(A.T)</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="exp、sqrt"><a href="#exp、sqrt" class="headerlink" title="exp、sqrt"></a>exp、sqrt</h5><p>求<code>e</code> 的次幂</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr &#x3D; np.arange(3)</span><br><span class="line">print(np.exp(arr))</span><br></pre></td></tr></table></figure>
-
-
-
-<p>开方</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(np.sqrt(arr))</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="floor、ceil"><a href="#floor、ceil" class="headerlink" title="floor、ceil"></a>floor、ceil</h5><p>向下取整、向上取整</p>
-<h5 id="hstack、vstack"><a href="#hstack、vstack" class="headerlink" title="hstack、vstack"></a>hstack、vstack</h5><p>hstack：接受一个元组，横向拼接其中矩阵</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; np.floor(10 * np.random.random((2, 2)))</span><br><span class="line">b &#x3D; np.floor(10 * np.random.random((2, 2)))</span><br><span class="line">c &#x3D; np.floor(10 * np.random.random((2, 3)))</span><br><span class="line">print(np.hstack((a, b, c)))</span><br></pre></td></tr></table></figure>
-
-<p>vstack：纵向拼接矩阵</p>
-<h5 id="hsplit、vsplit"><a href="#hsplit、vsplit" class="headerlink" title="hsplit、vsplit"></a>hsplit、vsplit</h5><p>hsplit：hstack的逆操作，可以指定均分份数，也可以指定切开点</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 横向均分成三份</span><br><span class="line">a &#x3D; np.floor(10 * np.random.random((2, 12)))</span><br><span class="line">print(np.hsplit(a, 3))</span><br><span class="line"></span><br><span class="line"># 从下标 3 前切一刀，从下标 4 前切一刀</span><br><span class="line">print(np.hsplit(a, (3, 4)))</span><br></pre></td></tr></table></figure>
-
-<p>vsplit：同hsplit</p>
-<h4 id="view"><a href="#view" class="headerlink" title="view"></a>view</h4><p>复制操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; np.array([1, 2])</span><br><span class="line"></span><br><span class="line"># b 和 a是同一个，修改b会影响a</span><br><span class="line">b &#x3D; a</span><br><span class="line"></span><br><span class="line"># c 和 a不是同一个，但内容一样</span><br><span class="line">c &#x3D; a.view()</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="argmax"><a href="#argmax" class="headerlink" title="argmax"></a>argmax</h4><p>返回最大值的下标</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 1 为 x轴，0 为 y轴</span><br><span class="line">data &#x3D; np.floor(10 * np.random.random((5, 4)))</span><br><span class="line">print(data.argmax(axis &#x3D; 0))</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="tile"><a href="#tile" class="headerlink" title="tile"></a>tile</h4><p>扩展矩阵</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 扩展一个 3 行 5 列矩阵，每一个元素都是矩阵 a</span><br><span class="line">a &#x3D; np.array([0, 1, 2])</span><br><span class="line">b &#x3D; np.tile(a, (3, 5))</span><br><span class="line">print(b)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="sort、argsort"><a href="#sort、argsort" class="headerlink" title="sort、argsort"></a>sort、argsort</h4><p>排序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 1 为 x轴，0 为 y轴</span><br><span class="line">data &#x3D; np.floor(10 * np.random.random((5, 4)))</span><br><span class="line">data.sort(axis &#x3D; 0)</span><br><span class="line">print(data)</span><br><span class="line"></span><br><span class="line"># argsort返回排序后的元素对应的之前的下标</span><br><span class="line">a &#x3D; np.array([3, 5, 4])</span><br><span class="line">print(np.argsort(a))</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h2><h3 id="基本数据结构-1"><a href="#基本数据结构-1" class="headerlink" title="基本数据结构"></a>基本数据结构</h3><p><code> Series</code>：一维数组</p>
-<p><code>DataFrame</code>：二维数组</p>
-<p><code>DataFrame</code>中的结构是<code> Series</code>，<code>Series</code>中的结构是<code> numpy.ndarray</code></p>
-<h3 id="基本操作-1"><a href="#基本操作-1" class="headerlink" title="基本操作"></a>基本操作</h3><h4 id="读入-csv-文件"><a href="#读入-csv-文件" class="headerlink" title="读入 csv 文件"></a>读入 csv 文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">food_info &#x3D; pd.read_csv(&quot;food_info.csv&quot;)</span><br><span class="line">print(food_info)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="数据类型-1"><a href="#数据类型-1" class="headerlink" title="数据类型"></a>数据类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(food_info.dtypes)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="head、tail"><a href="#head、tail" class="headerlink" title="head、tail"></a>head、tail</h4><p>从开始或结尾取指定的行数，默认取五行，不算表头</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(food_info.head())</span><br><span class="line">print(food_info.head(3))</span><br><span class="line">print(food_info.tail(6))</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="columns"><a href="#columns" class="headerlink" title="columns"></a>columns</h4><p>取表头</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(food_info.columns)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="shape"><a href="#shape" class="headerlink" title="shape"></a>shape</h4><p>用法同numpy</p>
-<h4 id="索引、切片"><a href="#索引、切片" class="headerlink" title="索引、切片"></a>索引、切片</h4><h5 id="行"><a href="#行" class="headerlink" title="行"></a>行</h5><p>有点特殊，不能直接用下标，而要使用loc</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 第 3 行</span><br><span class="line">print(food_info.loc[3])</span><br><span class="line"></span><br><span class="line"># 第 0 行 2 列</span><br><span class="line">print(food_info.loc[0][2])</span><br><span class="line"></span><br><span class="line"># 第 2 行到第 5 行，第 3 列到第 4 列</span><br><span class="line">print(food_info.loc[2:5][3:4])</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="列"><a href="#列" class="headerlink" title="列"></a>列</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 取 NDB_No 列</span><br><span class="line">print(food_info[&quot;NDB_No&quot;])</span><br><span class="line"></span><br><span class="line"># 取 Zinc_(mg) 列和 Copper_(mg) 列</span><br><span class="line">print(food_info[[&quot;Zinc_(mg)&quot;, &quot;Copper_(mg)&quot;]])</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="-1"><a href="#-1" class="headerlink" title="+ - * /"></a>+ - * /</h4><p>同numpy</p>
-<h4 id="增加一列"><a href="#增加一列" class="headerlink" title="增加一列"></a>增加一列</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 增加一列 Iron_(g)</span><br><span class="line">iron_grams &#x3D; food_info[&quot;Iron_(mg)&quot;] &#x2F; 1000</span><br><span class="line">food_info[&quot;Iron_(g)&quot;] &#x3D; iron_grams</span><br><span class="line">print(food_info.shape)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="常用函数-1"><a href="#常用函数-1" class="headerlink" title="常用函数"></a>常用函数</h3><h4 id="max、min、sum"><a href="#max、min、sum" class="headerlink" title="max、min、sum"></a>max、min、sum</h4><p>同numpy</p>
-<h4 id="mean"><a href="#mean" class="headerlink" title="mean"></a>mean</h4><p>忽略缺失值，求平均数</p>
-<h4 id="sort-values"><a href="#sort-values" class="headerlink" title="sort_values"></a>sort_values</h4><p>对值排序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">food_info.sort_values(&quot;Sodium_(mg)&quot;, inplace &#x3D; True, ascending &#x3D; False)</span><br><span class="line">print(food_info[&quot;Sodium_(mg)&quot;])</span><br><span class="line"></span><br><span class="line"># 删掉已经乱序的行号，生成新的行号</span><br><span class="line">food_info &#x3D; food_info.reset_index(drop &#x3D; True)</span><br></pre></td></tr></table></figure>
-
-<p>inplace：是否原地排序</p>
-<h4 id="isnull"><a href="#isnull" class="headerlink" title="isnull"></a>isnull</h4><p>判空</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">titanic_survival &#x3D; pd.read_csv(&quot;titanic_train.csv&quot;)</span><br><span class="line">age &#x3D; titanic_survival[&quot;Age&quot;]</span><br><span class="line">print(age.isnull())</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="pivot-table"><a href="#pivot-table" class="headerlink" title="pivot_table"></a>pivot_table</h4><p>分组，对每一组应用指定函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 求不同等级船舱的存活率</span><br><span class="line">p &#x3D; titanic_survival.pivot_table(index &#x3D; &quot;Pclass&quot;, values &#x3D; &quot;Survived&quot;, aggfunc &#x3D; np.mean)</span><br><span class="line">print(p)</span><br><span class="line"></span><br><span class="line">#可以看出，存活率：一级仓 &gt; 二级仓 &gt; 三级仓</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h4><p>应用自定义函数，自定义函数接受一个参数，apply调用自定义函数时将每一列或者每一行作为参数传给它，行或列可以由参数axis指定</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 统计每列元素为空的元素的数量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span>(<span class="params">column</span>):</span></span><br><span class="line">    column_null = pd.isnull(column)</span><br><span class="line">    <span class="keyword">return</span> len(column[column_null])</span><br><span class="line"></span><br><span class="line">column_null_count = titanic_survival.apply(func, axis = <span class="number">0</span>)</span><br><span class="line">print(column_null_count)</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示每一列的船舱等级</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span>(<span class="params">row</span>):</span></span><br><span class="line">    pclass = row[<span class="string">&quot;Pclass&quot;</span>]</span><br><span class="line">    <span class="keyword">if</span> pd.isnull(pclass):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Unknown&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> pclass == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;First Class&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> pclass == <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Second Class&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> pclass == <span class="number">3</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Third Class&quot;</span></span><br><span class="line">    </span><br><span class="line">classes = titanic_survival.apply(func, axis = <span class="number">1</span>)</span><br><span class="line">print(classes)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">series &#x3D; pd.Series([7.3, 4.5, 5.6], index &#x3D; [&quot;city of star&quot;, &quot;垃圾电影1&quot;, &quot;垃圾电影2&quot;])</span><br><span class="line">print(series)</span><br><span class="line">prinnt(series.index)</span><br><span class="line">print(series.values)</span><br><span class="line"></span><br><span class="line">print(series.sort_index())</span><br><span class="line">print(series.sort_values())</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fandango &#x3D; pd.read_csv(&quot;fandango_score_comparison.csv&quot;)</span><br><span class="line">fandango &#x3D; fandango.set_index(&quot;FILM&quot;, drop &#x3D; False)</span><br><span class="line">print(fandango[&quot;Avengers: Age of Ultron (2015)&quot;:&quot;Southpaw (2015)&quot;])</span><br></pre></td></tr></table></figure>
-
+          <h1 id="《图解密码技术》笔记"><a href="#《图解密码技术》笔记" class="headerlink" title="《图解密码技术》笔记"></a>《图解密码技术》笔记</h1><h2 id="学英语"><a href="#学英语" class="headerlink" title="学英语"></a>学英语</h2><ul>
+<li>cryptography：密码学。加密书写符号，安全传输消息的方法。  </li>
+<li>eavesdropper：窃听者  </li>
+<li>encrypt/decrypt：加密/解密  </li>
+<li>plaintext：明文  </li>
+<li>ciphertext：密文  </li>
+<li>confidentiality：机密性</li>
+<li>cryptanalysis：密码分析、破译  </li>
+<li>cryptanalyst：破译者  </li>
+<li>symmtric：对称的</li>
+<li>asymmetric：非对称的  </li>
+<li>hybrid：混合的  </li>
+<li>authentication：认证、身份认证</li>
+<li>spoofing：伪装、欺骗</li>
+<li>hash：古法语中的“斧子”</li>
+<li>collision：碰撞</li>
+<li>authentication：认证<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2></li>
+<li>密码算法：加密、解密算法合在一起称为~  </li>
+<li>完整性：或一致性。数据是正牌不是伪造的</li>
+<li>选择明文攻击（Chosen Plaintext Attack，CPA）：密码破译者能选择任意明文并得到其加密的结果</li>
+<li>隐蔽式安全性（security by obscurity）：公开加密算法，保密加密密钥</li>
+<li>密码算法：<ul>
+<li>分组密码（block cipher）：只能加密固定长度的明文。加密任意长度的明文就需要迭代，迭代方法被称为分组密码的<strong>模式（mode）</strong><ul>
+<li>DES、3DES</li>
+<li>AES</li>
+</ul>
+</li>
+<li>流密码（stream cipher）：对数据流进行连续处理的一类密码算法。<ul>
+<li>一次性密码本</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分组密码的模式<ul>
+<li>ECB模式：Electronic CodeBook mode（电子密码本模式）</li>
+<li>CBC模式：Cipher Block Chaining mode（密码分组链接模式）</li>
+<li>CFB模式：Cipher FeedBack mode（密文反馈模式）</li>
+<li>OFB模式：Output FeedBack mode（输出反馈模式）</li>
+<li>CTR模式：CounTeR mode（计数器模式）</li>
+</ul>
+</li>
+<li>密码劣化：随着计算机技术进步，以前被认为安全的密码会被破译</li>
+<li>密钥：<ul>
+<li>对称密码的密钥、公钥密码的密钥</li>
+<li>消息认证码的密钥、数字签名的密钥</li>
+<li>用于确保机密性的密钥、用于认证的密钥</li>
+<li>会话密钥、主密钥：一次性、重复使用</li>
+<li>用于加密内容的密钥（Contents Encrypting Key，内容加密密钥）、用于加密密钥的密钥（Key Encrypting Key，密钥加密密钥）：一般会话密钥是CEK，主密钥是KEK</li>
+</ul>
+</li>
+<li>密码可以看做是压缩技术：<ul>
+<li>机密性压缩：加密</li>
+<li>完整性压缩：哈希</li>
+<li>认证的压缩：消息认证码</li>
+<li>不可预测性的压缩：用随机数种子对伪随机数赋予不可预测性</li>
+</ul>
+</li>
+</ul>
+<h2 id="历史上的密码"><a href="#历史上的密码" class="headerlink" title="历史上的密码"></a>历史上的密码</h2><ul>
+<li>凯撒密码：通过平移字母表加密。暴力破解。</li>
+<li>简单替换密码：手动设置字母对应关系。频率分析破译。</li>
+<li>Enigma：通过每日密码本的每日密码设置机器，再用机器加密。</li>
+<li>维纳斯密码：一次性密码本，通过随机数列与明文的xor操作来加密，无条件安全，理论上无法破译</li>
+</ul>
+<h2 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h2><ul>
+<li>暴力破解</li>
+<li>频率分析</li>
+<li>差分分析：改变一部分明文并分析密文如何随之改变</li>
+<li>线性分析：将明文和密文一些对应的比特进行XOR并计算其结果为0的概率。若密文足够随机，则概率应该为1/2。分析大幅偏离1/2的部分</li>
+<li>中间人攻击（man-in-the-middle attack）</li>
+<li>选择密文攻击：发送任意数据，服务器都会将其当做密文来解密并返回解密结果</li>
+</ul>
+<h2 id="常用密码技术"><a href="#常用密码技术" class="headerlink" title="常用密码技术"></a>常用密码技术</h2><h3 id="对称密码"><a href="#对称密码" class="headerlink" title="对称密码"></a>对称密码</h3><h4 id="一次性密码本"><a href="#一次性密码本" class="headerlink" title="一次性密码本"></a>一次性密码本</h4><p>​        使用XOR加密，不知道密码现实时间中无法破译。即使暴力破解出原文，由于所有组合都会试到，那也没办法从很多有规则的明文中选出真正的明文。需要安全地运输与原文等长的密钥，既然如此，何不直接运输明文。不实用。</p>
+<h4 id="DES"><a href="#DES" class="headerlink" title="DES"></a>DES</h4><p>Data Encryption Standard，分组密码（block cipher）</p>
+<p>基本结构：Feistel网络</p>
+<p>对64比特明文加密，每7比特设置1比特错误检查位，密钥56比特。将数据分组为64比特的组，分别加密。</p>
+<h4 id="3DES"><a href="#3DES" class="headerlink" title="3DES"></a>3DES</h4><p>将DES重复三次，用三个密钥进行 加密 -&gt; 解密 -&gt; 加密 的过程。三个密钥都相同则</p>
+<p>3DES退化成DES。加密相同解密不同，则此3DES称为<strong>DES-EDE2</strong>，三密钥都不同称为<strong>DES-EDE3</strong> 。速度慢，目前只有银行使用。</p>
+<h4 id="AES"><a href="#AES" class="headerlink" title="AES"></a>AES</h4><p>Advanced Encryption Standard，分组密码。为了取代前任标准DES的新标准。最终将<strong>Rijndael算法</strong>确定为AES</p>
+<h3 id="公钥密码"><a href="#公钥密码" class="headerlink" title="公钥密码"></a>公钥密码</h3><p>public-key cryptography</p>
+<p>基于数学上困难的问题来保证机密性</p>
+<h4 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h4><ul>
+<li><p>加密：密文 = 明文<sup>E</sup> mod N</p>
+</li>
+<li><p>解密：明文 = 密文<sup>D</sup>mod N</p>
+</li>
+<li><p>公钥：E 和 N 的组合</p>
+</li>
+<li><p>私钥：D 和 N 的组合</p>
+</li>
+<li><p>生成密钥对：求解 E 、D、N 三个数</p>
+<ul>
+<li>N = p * q：p、q为两个很大的质数，例如512b的质数</li>
+<li>L = lcm(p - 1, q - 1)：用来生成密钥对</li>
+<li>E：<ul>
+<li>1 &lt; E &lt; L</li>
+<li>E、L 互质。即 gcd(E, lcm(p - 1, q - 1)) = 1</li>
+</ul>
+</li>
+<li>D：<ul>
+<li>1 &lt; D &lt; L</li>
+<li>E * D mod L =1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="其他公钥密码"><a href="#其他公钥密码" class="headerlink" title="其他公钥密码"></a>其他公钥密码</h4><ul>
+<li>ElGamal</li>
+<li>Rabin</li>
+<li>椭圆曲线密码（Elliptic Curve Cryptography，ECC）</li>
+</ul>
+<h3 id="混合密码系统"><a href="#混合密码系统" class="headerlink" title="混合密码系统"></a>混合密码系统</h3><p>hybrid crypto system</p>
+<p>对称密码加密明文，公钥密码加密对称密码密钥</p>
+<h3 id="单向散列函数"><a href="#单向散列函数" class="headerlink" title="单向散列函数"></a>单向散列函数</h3><p>one-way hash function，或称消息摘要函数（message digest function）、哈希函数、杂凑函数</p>
+<p>输入：消息（message）或称原像（pre-image)</p>
+<p>输出：散列值（hash value）或称消息摘要（message digest）、指纹（fingerprint）</p>
+<p>性质：</p>
+<ul>
+<li><strong>抗碰撞性（collision resistance）</strong>：越强越好</li>
+<li>单向性（one-way）：不能被反推</li>
+</ul>
+<h4 id="MD4、MD5"><a href="#MD4、MD5" class="headerlink" title="MD4、MD5"></a>MD4、MD5</h4><p>产生长度128b的散列值。已经不安全</p>
+<h4 id="SHA-1"><a href="#SHA-1" class="headerlink" title="SHA-1"></a>SHA-1</h4><p>输入长度最多2<sup>64</sup> - 1b，产生160b的散列值。已经不安全</p>
+<h4 id="SHA-2"><a href="#SHA-2" class="headerlink" title="SHA-2"></a>SHA-2</h4><p>输入长度最多2<sup>128</sup> - 1b，包括SHA-256、SHA-384、SHA-384、SHA-512等。尚未被攻破。</p>
+<h4 id="SHA-3"><a href="#SHA-3" class="headerlink" title="SHA-3"></a>SHA-3</h4><p>Keccak算法作为SHA-3标准。</p>
+<p>Keccak输入没有长度限制，可以产生任意长度散列值，为了配合SHA-2的散列长度，共设置了SHA3-224、SHA3-256、SHA3-384、SHA3-512四种版本。另规定两个可以输出任意长度散列值的函数（extendable-output function，XOF），分别死SHAKE128和SHAKE256</p>
+<h4 id="RIPEMD-160"><a href="#RIPEMD-160" class="headerlink" title="RIPEMD-160"></a>RIPEMD-160</h4><p>产生160b的散列值。比特币中使用的就是~</p>
+<h3 id="消息认证码"><a href="#消息认证码" class="headerlink" title="消息认证码"></a>消息认证码</h3><p>Message Authentication Code，MAC</p>
+<p>输入：任意长度的消息 + 发送者和接受者的一个共享的密钥</p>
+<p>输出：固定长度数据，称为MAC值</p>
+<p>实现：</p>
+<ul>
+<li>使用SHA-2之类的单向散列函数可以实现消息认证码</li>
+<li>使用分组密码实现</li>
+<li>其他方法</li>
+</ul>
+<p>攻击方法：</p>
+<ul>
+<li>重放攻击（replay attack）</li>
+<li>密钥推测攻击</li>
+</ul>
+<h4 id="HMAC"><a href="#HMAC" class="headerlink" title="HMAC"></a>HMAC</h4><p>hash MAC</p>
+<h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><p>digital signature</p>
+<p>方法：</p>
+<ul>
+<li>直接对消息签名</li>
+<li>对消息的散列值签名</li>
+</ul>
+<h4 id="RSA-1"><a href="#RSA-1" class="headerlink" title="RSA"></a>RSA</h4><p>使用RSA，私钥生成签名，公钥验证</p>
+<h4 id="其他数字签名算法"><a href="#其他数字签名算法" class="headerlink" title="其他数字签名算法"></a>其他数字签名算法</h4><ul>
+<li>ElGamal</li>
+<li>DSA（Digital Signature Algorithm）</li>
+<li>ECDSA：椭圆曲线DSA</li>
+<li>Rabin</li>
+</ul>
+<h3 id="随机数生成器"><a href="#随机数生成器" class="headerlink" title="随机数生成器"></a>随机数生成器</h3><p>密码技术中不可预测性的源泉</p>
+<p>随机数的性质</p>
+<ul>
+<li>随机性（randomness）：弱伪随机数</li>
+<li>不可预测性（unpredictability）：无法通过之前生成的序列推测出下一个数，强伪随机数</li>
+<li>不可重现性：运行软件的计算机本身只具有有限的内部状态，而内部状态相同的情况下，软件必然只能生成相同的数。因此软件所生成的数列在某个时刻一定会出现重复。对于软件所生成的数列，其<strong>周期</strong>一定是有限的。凡是具有周期的数列，都不具备不可重现性。要生成具有该性质的数列，需要从不可重现的物理现象中获取信息，例如采集CPU的热噪声。具备该性质的随机数称之为<strong>真随机数</strong></li>
+</ul>
+<h4 id="真随机数"><a href="#真随机数" class="headerlink" title="真随机数"></a>真随机数</h4><p>通过硬件生成。这样的硬件设备称为<strong>随机数生成器（Random Number Generator，RNG）</strong></p>
+<h4 id="伪随机数"><a href="#伪随机数" class="headerlink" title="伪随机数"></a>伪随机数</h4><p>通过软件生成。这样的软件称为<strong>伪随机数生成器（Pseudo Random Number Generator，PRNG）</strong></p>
+<p><strong>种子（seed）</strong>：用来对伪随机数生成器<strong>内部状态</strong>进行初始化</p>
+<h5 id="线性同余法"><a href="#线性同余法" class="headerlink" title="线性同余法"></a>线性同余法</h5><p>linear congruential method</p>
+<p>算法：</p>
+<ul>
+<li>第一伪随机数：R<sub>0</sub> = (A * 种子 + C) mod M，A、C、M都是常量，且A、C都小于M</li>
+<li>R<sub>i + 1</sub> = (A * R<sub>i</sub> + C) mod M，i = 0、1、2……</li>
+</ul>
+<p>说明：</p>
+<ul>
+<li>线性同余法不具备不可预测性，是弱随机数，不可用于密码技术</li>
+<li>C语言库函数rand，以及Java的java.util.Random类都是用线性同余法写的，不能用于密码技术</li>
+</ul>
+<h5 id="单向散列函数法"><a href="#单向散列函数法" class="headerlink" title="单向散列函数法"></a>单向散列函数法</h5><p>通过单向散列函数可以编写出生成强伪随机数的生成器。</p>
+<p>算法：将种子作为计数器初始值，每次计数器加一，并对当前数生成单向散列值，作为伪随机数输出</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyRandom</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, seed = <span class="number">0</span></span>):</span></span><br><span class="line">        self.__count = seed</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">seed</span>(<span class="params">self, seed_</span>):</span></span><br><span class="line">        self.__count = seed_</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">random</span>(<span class="params">self</span>):</span></span><br><span class="line">        ret = hashlib.md5(str(self.__count).encode(<span class="string">&quot;utf-8&quot;</span>)).hexdigest()</span><br><span class="line">        self.__count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> int(ret, <span class="number">16</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="密码法"><a href="#密码法" class="headerlink" title="密码法"></a>密码法</h5><p>算法：将种子拆分成两部分使用，分别是计数器初始值和密钥，每次计数器加一，并对当前数使用密钥加密，密文作为伪随机数输出</p>
+<h5 id="其他算法"><a href="#其他算法" class="headerlink" title="其他算法"></a>其他算法</h5><h2 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h2><p><strong>公钥证书（Public-Key Certificate，PKC）</strong>记有姓名、组织、邮箱、地址等个人信息，以及属于此人的公钥，并由认证机构（Authentication Authority、Certifyint Authority，CA）施加数字签名。简称<strong>证书（certificate）</strong></p>
+<h3 id="公钥基础设施"><a href="#公钥基础设施" class="headerlink" title="公钥基础设施"></a>公钥基础设施</h3><p>Public-Key Infrastructure，PKI</p>
+<p>一个总称</p>
+<h4 id="PKI组成要素"><a href="#PKI组成要素" class="headerlink" title="PKI组成要素"></a>PKI组成要素</h4><ul>
+<li>用户：使用PKI的实体</li>
+<li>认证机构：颁发证书的实体</li>
+<li>仓库：保存证书的数据库</li>
+</ul>
+<h2 id="密钥的管理"><a href="#密钥的管理" class="headerlink" title="密钥的管理"></a>密钥的管理</h2><h3 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h3><ul>
+<li>用随机数生成密钥</li>
+<li>用口令生成密钥</li>
+</ul>
+<h3 id="更新密钥"><a href="#更新密钥" class="headerlink" title="更新密钥"></a>更新密钥</h3><p>key updating</p>
+<p>发送者和接受者定期同时改变密钥。用当前密钥的散列值作为下一个密钥。可以防止破译过去的通信内容机制，称之为<strong>后向安全（backward security）</strong> </p>
+<h3 id="配送密钥"><a href="#配送密钥" class="headerlink" title="配送密钥"></a>配送密钥</h3><ul>
+<li><p>通过事先共享</p>
+</li>
+<li><p>通过密钥分配中心</p>
+<ul>
+<li>中心化数据库保存所有人的密钥</li>
+</ul>
+</li>
+<li><p>通过公钥密码</p>
+</li>
+<li><p>通过 DIffie-Hellman密钥交换：通信双方可以通过交换一些可以公开的信息就能够生成出共享的秘密数字。这一秘密数字就可以作为对称密码的密钥</p>
+</li>
+</ul>
+<h3 id="保存密钥"><a href="#保存密钥" class="headerlink" title="保存密钥"></a>保存密钥</h3><h3 id="作废密钥"><a href="#作废密钥" class="headerlink" title="作废密钥"></a>作废密钥</h3><p>向证书颁发机构申请作废密钥，证书机构维护一张已作废密钥表</p>
+<h2 id="PGP"><a href="#PGP" class="headerlink" title="PGP"></a>PGP</h2><p>PGP（Pretty Good Privacy）是一款商业密码软件，不能自由使用。后自由软件基金会决定开发一个PGP的替代品，GunPG，简称GPG。</p>
+<p><a target="_blank" rel="noopener" href="https://www.gnupg.org/">https://www.gnupg.org/</a></p>
+<h2 id="SSL-TLS"><a href="#SSL-TLS" class="headerlink" title="SSL/TLS"></a>SSL/TLS</h2><p>Secure Socket Layer/Transport Layer Security</p>
+<p>以前是http协议直接通信，https是让http协议通过SSL/TLS通信</p>
+<p>工作流程：使用<strong>伪随机数生成器</strong>生成<strong>会话密钥</strong>作为<strong>对称密码</strong>的密钥，使用<strong>对称密码</strong>加密<strong>通信消息</strong>，使用<strong>消息认证码</strong>保证信息的完整性，使用<strong>公钥密码</strong>配送<strong>会话密钥</strong>，使用<strong>证书</strong>来保证公钥密码的公钥的合法性。</p>
+<p>TLS 1.0 相当于 SSL 3.1，SSL 3.0 已经不安全了。</p>
+<h3 id="TLS"><a href="#TLS" class="headerlink" title="TLS"></a>TLS</h3><p>TLS分为两层协议，下层是TLS记录协议（TLS record protocal），上层是TLS握手协议（TLS handshake protocal）。TLS握手协议又分为四个并列协议：握手协议、密码规格变更协议、警告协议、应用数据协议。</p>
+<h4 id="TLS记录协议"><a href="#TLS记录协议" class="headerlink" title="TLS记录协议"></a>TLS记录协议</h4><p>位于TLS握手协议的下层，负责使用<strong>对称密码</strong>对信息进行加密通信；负责消息的压缩、加密以及数据的认证。使用了对称密码和消息认证码。具体的算法和共享密码则是通过握手协议在服务器和客户端协商决定的。</p>
+<h4 id="TLS握手协议"><a href="#TLS握手协议" class="headerlink" title="TLS握手协议"></a>TLS握手协议</h4><h5 id="握手协议"><a href="#握手协议" class="headerlink" title="握手协议"></a>握手协议</h5><p>负责在客户端和服务器之间协商决定密码算法和共享密钥。基于证书的认证操作也是在这个协议中完成的。</p>
+<h5 id="密码规格变更协议"><a href="#密码规格变更协议" class="headerlink" title="密码规格变更协议"></a>密码规格变更协议</h5><p>负责向通信对象传达变更密码方式的信号。当协议中途发生错误时，通过警告协议传达给对方</p>
+<h5 id="警告协议"><a href="#警告协议" class="headerlink" title="警告协议"></a>警告协议</h5><p>比如消息无法解密是通知服务器。如果没有错误，通过应用数据协议来进行通信</p>
+<h5 id="应用数据协议"><a href="#应用数据协议" class="headerlink" title="应用数据协议"></a>应用数据协议</h5><h2 id="量子密码和量子计算机"><a href="#量子密码和量子计算机" class="headerlink" title="量子密码和量子计算机"></a>量子密码和量子计算机</h2><p>量子密码利用了两个事实：</p>
+<ul>
+<li>从原理上来说，无法准确测出光子的偏振方向<ul>
+<li>窃听者听到的内容可能不正确</li>
+</ul>
+</li>
+<li>测量行为本身会导致光子的状态发生改变<ul>
+<li>接受者可以判断通信是否被监听</li>
+</ul>
+</li>
+</ul>
+<p>如果量子密码进入使用领域，可以使用量子密码来实现一次性密码本，从而产生完美的密码技术。</p>
+<p>量子计算机：一个粒子可以同时具有多种状态，如果一个粒子能够计算0、1两种状态，那么128个粒子就可以同时计算2<sup>128</sup>种状态。这就是一台超级并行计算机，密码破译者的终极工具</p>
+<h2 id="椭圆曲线密码"><a href="#椭圆曲线密码" class="headerlink" title="椭圆曲线密码"></a>椭圆曲线密码</h2><p>源自于求椭圆弧长的椭圆积分的反函数</p>
+<p>实数域上方程：y<sup>2</sup> = ax<sup>3</sup> + bx<sup>2</sup> + cx + d</p>
+<p>有限域（23）上方程：y<sup>2</sup> ≡ ax<sup>3</sup> + bx<sup>2</sup> + cx + d （mod 23）</p>
+<p>包括：</p>
+<ul>
+<li>基于椭圆曲线的公钥密码</li>
+<li>基于椭圆曲线的数字签名</li>
+<li>基于椭圆曲线的密钥交换</li>
+</ul>
 
       
     </div>
@@ -418,7 +454,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -486,7 +522,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
