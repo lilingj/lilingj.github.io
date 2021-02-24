@@ -152,7 +152,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/15/Go%E7%AE%80%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/20/Docker%E7%AE%80%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -166,7 +166,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/15/Go%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">Go简记</a>
+            <a href="/2020/08/20/Docker%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">Docker简记</a>
         </h2>
 
         <div class="post-meta">
@@ -176,14 +176,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-15 23:50:25" itemprop="dateCreated datePublished" datetime="2020-08-15T23:50:25+08:00">2020-08-15</time>
+              <time title="创建时间：2020-08-20 11:26:23" itemprop="dateCreated datePublished" datetime="2020-08-20T11:26:23+08:00">2020-08-20</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-20 23:50:38" itemprop="dateModified" datetime="2020-09-20T23:50:38+08:00">2020-09-20</time>
+                <time title="修改时间：2020-09-20 23:51:12" itemprop="dateModified" datetime="2020-09-20T23:51:12+08:00">2020-09-20</time>
               </span>
 
           
@@ -197,333 +197,147 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="变量声明-5种"><a href="#变量声明-5种" class="headerlink" title="变量声明   5种"></a>变量声明   5种</h1><ol>
-<li><strong>一行一个</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var name string &#x3D; &quot;Hello World!&quot;</span><br></pre></td></tr></table></figure>
-使用    var    会对变量进行隐式初始化</li>
-</ol>
-<pre><code>* string：空字符串（双引号和单引号不等价）
-* int：0
-* float：0.0
-* bool：false
-* 指针：nil</code></pre>
-<p>简化：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var name &#x3D; &quot;Hello World&quot;</span><br><span class="line">var rate float32 &#x3D; 0.1</span><br></pre></td></tr></table></figure>
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4><ol>
-<li><p>多个变量同时声明</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var (</span><br><span class="line">    name string &#x3D; &quot;duang!&quot;</span><br><span class="line">    age int</span><br><span class="line">    gender string</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+          <h1 id="Docker为什么出现？"><a href="#Docker为什么出现？" class="headerlink" title="Docker为什么出现？"></a>Docker为什么出现？</h1><p>传统模式下，运维部署开发的代码时，环境不一样，容易出错，两者扯皮。Docker将软件代码和环境整体打包递交给运维。</p>
+<p><img src="https://uploader.shimo.im/f/VuatyY0RNnv42kYM.png!thumbnail" alt="图片"><img src="https://uploader.shimo.im/f/tLu0hN9C3xWvi5xx.png!thumbnail" alt="图片"></p>
+<h1 id="Docker是什么？"><a href="#Docker是什么？" class="headerlink" title="Docker是什么？"></a>Docker是什么？</h1><p>解决了运行环境和配置问题软件容器，方便做持续集成并有助于整体发布的容器虚拟化技术</p>
+<h1 id="Docker能干什么？"><a href="#Docker能干什么？" class="headerlink" title="Docker能干什么？"></a>Docker能干什么？</h1><p>替代虚拟机</p>
+<p>虚拟机缺点：资源占用多，冗余步骤多，启动慢</p>
+<h1 id="Docker三要素"><a href="#Docker三要素" class="headerlink" title="Docker三要素"></a>Docker三要素</h1><p>Docker架构图<img src="https://uploader.shimo.im/f/7P3BnNiom3BSRhbe.png!thumbnail" alt="图片"></p>
+<p>三要素：镜像、容器、仓库</p>
+<p>镜像类比于类，容器类比于类的实例，容器是用镜像创建的运行实例</p>
+<p>容器可以看做是一个简易版的Linux环境</p>
+<p>仓库是集中存放镜像文件的场所</p>
+<h1 id="Docker运行底层原理"><a href="#Docker运行底层原理" class="headerlink" title="Docker运行底层原理"></a>Docker运行底层原理</h1><p>Docker 是一个Client-Server 结构的系统，Docker 守护进程运行在主机上，然后通过Socket连接从客户端访问，守护进程从客户端接收命令并管理运行在主机上的容器</p>
+<p>相比于虚拟机，Docker 没有硬件虚拟化，减少了抽象层<img src="https://uploader.shimo.im/f/0NHh8nivaFmRLueq.png!thumbnail" alt="图片"></p>
+<h1 id="Docker常用命令"><a href="#Docker常用命令" class="headerlink" title="Docker常用命令"></a>Docker常用命令</h1><ol>
+<li><p>帮助命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br><span class="line">docker info</span><br><span class="line">docker --help</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>使用 := ，推导声明写法 或者 短类型声明法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name :&#x3D; &quot;duang!&quot;</span><br><span class="line">integer :&#x3D; 15</span><br></pre></td></tr></table></figure>
-<p>编译器会自动根据右值类型推断出左值的对应类型，只能用于函数内部</p>
-</li>
-<li><p>声明和初始化多个变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name, age :&#x3D; &quot;zhangwei&quot;, 18</span><br></pre></td></tr></table></figure>
-<p>与python类似，可用于变量交换</p>
+<li><p>镜像命令</p>
 </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a, b :&#x3D; 1, 2</span><br><span class="line">a, b &#x3D; b, a     &#x2F;&#x2F;swap(a, b)</span><br></pre></td></tr></table></figure>
+<p>显示镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line">#-a 显示所有</span><br><span class="line">#-q 显示id</span><br><span class="line">#--digests 显示镜像摘要信息</span><br><span class="line">#-no-trunc 显示镜像完整信息</span><br></pre></td></tr></table></figure>
+<p>查找镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker search</span><br><span class="line">#--no-trunc 显示完整的镜像描述</span><br><span class="line">#-s 列出收藏数不小于指定值的镜像</span><br><span class="line">#--automated 只列出automated build类型的镜像</span><br></pre></td></tr></table></figure>
+<p>拉取镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull</span><br></pre></td></tr></table></figure>
+<p>删除镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker rmi</span><br><span class="line">#-f 强制删除</span><br><span class="line">docker rmi -f $(docker images -qa) #删除全部镜像</span><br></pre></td></tr></table></figure>
+<p>容器封装成镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -m&#x3D;&quot;提交描述信息&quot; -a&#x3D;&quot;作者&quot; 容器ID 要创建的目标镜像名:[标签名]</span><br></pre></td></tr></table></figure>
+
 
 <ol>
-<li>new函数创建指针变量<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ptr :&#x3D; new(int)</span><br><span class="line">fmt.Println(&quot;ptr address: &quot;, ptr)</span><br><span class="line">fmt.Println(&quot;ptr value: &quot;, *ptr)</span><br></pre></td></tr></table></figure>
-或者<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var age int &#x3D; 18</span><br><span class="line">var ptr &#x3D; &amp;age</span><br></pre></td></tr></table></figure>
-与C/C++指针相同<br>new函数只是个语法糖</li>
+<li>容器命令</li>
 </ol>
-<h1 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h1><ol>
-<li>整形 和 无符号整形</li>
-</ol>
-<p><img src="https://uploader.shimo.im/f/HCElhDv3eryJ2fHu.png!thumbnail" alt="图片"></p>
-<p>int 和 uint 在 32位系统 下占4个字节，在64位下占8个字节，为避免歧义，使用时表明位数，如 int32、uint64</p>
-<p>不同进制表示方法：</p>
-<p>2进制：0b 或 0B 为前缀</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var num int32 &#x3D; 0b10010</span><br></pre></td></tr></table></figure>
-<p>8进制：0o 或 0O为前缀</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var num int64 &#x3D; 0o77777</span><br></pre></td></tr></table></figure>
-<p>16进制：0x</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var num int8 &#x3D; 0xFFC8</span><br></pre></td></tr></table></figure>
-<p>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line">import (</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">)</span><br><span class="line">func main() &#123;</span><br><span class="line">    var num01 int &#x3D; 0b1100</span><br><span class="line">    var num02 int &#x3D; 0o14</span><br><span class="line">    var num03 int &#x3D; 0xC</span><br><span class="line">    fmt.Printf(&quot;2进制数 %b 表示的是: %d \n&quot;, num01, num01)</span><br><span class="line">    fmt.Printf(&quot;8进制数 %o 表示的是: %d \n&quot;, num02, num02)</span><br><span class="line">    fmt.Printf(&quot;16进制数 %X 表示的是: %d \n&quot;, num03, num03)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>fmt包格式化功能：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">%b    表示为二进制</span><br><span class="line">%c    该值对应的unicode码值</span><br><span class="line">%d    表示为十进制</span><br><span class="line">%o    表示为八进制</span><br><span class="line">%q    该值对应的单引号括起来的go语法字符字面值，必要时会采用安全的转义表示</span><br><span class="line">%x    表示为十六进制，使用a-f</span><br><span class="line">%X    表示为十六进制，使用A-F</span><br><span class="line">%U    表示为Unicode格式：U+1234，等价于&quot;U+%04X&quot;</span><br><span class="line">%T    显示数据类型</span><br></pre></td></tr></table></figure>
+<p>新建并启动容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -it centos</span><br><span class="line">#-i 以交互模式运行容器</span><br><span class="line">#-t 为容器重新分配一个伪输入终端</span><br><span class="line">#-p 主机端口:docker容器端口</span><br><span class="line">#-P 随机分配端口</span><br><span class="line">#-d 启动守护容器</span><br></pre></td></tr></table></figure>
+<p>列出所有正在运行的容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br><span class="line">#-a 正在运行和历史上运行的所有容器</span><br><span class="line">#-l 上一个运行的</span><br><span class="line">#-n 上指定次运行的</span><br></pre></td></tr></table></figure>
+<p>退出容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#容器停止退出</span><br><span class="line">exit</span><br><span class="line">#容器不停止退出</span><br><span class="line">ctrl + P + Q</span><br></pre></td></tr></table></figure>
+<p>启动容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start 容器ID</span><br></pre></td></tr></table></figure>
+<p>重启容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart 容器ID</span><br></pre></td></tr></table></figure>
+<p>停止容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#正常停止</span><br><span class="line">docker stop 容器ID</span><br><span class="line">#强制停止</span><br><span class="line">docker kill 容器ID</span><br></pre></td></tr></table></figure>
+<p>删除已经停止容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker rm 容器ID</span><br><span class="line">#-f 强制删除</span><br><span class="line">#一次性删除多容器</span><br><span class="line">docker rm -f $(docker ps -aq)</span><br><span class="line">docker ps -aq | xargs docker rm</span><br></pre></td></tr></table></figure>
+<p>查看容器日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f -t --tail 容器ID</span><br><span class="line">#-t 加入时间戳</span><br><span class="line">#-f 跟随最新日志打印</span><br><span class="line">#--tail 数字 显示最后多少条</span><br></pre></td></tr></table></figure>
+<p>查看容器内运行的进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker top 容器ID</span><br></pre></td></tr></table></figure>
+<p>查看容器内部细节</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect 容器ID</span><br></pre></td></tr></table></figure>
+<p>进入正在运行的容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker attach 容器ID</span><br></pre></td></tr></table></figure>
+<p>从容器内拷贝文件到主机上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp 容器ID:容器内路径 目的主机路径</span><br></pre></td></tr></table></figure>
 
-<ol>
-<li>浮点型</li>
-</ol>
-<p>只能由十进制表示，分两种精度，float32 和 float 64</p>
+
+<h1 id="Docker镜像是什么"><a href="#Docker镜像是什么" class="headerlink" title="Docker镜像是什么"></a>Docker镜像是什么</h1><p>轻量级、可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，包括代码、运行时、库、环境变量、配置文件</p>
+<p>UnionFS（联合文件系统）:Union文件系统是一种分层、轻量级并且搞性能的文件系统，它支持对文件系统的修改作为一次提交来一层一层叠加，同时将不同目录挂载到同一个虚拟文件系统下</p>
+<p>UnionFS是Docker镜像的基础，镜像可以通过分层来继承，基于基础镜像</p>
+<p><img src="https://uploader.shimo.im/f/ds0OkbgMznc2ev11.png!thumbnail" alt="图片"></p>
+<h1 id="Docker容器数据卷"><a href="#Docker容器数据卷" class="headerlink" title="Docker容器数据卷"></a>Docker容器数据卷</h1><p>Docker容器产生的数据，如果不通过docker commit生成新的镜像，使数据作为镜像一部分保存下来，那么容器删除后，数据自然也就没有了</p>
 <ul>
-<li>float32：1位符号位，8位指数，23位尾数。精度只能提供大约6个十进制数</li>
-<li>float64:1位符号，11位指数，52位尾数。精度只能提供大约15个十进制数</li>
+<li>将运用与运行环境打包成容器运行，运行可以伴随着容器，但我们对数据的要求是希望持久化的</li>
+<li>容器之前希望有可能共享数据</li>
 </ul>
-<ol>
-<li>byte 和 rune</li>
-</ol>
-<p>byte占1字节，表示一个ASCII字符，与 uint8 没有本质区别</p>
-<p>rune占4字节，表示一个Unicode字符，与 int32 没有本质区别。用单引号</p>
-<ol>
-<li>string</li>
-</ol>
-<p>多个字符组成，本质是一个 byte 数组：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import &quot;fmt&quot;</span><br><span class="line">func main() &#123;</span><br><span class="line">    var mystr01 sting &#x3D; &quot;hello&quot;</span><br><span class="line">    var mystr02 [5]byte &#x3D; [5]byte&#123;104, 101, 108, 108, 111&#125;</span><br><span class="line">    fmt.Printf(&quot;mystr01: %s\n&quot;, mystr01)</span><br><span class="line">    fmt.Printf(&quot;mystr02: %s&quot;, mystr02)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出相同</p>
-<ol>
-<li>数组</li>
-</ol>
-<p>一个数组可以由0个或多个元素组成，由于数组长度固定，Go中很少使用数组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var arr [3]int&#123;1, 3, 0&#125;</span><br></pre></td></tr></table></figure>
-<p>使用…让Go自己根据实际情况分配空间</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var arr [...]int&#123;1, 4, 2, 3&#125;</span><br></pre></td></tr></table></figure>
-<p>定义类型别名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type arr_with_len_3 [3]int</span><br><span class="line">var arr arr_with_len_3&#123;1, 3, 2&#125;</span><br><span class="line">&#x2F;&#x2F;初始化长度为3的数组 arr</span><br></pre></td></tr></table></figure>
+<p>直接命令添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -v &#x2F;宿主机绝对路径:&#x2F;容器内目录 镜像名</span><br><span class="line">#两个文件夹将共享数据</span><br><span class="line">docker run -it -v &#x2F;宿主机绝对路径:&#x2F;容器内目录:ro 镜像名</span><br><span class="line">#容器内对共享目录只读</span><br></pre></td></tr></table></figure>
+<p>dockerfile添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">略</span><br><span class="line">--volume-from 容器间传递共享</span><br></pre></td></tr></table></figure>
 
+<h1 id="DockerFile"><a href="#DockerFile" class="headerlink" title="DockerFile"></a>DockerFile</h1><p>DockerFile 是用来构建Docker镜像的构建文件，是由一系列命令和参数构成的脚本。</p>
+<p>构建三步骤：</p>
+<pre><code>* 编写DockerFile文件
+* docker build
+* docker run</code></pre>
+<p>scratch 是元镜像</p>
+<h4 id="DockerFile基础知识："><a href="#DockerFile基础知识：" class="headerlink" title="DockerFile基础知识："></a>DockerFile基础知识：</h4><pre><code>* 每条保留字指令都必须为大写字母且后面要跟随至少一个参数
+* 指令从上到下，顺序执行
+* #表示注释
+* 每条指令都会创建一个新的镜像层，并对镜像进行提交</code></pre>
+<h4 id="DockerFile执行的大致流程"><a href="#DockerFile执行的大致流程" class="headerlink" title="DockerFile执行的大致流程"></a>DockerFile执行的大致流程</h4><pre><code>* docker从基础镜像运行一个容器
+* 执行一条指令并对容器做出修改
+* 执行类似docker commit的操作提交一个新的镜像层
+* docker再基于刚提交的镜像运行一个新容器
+* 执行dockerfile中的下一条指令知道所有指令都执行完成</code></pre>
+<h4 id="DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段"><a href="#DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段" class="headerlink" title="DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段"></a>DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段</h4><pre><code>* DockerFile 是软件的原材料
+* Docker镜像是软件的交付品
+* Docker容器则可以认为世软件的运行态</code></pre>
+<p>DockerFile面向开发，Docker镜像成为交付标准，Docker容器则涉及到部署与运维<img src="https://uploader.shimo.im/f/49a8vK8yeIvKwTVP.png!thumbnail" alt="图片"></p>
+<h1 id="DockerFile保留字指令"><a href="#DockerFile保留字指令" class="headerlink" title="DockerFile保留字指令"></a>DockerFile保留字指令</h1><p><img src="https://uploader.shimo.im/f/XQy1Oekt7xZhtZpY.png!thumbnail" alt="图片"></p>
 <ol>
-<li>切片</li>
+<li><p>FROM：基础镜像，当前镜像是基于哪个镜像的</p>
+</li>
+<li><p>MAINTAINER：镜像维护者的姓名和邮箱地址</p>
+</li>
+<li><p>RUN：容器构建时需要运行的命令</p>
+</li>
+<li><p>EXPOSE：当前容器对外暴露的端口号</p>
+</li>
+<li><p>WORKDIR：指定在创建容器后，终端默认登录的进来工作目录，一个落脚点</p>
+</li>
+<li><p>ENV：用来构建镜像过程中设置环境变量</p>
+</li>
+<li><p>ADD：将宿主机目录下的文件拷贝进镜像且ADD命令会自动处理URL和解压tar压缩包</p>
+</li>
+<li><p>COPY：类似ADD，拷贝文件和目录到镜像中</p>
+<ul>
+<li>COPY src dest</li>
+<li>COPY [“src”, “dest”]</li>
+</ul>
+</li>
+<li><p>VOLUME：容器数据卷，用于数据保存和持久化工作</p>
+</li>
+<li><p>CMD：容器启动时要运行的命令，可以有多个，CMD会被docker run之后的参数替换</p>
+<ul>
+<li>shell格式：CMD &lt;命令&gt;</li>
+<li>exec格式：CMD [“可执行文件“， ”参数1”,  “参数2”…]</li>
+<li>参数列表格式：CMD [”参数1”,  “参数2”…]，在指定ENTRYPOINT指令后，用CMD指定具体参数</li>
+</ul>
+</li>
+<li><p>ENTRYPOINT：同CMD，但是docker run 之后的参数会追加到该命令行中</p>
+</li>
+<li><p>ONBUILD：当构建一个被继承的dockerfile时运行命令，父镜像在被子继承后父镜像的onbuild会被触发</p>
+<h4 id="例子1："><a href="#例子1：" class="headerlink" title="例子1："></a>例子1：</h4></li>
 </ol>
-<p>引用类型，是数组的一个引用</p>
-<p>3种声明方法：</p>
-<p>对数组的片段截取</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr :&#x3D; [...]int&#123;1, 2, 3&#125;</span><br><span class="line">sli :&#x3D; arr[0:2]</span><br></pre></td></tr></table></figure>
-<p>从头声明</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var string_sli []string</span><br><span class="line">var num_sli []int&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>使用make函数构造，make函数格式：make([]Type, size, cap)，（类型，长度，容量）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a :&#x3D; make([]int, 2)&#x2F;&#x2F;省略的cap &#x3D; size</span><br><span class="line">b :&#x3D; make([]int, 2, 10)</span><br><span class="line">&#x2F;&#x2F;显然cap &gt;&#x3D; size，当cap &gt; size时，多出来的空间可以使用append追加元素后访问</span><br><span class="line">myarr &#x3D; append(myarr, 2)&#x2F;&#x2F; 追加一个元素</span><br><span class="line">myarr &#x3D; append(myarr, 3, 4)&#x2F;&#x2F; 追加多个元素</span><br><span class="line">myarr &#x3D; append(myarr, []int&#123;7, 8&#125;...)&#x2F;&#x2F; 追加一个切片, ... 表示解包，不能省略</span><br><span class="line">myarr &#x3D; append([]int&#123;0&#125;, myarr...)&#x2F;&#x2F; 在第一个位置插入元素</span><br><span class="line">myarr &#x3D; append(myarr[:5], append([]int&#123;5,6&#125;, myarr[5:]...)...)&#x2F;&#x2F; 在中间插入一个切片(两个元素)</span><br></pre></td></tr></table></figure>
+<p>阿里云pull下的centos没有vim，也没有ifconfig。制作一个包含这些工具的centos镜像</p>
+<p>第一步：</p>
+<p>DockerFile文件编写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#DockerFile文件编写</span><br><span class="line">FROM centos</span><br><span class="line">MAINTAINER llj&lt;lilingjie_nefu@qq.com&gt;</span><br><span class="line">ENV MYPATH &#x2F;tmp</span><br><span class="line">WORKDIR $MYPATH</span><br><span class="line">RUN yum -y install vim</span><br><span class="line">RUN yum -y install net-tools</span><br><span class="line">EXPOSE 80</span><br><span class="line">CMD echo &quot;success!!!&quot;</span><br><span class="line">CMD &#x2F;bin&#x2F;bash</span><br><span class="line">ONBUILD RUN echo &quot;Dad is looking at you&quot;</span><br></pre></td></tr></table></figure>
+<p>第二步：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f &#x2F;mydocker&#x2F;DockerFile -t llj_centos:1.0 .</span><br></pre></td></tr></table></figure>
 <p>注意：</p>
-<p>切片引用的依旧是原数组，利用切片修改数组值修改到原来数组值，这点与python的切片是复制一部分数组不同</p>
-<p>切片参数说明 sli := arr[start : end : max]，如 sli := arr[4:6:8]，表示切片从原数组下标 4 到 6，最多访问到原数组下标为 8 的位置，意思是，sli[0] 到 sli[3] 都可以被访问到，若省略，则 max = end，其中 sli 的地址等于 arr[start] 的地址</p>
-<ol>
-<li>字典</li>
-</ol>
-<p>三种初始化方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 第一种方法</span><br><span class="line">var scores map[string]int &#x3D; map[string]int&#123;&quot;english&quot;: 80, &quot;chinese&quot;: 85&#125;</span><br><span class="line">&#x2F;&#x2F; 第二种方法</span><br><span class="line">scores :&#x3D; map[string]int&#123;&quot;english&quot;: 80, &quot;chinese&quot;: 85&#125;</span><br><span class="line">&#x2F;&#x2F; 第三种方法</span><br><span class="line">scores :&#x3D; make(map[string]int)</span><br><span class="line">scores[&quot;english&quot;] &#x3D; 80</span><br><span class="line">scores[&quot;chinese&quot;] &#x3D; 85</span><br></pre></td></tr></table></figure>
-<p>key必须可哈希，不能是切片、字典、函数<br>相关操作</p>
-<p>添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scores[&quot;math&quot;] &#x3D; 95</span><br></pre></td></tr></table></figure>
-<p>更新</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scores[&quot;math&quot;] &#x3D; 100</span><br></pre></td></tr></table></figure>
-<p>读取若不存在，返回value类型的零值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(scores[&quot;math&quot;])</span><br></pre></td></tr></table></figure>
-<p>删除</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete(scores, &quot;math&quot;)</span><br></pre></td></tr></table></figure>
-<p>判断key是否存在</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">math, ok :&#x3D; scores[&quot;math&quot;]</span><br><span class="line">&#x2F;&#x2F;若ok为true，则存在</span><br></pre></td></tr></table></figure>
-<p>遍历</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  1. 获取 key 和 val</span><br><span class="line">for key, val :&#x3D; range scores &#123;</span><br><span class="line">    solve(key, val)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;  2.只获取 key, 注意不用占位符</span><br><span class="line">for key :&#x3D; range scores &#123;</span><br><span class="line">    solve(key)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;  3只获取 value，使用占位符</span><br><span class="line">for _, val :&#x3D; range scores &#123;</span><br><span class="line">    solve(val)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>bool类型</li>
-</ol>
-<p>bool 和 int 不能直接转换，用法同C/C++</p>
-<ol>
-<li>指针</li>
-</ol>
-<p>零值为 nil，其余同C/C++。建议切片传值，而不用指针</p>
-<h1 id="面向对象：结构体-和-组合"><a href="#面向对象：结构体-和-组合" class="headerlink" title="面向对象：结构体 和 组合"></a>面向对象：结构体 和 组合</h1><ol>
-<li><p>定义结构体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type Person struct &#123;</span><br><span class="line">   name   string</span><br><span class="line">   age       int</span><br><span class="line">   father *Person</span><br><span class="line">   mother *Person</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="-1"><a href="#-1" class="headerlink" title=""></a></h4></li>
-<li><p>定义方法</p>
-</li>
-</ol>
-<p>注意：Person 和 <em>Person定义的变量 person 调用内部成员，一律是 person.age 这种形式，在方法中，若要修改结构体变量，必须用</em>Person定义person，建议使用指针</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line">type Person struct &#123;</span><br><span class="line">   name   string</span><br><span class="line">   age       int</span><br><span class="line">   father *Person</span><br><span class="line">   mother *Person</span><br><span class="line">&#125;</span><br><span class="line">func (person Person)GetAge() (int) &#123;</span><br><span class="line">   return person.age</span><br><span class="line">&#125;</span><br><span class="line">func (person *Person)SetAge(age int) &#123;</span><br><span class="line">   person.age &#x3D; age</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">   llj :&#x3D; Person&#123;name:&quot;llj&quot;, age:18&#125;</span><br><span class="line">   llj.SetAge(20)</span><br><span class="line">   fmt.Println(llj.GetAge())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>组合</li>
-</ol>
-<p>将几个结构体组合在一起</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">type company struct &#123;</span><br><span class="line">    companyName string</span><br><span class="line">    companyAddr string</span><br><span class="line">&#125;</span><br><span class="line">type staff struct &#123;</span><br><span class="line">    name string</span><br><span class="line">    age int</span><br><span class="line">    gender string</span><br><span class="line">    position string</span><br><span class="line">    company   &#x2F;&#x2F; 匿名字段 </span><br><span class="line">&#125;</span><br><span class="line">func main()  &#123;</span><br><span class="line">    myCom :&#x3D; company&#123;</span><br><span class="line">        companyName: &quot;Tencent&quot;,</span><br><span class="line">        companyAddr: &quot;深圳市南山区&quot;,</span><br><span class="line">    &#125;</span><br><span class="line">    staffInfo :&#x3D; staff&#123;</span><br><span class="line">        name:     &quot;小明&quot;,</span><br><span class="line">        age:      28,</span><br><span class="line">        gender:   &quot;男&quot;,</span><br><span class="line">        position: &quot;云计算开发工程师&quot;,</span><br><span class="line">        company: myCom,</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;调用staffInfo.companyName 或 staffInfo.company.companyName</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>内部方法 和 外部方法</li>
-</ol>
-<p>首字母大写，这个方法可以被所有包调用</p>
-<p>首字母小写，这个方法其他包无法访问</p>
-<h1 id="面向对象：接口和多态"><a href="#面向对象：接口和多态" class="headerlink" title="面向对象：接口和多态"></a>面向对象：接口和多态</h1><ol>
-<li>接口</li>
-</ol>
-<p>Go中，接口是方法签名（Method Signature）的集合</p>
-<p>定义接口：使用type关键字</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type Phone interface &#123;</span><br><span class="line">   call()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>实现接口：接口实现是隐式的，不需要显示声明。如果一个结构体实现了一个接口的所有方法，就可以称它实现了该接口</p>
-<ol>
-<li>多态</li>
-</ol>
-<p>使用接口来实现多态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line">&#x2F;&#x2F;接口</span><br><span class="line">type Jiao interface &#123;</span><br><span class="line">   call()</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;父类</span><br><span class="line">type Animal struct &#123;</span><br><span class="line">   name string</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;子类cat</span><br><span class="line">type Cat struct &#123;</span><br><span class="line">   Animal</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;子类cat实现Jiao接口</span><br><span class="line">func (cat Cat) call() &#123;</span><br><span class="line">   fmt.Println(cat.name + &quot; miao miao&quot;)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;子类dog</span><br><span class="line">type Dog struct &#123;</span><br><span class="line">   Animal</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;子类dog实现Jiao接口</span><br><span class="line">func (dog Dog) call()  &#123;</span><br><span class="line">   </span><br><span class="line">   fmt.Println(dog.name + &quot; wangwang&quot;)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;用接口接受参数，实现多态</span><br><span class="line">func KillAnimal(jiao Jiao) &#123;</span><br><span class="line">   jiao.call()</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">   cat :&#x3D; Cat&#123;Animal&#123;name:&quot;cat&quot;&#125;&#125;</span><br><span class="line">   dog :&#x3D; Dog&#123;Animal&#123;name:&quot;dog&quot;&#125;&#125;</span><br><span class="line">   KillAnimal(cat)</span><br><span class="line">   KillAnimal(dog)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><ol>
-<li>可变参数</li>
-</ol>
-<p>类型一致：使用…int表示该类型的一个切片，…也可用来解序列</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">func sum(args ...int) int &#123;</span><br><span class="line">    var sum int</span><br><span class="line">    for _, v :&#x3D; range args &#123;</span><br><span class="line">        sum +&#x3D; v</span><br><span class="line">    &#125;</span><br><span class="line">    return sum</span><br><span class="line">&#125;</span><br><span class="line">func Sum(args ...int) int &#123;</span><br><span class="line">    &#x2F;&#x2F; 利用 ... 来解序列</span><br><span class="line">    result :&#x3D; sum(args...)</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">    fmt.Println(sum(1, 2, 3))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>类型不一致：使用…interface{}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import &quot;fmt&quot;</span><br><span class="line">func MyPrintf(args ...interface&#123;&#125;) &#123;</span><br><span class="line">    for _, arg :&#x3D; range args &#123;</span><br><span class="line">        switch arg.(type) &#123;</span><br><span class="line">            case int:</span><br><span class="line">                fmt.Println(arg, &quot;is an int value.&quot;)</span><br><span class="line">            case string:</span><br><span class="line">                fmt.Println(arg, &quot;is a string value.&quot;)</span><br><span class="line">            case int64:</span><br><span class="line">                fmt.Println(arg, &quot;is an int64 value.&quot;)</span><br><span class="line">            default:</span><br><span class="line">                fmt.Println(arg, &quot;is an unknown type.&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">    var v1 int &#x3D; 1</span><br><span class="line">    var v2 int64 &#x3D; 234</span><br><span class="line">    var v3 string &#x3D; &quot;hello&quot;</span><br><span class="line">    var v4 float32 &#x3D; 1.234</span><br><span class="line">    MyPrintf(v1, v2, v3, v4)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>匿名函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func(参数列表)(返回参数列表)&#123;</span><br><span class="line">    函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-例子<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 第二个参数为函数</span><br><span class="line">func visit(list []int, f func(int)) &#123;</span><br><span class="line">    for _, v :&#x3D; range list &#123;</span><br><span class="line">        &#x2F;&#x2F; 执行回调函数</span><br><span class="line">        f(v)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">    &#x2F;&#x2F; 使用匿名函数直接做为参数</span><br><span class="line">    visit([]int&#123;1, 2, 3, 4&#125;, func(v int) &#123;</span><br><span class="line">        fmt.Println(v)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h1 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h1><ol>
-<li>if-else 语句</li>
-</ol>
-<p>对 { 和 } 有严格要求，else if 或 else 两边的花括号必须在同一行</p>
-<p>模型：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if 条件 1 &#123;</span><br><span class="line">  分支 1</span><br><span class="line">&#125; else if 条件 2 &#123;</span><br><span class="line">  分支 2</span><br><span class="line">&#125; else if 条件 ... &#123;</span><br><span class="line">  分支 ...</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  分支 else</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>特殊写法：先运行一个表达式，获得变量后再对其进行判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if age :&#x3D; 20;age &gt; 18 &#123;</span><br><span class="line">    fmt.Println(&quot;已经成年了&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>swith-case 语句</li>
-</ol>
-<p>知道有就行，学习各种语言从没用过这个语法</p>
-<ol>
-<li>循环语句：for</li>
-</ol>
-<p>三种用法</p>
-<p>接一个表达式，即当别的语言的while用，没有表达式时相当于表达式是true</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a :&#x3D; 1</span><br><span class="line">for a &lt;&#x3D; 5 &#123;</span><br><span class="line">    fmt.Println(a)</span><br><span class="line">    a ++ </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接三个，正常用法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for i :&#x3D; 1; i &lt;&#x3D; 5; i++ &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>for-range 语句<br>range 后可接数组、切片、字符串等，返回两个值：索引、数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">myarr :&#x3D; [...]string&#123;&quot;world&quot;, &quot;python&quot;, &quot;go&quot;&#125;</span><br><span class="line">for _, item :&#x3D; range myarr &#123;</span><br><span class="line">    fmt.Printf(&quot;hello, %s\n&quot;, item)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>goto语句</li>
-</ol>
-<p>例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">    goto flag</span><br><span class="line">    fmt.Println(&quot;B&quot;)</span><br><span class="line">flag:</span><br><span class="line">    fmt.Println(&quot;A&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，goto语句和标签之间不能有变量声明</p>
-<ol>
-<li>defer延迟调用</li>
-</ol>
-<p>用法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defer func()</span><br></pre></td></tr></table></figure>
-<p>效果：记录当前函数需要的参数，压入栈中，当前函数执行完后（return后），依次弹栈执行</p>
-<h1 id="关键字-make-和-new"><a href="#关键字-make-和-new" class="headerlink" title="关键字 make 和 new"></a>关键字 make 和 new</h1><ol>
-<li>new</li>
-</ol>
-<p>接受一个参数，该参数为一个任意类型，返回这个类型的指针，具体做三件事：</p>
-<pre><code>    * 分配内存
-    * 设置零值
-    * 返回指针</code></pre>
-<p>new 不常用</p>
-<ol>
-<li>make</li>
-</ol>
-<p>专为 slice，map，chan 类型分配内存和初始化一个对象，返回类型本身</p>
-<p>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;切片</span><br><span class="line">a :&#x3D; make([]int, 2, 10)  </span><br><span class="line">&#x2F;&#x2F; 字典</span><br><span class="line">b :&#x3D; make(map[string]int)</span><br><span class="line">&#x2F;&#x2F; 通道</span><br><span class="line">c :&#x3D; make(chan int, 10)</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><p>类C/C++</p>
-<h1 id="Go协程：goroutine"><a href="#Go协程：goroutine" class="headerlink" title="Go协程：goroutine"></a>Go协程：goroutine</h1><ol>
-<li>简介</li>
-</ol>
-<p>Go 从语言层面天生支持并发。goroutine 是Go 语言程序并发执行的基本单元，它本身是一个函数，直接调用时是一个普通函数，调用前加一个关键字 go ，就开启了一个goroutine</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 执行一个函数</span><br><span class="line">func()</span><br><span class="line">&#x2F;&#x2F; 开启一个协程执行这个函数</span><br><span class="line">go func()</span><br></pre></td></tr></table></figure>
-<p>一个 Go 程序入口通常是 main 函数，程序启动后，main最先运行，称之为 main goroutine</p>
-<ol>
-<li>信道</li>
-</ol>
-<p>多个 goroutine 的通信需要依赖 channel，它是一种队列式的数据结构，遵循先入先出的规则。每个信道只能传递一种数据类型的数据</p>
-<p>不要通过共享内存来通信，而通过通信来共享内存</p>
-<ol>
-<li><p>信道的声明</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var 信道实例 chan 信道类型 &#x3D; make(chan 信道类型)</span><br><span class="line">信道实例 :&#x3D; make(chan 信道实例)</span><br><span class="line">&#x2F;&#x2F;如：</span><br><span class="line">pipline :&#x3D; make(chan int)</span><br></pre></td></tr></table></figure>
-<p>chan的类型零值为nil</p>
-</li>
-<li><p>关闭信道</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">close(pipline)</span><br></pre></td></tr></table></figure>
-<p>只能关闭一次，重复关闭会报错</p>
-</li>
-<li><p>信道的数据操作</p>
-<ul>
-<li>发送数据</li>
-<li>读取数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;往信道中发送数据</span><br><span class="line">pipline&lt;- 200</span><br><span class="line">&#x2F;&#x2F;从信道中取出数据，并复制给mydata</span><br><span class="line">mydata :&#x3D; &lt;-pipline</span><br><span class="line">mydata, ok :&#x3D; &lt;-pipline</span><br></pre></td></tr></table></figure>
-ok 表示信道是否被关闭，关闭：false，未关：true</li>
-</ul>
-</li>
-<li><p>信道的容量和长度</p>
-</li>
-</ol>
-<p>使用make函数创建信道，需要两个参数，第二个信道容量，选填，不填为0</p>
-<pre><code>* 容量为 0 时，称为无缓冲信道，信道不能存放数据，发送时必须马上有人接受，否则报错。
-* 容量为 1 时，只能缓存一个数据。若已有一个数据，再发送数据会造成程序阻塞。利用这点让信道来做锁
-* 容量大于 1 时，用于多个协程之间，成为他们的通信管道，共享资源</code></pre>
-<p>可以使用 cap 函数获取信道容量，len 函数获取信道长度</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cap(pipline)</span><br><span class="line">len(pipline)</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>缓冲信道和无缓冲信道</li>
-</ol>
-<p>缓冲信道：允许信道存储一个或多个数据，发送端和接收端可以处于异步状态</p>
-<p>无缓冲信道：容量为0，接收端必须先于发送端准备好，否则发送端会阻塞</p>
-<ol>
-<li>双向信道和单向信道</li>
-</ol>
-<p>双向信道：可读可写</p>
-<p>单向信道：可读或可写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var pipline &#x3D; make(chan int)</span><br><span class="line">type Receiver &#x3D; &lt;-chan int &#x2F;&#x2F; 关键代码：定义别名类型</span><br><span class="line">var receiver Receiver &#x3D; pipline</span><br><span class="line">type Sender &#x3D; chan&lt;- int  &#x2F;&#x2F; 关键代码：定义别名类型</span><br><span class="line">var sender Sender &#x3D; pipline</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>遍历信道</li>
-</ol>
-<p>for-range遍历信道，要确保信道关闭，否则循环会阻塞</p>
-<ol>
-<li><p>信道做锁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line">import &#123;</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;time&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 由于 x&#x3D;x+1 不是原子操作</span><br><span class="line">&#x2F;&#x2F; 所以应避免多个协程对x进行操作</span><br><span class="line">&#x2F;&#x2F; 使用容量为1的信道可以达到锁的效果</span><br><span class="line">func increment(ch chan bool, x *int) &#123;  </span><br><span class="line">    ch &lt;- true</span><br><span class="line">    *x &#x3D; *x + 1</span><br><span class="line">    &lt;- ch</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">    &#x2F;&#x2F; 注意要设置容量为 1 的缓冲信道</span><br><span class="line">    pipline :&#x3D; make(chan bool, 1)</span><br><span class="line">    var x int</span><br><span class="line">    for i:&#x3D;0;i&lt;1000;i++&#123;</span><br><span class="line">        go increment(pipline, &amp;x)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 确保所有的协程都已完成</span><br><span class="line">    &#x2F;&#x2F; 以后会介绍一种更合适的方法（Mutex），这里暂时使用sleep</span><br><span class="line">    time.Sleep(3)</span><br><span class="line">    fmt.Println(&quot;x 的值：&quot;, x)</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>WaitGroup</p>
-</li>
-</ol>
-<p>使用WaitGroup 来保证所有 goroutine 都执行完</p>
-<p>WaitGroup在 sync 包中，实例化了就能用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var 实例名 sync.WaitGroup</span><br></pre></td></tr></table></figure>
-<p>有三个方法：</p>
-<pre><code>* Add：计数器初始值为0，传入值后会往计数器上加，传入子协程数量即可
-* Done：某个子协程完成后，可调用此方法，会从计数器上减一，通常使用 defer 调用
-* Wait：阻塞当前协程，知道实例里的计数器归零</code></pre>
-<p>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import (</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;sync&quot;</span><br><span class="line">)</span><br><span class="line">func worker(x int, wg *sync.WaitGroup) &#123;</span><br><span class="line">    defer wg.Done()</span><br><span class="line">    for i :&#x3D; 0; i &lt; 5; i++ &#123;</span><br><span class="line">        fmt.Printf(&quot;worker %d: %d\n&quot;, x, i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">    var wg sync.WaitGroup</span><br><span class="line">    wg.Add(2)</span><br><span class="line">    go worker(1, &amp;wg)</span><br><span class="line">    go worker(2, &amp;wg)</span><br><span class="line">    wg.Wait()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>读写锁和互斥锁</li>
-</ol>
-<p>面对并发问题，应该优先考虑使用信道，如果必须共享内存，那只能利用Go 中的锁机制</p>
-<p>互斥锁：Mutex</p>
-<p>声明：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 第一种</span><br><span class="line">var lock *sync.Mutex</span><br><span class="line">lock &#x3D; new(sync.Mutex)</span><br><span class="line">&#x2F;&#x2F; 第二种</span><br><span class="line">lock :&#x3D; &amp;sync.Mutex&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import (</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;sync&quot;</span><br><span class="line">)</span><br><span class="line">func add(count *int, wg *sync.WaitGroup, lock *sync.Mutex) &#123;</span><br><span class="line">    for i :&#x3D; 0; i &lt; 1000; i++ &#123;</span><br><span class="line">        lock.Lock()</span><br><span class="line">        *count &#x3D; *count + 1</span><br><span class="line">        lock.Unlock()</span><br><span class="line">    &#125;</span><br><span class="line">    wg.Done()</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">    var wg sync.WaitGroup</span><br><span class="line">    lock :&#x3D; &amp;sync.Mutex&#123;&#125;</span><br><span class="line">    count :&#x3D; 0</span><br><span class="line">    wg.Add(3)</span><br><span class="line">    go add(&amp;count, &amp;wg, lock)</span><br><span class="line">    go add(&amp;count, &amp;wg, lock)</span><br><span class="line">    go add(&amp;count, &amp;wg, lock)</span><br><span class="line">    wg.Wait()</span><br><span class="line">    fmt.Println(&quot;count 的值为：&quot;, count)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>读写锁：RWMutex</p>
-<p>互斥锁傻瓜式操作，效率低下，读写锁分解了互斥锁的步骤，进行更精细的权限分派</p>
-<p>将程序对资源的访问分为读操作和写操作</p>
-<p>规定：</p>
-<pre><code>* 规定有人读时，不允许有人写，可以多人读
-* 规定有人写时，不允许有人读写</code></pre>
-<p>即，有多个读锁和一个写锁提供，获取某个锁时另一种锁必须在全部归还状态</p>
-<p>声明：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 第一种</span><br><span class="line">var lock *sync.RWMutex</span><br><span class="line">lock &#x3D; new(sync.RWMutex)</span><br><span class="line">&#x2F;&#x2F; 第二种</span><br><span class="line">lock :&#x3D; &amp;sync.RWMutex&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>使用：</p>
-<pre><code>* 读锁：调用RLock获取，RUnlock释放
-* 写锁：调用WLock获取，WUnlock释放</code></pre>
-<h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><ol>
-<li><p>触发 panic</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">panic(&quot;fuck you!&quot;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>捕获panic</p>
-</li>
-</ol>
-<p>使用内建函数 recover 捕获 panic，recover必须在 defer 函数中才能生效</p>
-<p>没有 recover， 触发 panic 之前调用的 defer 函数也会执行完，若有上一级函数调用，上一级函数调用该函数之前调用的 defer 函数也会执行完，以此类推</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import &quot;fmt&quot;</span><br><span class="line">func set_data(x int) &#123;</span><br><span class="line">    defer func() &#123;</span><br><span class="line">        &#x2F;&#x2F; recover() 可以将捕获到的panic信息打印</span><br><span class="line">        if err :&#x3D; recover(); err !&#x3D; nil &#123;</span><br><span class="line">            fmt.Println(err)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;()</span><br><span class="line">    &#x2F;&#x2F; 故意制造数组越界，触发 panic</span><br><span class="line">    var arr [10]int</span><br><span class="line">    arr[x] &#x3D; 88</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">    set_data(20)</span><br><span class="line">    &#x2F;&#x2F; 如果能执行到这句，说明panic被捕获了</span><br><span class="line">    &#x2F;&#x2F; 后续的程序能继续运行</span><br><span class="line">    fmt.Println(&quot;everything is ok&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>recover 无法跨协程</li>
-</ol>
-<p>同上，层级调用会依次触发上一级的之前调用的 defer 函数，但协程之间不会</p>
-<h1 id="包"><a href="#包" class="headerlink" title="包"></a>包</h1><p>略</p>
+<pre><code>    * 最后那个&quot;.&quot;必须加，不然报错
+    * 我使用的Docker toolbox，创建了mydocker文件夹，创建DockerFile文件，运行，报错，大意是找不到该文件，有&quot;D:\mydocker&quot;字样，我去D盘下创建了mydocker文件夹，DockerFile文件，然后可以正常运行
+    * 对上一条，我发现我用的是git bash，没进入docker toolbox提供的虚拟机，进入就好了</code></pre>
+<h4 id="例子2："><a href="#例子2：" class="headerlink" title="例子2："></a>例子2：<img src="https://uploader.shimo.im/f/RVYO3ikJaRFqzOlY.png!thumbnail" alt="图片"></h4><h1 id="本地镜像发布到阿里云"><a href="#本地镜像发布到阿里云" class="headerlink" title="本地镜像发布到阿里云"></a>本地镜像发布到阿里云</h1><p><img src="https://uploader.shimo.im/f/XCFKiIalEcbvU9Zy.png!thumbnail" alt="图片"></p>
+<p><img src="https://uploader.shimo.im/f/8AkjqUWoeXN6h1Lb.png!thumbnail" alt="图片"></p>
 
       
     </div>
@@ -542,7 +356,7 @@ ok 表示信道是否被关闭，关闭：false，未关：true</li>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -610,7 +424,7 @@ ok 表示信道是否被关闭，关闭：false，未关：true</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -637,8 +451,8 @@ ok 表示信道是否被关闭，关闭：false，未关：true</li>
 
 <div class="copyright">
   
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

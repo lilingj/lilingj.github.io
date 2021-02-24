@@ -152,7 +152,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/20/Docker%E7%AE%80%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/25/Linux%E7%AE%80%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -166,7 +166,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/20/Docker%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">Docker简记</a>
+            <a href="/2020/08/25/Linux%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">Linux简记</a>
         </h2>
 
         <div class="post-meta">
@@ -176,14 +176,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-20 11:26:23" itemprop="dateCreated datePublished" datetime="2020-08-20T11:26:23+08:00">2020-08-20</time>
+              <time title="创建时间：2020-08-25 23:26:29" itemprop="dateCreated datePublished" datetime="2020-08-25T23:26:29+08:00">2020-08-25</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-20 23:51:12" itemprop="dateModified" datetime="2020-09-20T23:51:12+08:00">2020-09-20</time>
+                <time title="修改时间：2020-09-20 23:51:31" itemprop="dateModified" datetime="2020-09-20T23:51:31+08:00">2020-09-20</time>
               </span>
 
           
@@ -197,147 +197,382 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Docker为什么出现？"><a href="#Docker为什么出现？" class="headerlink" title="Docker为什么出现？"></a>Docker为什么出现？</h1><p>传统模式下，运维部署开发的代码时，环境不一样，容易出错，两者扯皮。Docker将软件代码和环境整体打包递交给运维。</p>
-<p><img src="https://uploader.shimo.im/f/VuatyY0RNnv42kYM.png!thumbnail" alt="图片"><img src="https://uploader.shimo.im/f/tLu0hN9C3xWvi5xx.png!thumbnail" alt="图片"></p>
-<h1 id="Docker是什么？"><a href="#Docker是什么？" class="headerlink" title="Docker是什么？"></a>Docker是什么？</h1><p>解决了运行环境和配置问题软件容器，方便做持续集成并有助于整体发布的容器虚拟化技术</p>
-<h1 id="Docker能干什么？"><a href="#Docker能干什么？" class="headerlink" title="Docker能干什么？"></a>Docker能干什么？</h1><p>替代虚拟机</p>
-<p>虚拟机缺点：资源占用多，冗余步骤多，启动慢</p>
-<h1 id="Docker三要素"><a href="#Docker三要素" class="headerlink" title="Docker三要素"></a>Docker三要素</h1><p>Docker架构图<img src="https://uploader.shimo.im/f/7P3BnNiom3BSRhbe.png!thumbnail" alt="图片"></p>
-<p>三要素：镜像、容器、仓库</p>
-<p>镜像类比于类，容器类比于类的实例，容器是用镜像创建的运行实例</p>
-<p>容器可以看做是一个简易版的Linux环境</p>
-<p>仓库是集中存放镜像文件的场所</p>
-<h1 id="Docker运行底层原理"><a href="#Docker运行底层原理" class="headerlink" title="Docker运行底层原理"></a>Docker运行底层原理</h1><p>Docker 是一个Client-Server 结构的系统，Docker 守护进程运行在主机上，然后通过Socket连接从客户端访问，守护进程从客户端接收命令并管理运行在主机上的容器</p>
-<p>相比于虚拟机，Docker 没有硬件虚拟化，减少了抽象层<img src="https://uploader.shimo.im/f/0NHh8nivaFmRLueq.png!thumbnail" alt="图片"></p>
-<h1 id="Docker常用命令"><a href="#Docker常用命令" class="headerlink" title="Docker常用命令"></a>Docker常用命令</h1><ol>
-<li><p>帮助命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br><span class="line">docker info</span><br><span class="line">docker --help</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>镜像命令</p>
-</li>
-</ol>
-<p>显示镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line">#-a 显示所有</span><br><span class="line">#-q 显示id</span><br><span class="line">#--digests 显示镜像摘要信息</span><br><span class="line">#-no-trunc 显示镜像完整信息</span><br></pre></td></tr></table></figure>
-<p>查找镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker search</span><br><span class="line">#--no-trunc 显示完整的镜像描述</span><br><span class="line">#-s 列出收藏数不小于指定值的镜像</span><br><span class="line">#--automated 只列出automated build类型的镜像</span><br></pre></td></tr></table></figure>
-<p>拉取镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull</span><br></pre></td></tr></table></figure>
-<p>删除镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker rmi</span><br><span class="line">#-f 强制删除</span><br><span class="line">docker rmi -f $(docker images -qa) #删除全部镜像</span><br></pre></td></tr></table></figure>
-<p>容器封装成镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -m&#x3D;&quot;提交描述信息&quot; -a&#x3D;&quot;作者&quot; 容器ID 要创建的目标镜像名:[标签名]</span><br></pre></td></tr></table></figure>
+          <p><img src="https://uploader.shimo.im/f/HPJEUBJrSVgiODaJ.png!thumbnail" alt="图片"></p>
+<h1 id="目录结构"><a href="#目录结构" class="headerlink" title="# 目录结构"></a># 目录结构</h1><hr>
+<p>采用层级式的树状目录。Linux里面，一切皆文件</p>
+<p><img src="https://uploader.shimo.im/f/07Y1dplWPIKiUV0U.png!thumbnail" alt="图片"></p>
+<p><img src="https://uploader.shimo.im/f/KJVPqr8UcYrLmaOY.png!thumbnail" alt="图片"></p>
+<p><img src="https://uploader.shimo.im/f/yCWUI0tYYj1Dwawi.png!thumbnail" alt="图片"><img src="https://uploader.shimo.im/f/piiIzmzyanqGDqzA.png!thumbnail" alt="图片"></p>
+<p><img src="https://uploader.shimo.im/f/mgzY7ifEx6uEJXnI.png!thumbnail" alt="图片"></p>
+<p><img src="https://uploader.shimo.im/f/3bxsvUiJwzzSXJtw.png!thumbnail" alt="图片"></p>
+<p>重点：</p>
+<pre><code>* linux 的目录中只有一个根目录 /
+* linux 的各个目录存放的内容是规划好，不要乱放文件
+* linux 是以文件形式管理设备，一切皆文件
+* linux 每个文件目录下存放什么内容，已经规定好了</code></pre>
+<h1 id="Vi-和-Vim-的使用"><a href="#Vi-和-Vim-的使用" class="headerlink" title="Vi 和 Vim 的使用"></a>Vi 和 Vim 的使用</h1><hr>
+<h4 id="vi-和-vim-常用的三种模式"><a href="#vi-和-vim-常用的三种模式" class="headerlink" title="vi 和 vim 常用的三种模式"></a>vi 和 vim 常用的三种模式</h4><pre><code>* 正常模式
+* 插入模式
+* 命令行模式</code></pre>
+<p><img src="https://uploader.shimo.im/f/AlAVPfeUaWSbht02.png!thumbnail" alt="图片"></p>
+<h1 id="开机、重启、用户登录注销"><a href="#开机、重启、用户登录注销" class="headerlink" title="开机、重启、用户登录注销"></a>开机、重启、用户登录注销</h1><hr>
+<h4 id="开机流程"><a href="#开机流程" class="headerlink" title="开机流程"></a>开机流程</h4><p>开机 -&gt; BIOS -&gt; /boot -&gt; init进程 -&gt; 运行级别 -&gt; 运行级对应的服务</p>
+<h4 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h4><p>shutdown</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shutdown -h now     :立即关机</span><br><span class="line">shutdown -h 1       :一分钟后关机</span><br><span class="line">shutdown -r now     :立即重启</span><br></pre></td></tr></table></figure>
+<p>halt：直接使用，等价于关机</p>
+<p>reboot：重启</p>
+<p>sync：把内存数据同步到磁盘上（关机前使用）</p>
+<p>logout：注销用户</p>
+<h1 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h1><hr>
+<h4 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h4><p>man 指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">man [命令或配置文件] </span><br><span class="line">#获得帮助信息</span><br></pre></td></tr></table></figure>
+<p>help 指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">help 命令</span><br><span class="line">#获得 shell 内置命令的帮助信息</span><br></pre></td></tr></table></figure>
 
-
+<h4 id="文件目录类"><a href="#文件目录类" class="headerlink" title="文件目录类"></a>文件目录类</h4><pre><code>* pwd：显示当前路径
+* ls：
+    * -a：显示当前目录所有文件和目录（以点开头的为隐藏文件）
+    * -l：以列表方式显示信息
+* cd：cd ~ 回到home目录
+* mkdir：
+    * -p：创建多级目录
+* rmdir：删除空目录
+* rm -rf：删除非空目录
+* touch：创建一个空文件
+* cp：cp [选项] source dest
+    * -r：递归复制整个文件夹
+* rm：移除文件或目录
+    * -r：递归删除整个文件夹
+    * -f：强制删除不提示
+* mv：移动文件与目录 或 重命名
+    * mv oldNameFile newNameFile
+    * mv source dest
+* cat：查看文件内容
+    * -n：显示行号
+* more：分页显示
+    * cat aaa.txt | more
+    * 空格：向下翻一页
+    * Enter：向下翻一行
+    * q：离开more
+    * ctrl + F：向下滚动一屏
+    * ctrl + B：向上滚动一屏
+    * =：输出当前行号
+    * :f：输出当前文件名和行号
+* less：和more类似，根据显示需要加载内容，适合查看大文件
+    * 空格：下翻一页
+    * pagedown键：下翻一页
+    * pageup键：上翻一页
+    * /字符串：向下查找字符串。n：向下；N：向上
+    * ?字符串：向上查找字符串。n：向上；N：向下
+    * q：离开less
+* &gt;：输出重定向
+    * ls -l &gt; a.txt      ：列表内容覆盖到a.txt
+* &gt;&gt;：追加
+    * ls -l &gt;&gt; a.txt    ：列表内容追加到a.txt
+* echo：输出内容到控制台
+* head：显示文件开头部分内容，默认显示文件前十行
+    * head -n 5 a.txt
+* tail：同head
+    * tail -n 5 a.txt
+    * tail -f 文件        实时追踪该文档的所有更新
+* ln：创建软连接指令
+    * ln -s 原文件或目录 软连接名
+* history：显示历史上执行过的指令
+    * history | tail -n 5        显示最近使用的5条指令
+    * history 5                    显示最近使用的5条指令
+    * !100                           执行histroy中的第一百条指令
+* date：显示当前日期
+    * date +%Y        显示当前年份
+    * date +%m       显示当前月份
+    * date +%d        显示当前是哪一天
+    * date &quot;+%Y-%m-%d %H:%M:%S&quot;      显示年月日时分秒
+    * date -s “2020-8-27 16:34:59”    设置时间
+* cal：显示日历
+    * cal 2020           显示2020年全年日历
+* find：从指定目录下查找满足要求的文件
+    * find [搜索范围] [选项]
+    * -name：按文件名
+    * -user：按用户名
+    * -size：按文件大小
+        * find / -size +20m       找大于20m的
+        * find / -size -20m        找小于20m的
+        * find / -size 20m         找等于20m的
+* locate：我的docker上的centos没有这条命令
+* grep：过滤查找
+    * grep [选项] 查找内容 源文件
+    * -n：显示匹配行及行号
+    * -i：忽略字母大小写
+* gzip：压缩文件，只能将文件压缩为&quot;.gz文件&quot;
+    * gzip 文件
+* gunzip：解压缩文件
+    * gzip 文件.gz
+* zip：压缩文件
+    * -r：递归压缩
+    * zip -r dest.zip /home/*
+* unzip：解压缩文件
+    * -d:指定解压后的目录
+    * unzip -d /home/myfile dest.zip
+* tar：打包指令，最后打包后的文件是.tar.gz
+    * tar [选项] XXX.tar.gz 打包的内容
+    * tar -zcvf a.tar.gz a1.txt a2.txt      打包a1.txt 和a2.txt
+    * tar -zcvf myhome.tar.gz /home/  打包home下的所有文件
+    * tar -zxvf a.tar.gz                          解压文件到当前目录
+    * tar -zxvf a.tar.gz -C /dest/            解压到指定目录，指定目录必须存在
+    * -c：产生.tar打包文件
+    * -v：显示详细信息
+    * -f：指定压缩后的文件名
+    * -z：打包同时压缩
+    * -x：解包tar文件</code></pre>
+<h4 id="运行级别"><a href="#运行级别" class="headerlink" title="运行级别"></a>运行级别</h4><p>七个运行级别：</p>
+<pre><code>* 0：关机
+* 1：单用户（找回丢失密码）
+* 2：多用户无网络服务（用的最少）
+* 3：多用户有网络（用的最多）
+* 4：未使用，保留
+* 5：图形界面
+* 6：重启</code></pre>
+<p>系统的运行级别配置文件：/etc/inittab（在Ubuntu中，inittab软件包已经被<a target="_blank" rel="noopener" href="http://upstart.ubuntu.com/">Upstart</a>软件包替换了，所有的配置信息都在/etc/event.d/目录下。因为debian 系衍生出来的linux 一向是没有使用/etc/inittab 作为登入状态文档来使用的）</p>
+<p>运行级别切换：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init [0123456]</span><br></pre></td></tr></table></figure>
+<p>面试题：如何找回丢失的 root 密码？</p>
+<p>进入单用户模式，修改 root 密码。单用户模式不需要密码即可登陆。不能远程操作。</p>
+<p>（拿到电脑就可以随意进入）</p>
+<h1 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h1><hr>
 <ol>
-<li>容器命令</li>
+<li><p>添加用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">useradd [选项] 用户名 </span><br><span class="line">#useradd -m lilingj</span><br><span class="line">#useradd -g 组名 -m lilingjie</span><br><span class="line">#-d 指定家目录</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd 用户名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">userdel 用户名</span><br><span class="line">#删除用户，但保留家目录</span><br><span class="line">userdel lilingj</span><br><span class="line">#都删</span><br><span class="line">userdel -r lilingj</span><br></pre></td></tr></table></figure>
+<p>实际开发中，保留家目录</p>
+</li>
 </ol>
-<p>新建并启动容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -it centos</span><br><span class="line">#-i 以交互模式运行容器</span><br><span class="line">#-t 为容器重新分配一个伪输入终端</span><br><span class="line">#-p 主机端口:docker容器端口</span><br><span class="line">#-P 随机分配端口</span><br><span class="line">#-d 启动守护容器</span><br></pre></td></tr></table></figure>
-<p>列出所有正在运行的容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br><span class="line">#-a 正在运行和历史上运行的所有容器</span><br><span class="line">#-l 上一个运行的</span><br><span class="line">#-n 上指定次运行的</span><br></pre></td></tr></table></figure>
-<p>退出容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#容器停止退出</span><br><span class="line">exit</span><br><span class="line">#容器不停止退出</span><br><span class="line">ctrl + P + Q</span><br></pre></td></tr></table></figure>
-<p>启动容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start 容器ID</span><br></pre></td></tr></table></figure>
-<p>重启容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart 容器ID</span><br></pre></td></tr></table></figure>
-<p>停止容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#正常停止</span><br><span class="line">docker stop 容器ID</span><br><span class="line">#强制停止</span><br><span class="line">docker kill 容器ID</span><br></pre></td></tr></table></figure>
-<p>删除已经停止容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker rm 容器ID</span><br><span class="line">#-f 强制删除</span><br><span class="line">#一次性删除多容器</span><br><span class="line">docker rm -f $(docker ps -aq)</span><br><span class="line">docker ps -aq | xargs docker rm</span><br></pre></td></tr></table></figure>
-<p>查看容器日志</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f -t --tail 容器ID</span><br><span class="line">#-t 加入时间戳</span><br><span class="line">#-f 跟随最新日志打印</span><br><span class="line">#--tail 数字 显示最后多少条</span><br></pre></td></tr></table></figure>
-<p>查看容器内运行的进程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker top 容器ID</span><br></pre></td></tr></table></figure>
-<p>查看容器内部细节</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect 容器ID</span><br></pre></td></tr></table></figure>
-<p>进入正在运行的容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker attach 容器ID</span><br></pre></td></tr></table></figure>
-<p>从容器内拷贝文件到主机上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp 容器ID:容器内路径 目的主机路径</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="Docker镜像是什么"><a href="#Docker镜像是什么" class="headerlink" title="Docker镜像是什么"></a>Docker镜像是什么</h1><p>轻量级、可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，包括代码、运行时、库、环境变量、配置文件</p>
-<p>UnionFS（联合文件系统）:Union文件系统是一种分层、轻量级并且搞性能的文件系统，它支持对文件系统的修改作为一次提交来一层一层叠加，同时将不同目录挂载到同一个虚拟文件系统下</p>
-<p>UnionFS是Docker镜像的基础，镜像可以通过分层来继承，基于基础镜像</p>
-<p><img src="https://uploader.shimo.im/f/ds0OkbgMznc2ev11.png!thumbnail" alt="图片"></p>
-<h1 id="Docker容器数据卷"><a href="#Docker容器数据卷" class="headerlink" title="Docker容器数据卷"></a>Docker容器数据卷</h1><p>Docker容器产生的数据，如果不通过docker commit生成新的镜像，使数据作为镜像一部分保存下来，那么容器删除后，数据自然也就没有了</p>
-<ul>
-<li>将运用与运行环境打包成容器运行，运行可以伴随着容器，但我们对数据的要求是希望持久化的</li>
-<li>容器之前希望有可能共享数据</li>
-</ul>
-<p>直接命令添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -v &#x2F;宿主机绝对路径:&#x2F;容器内目录 镜像名</span><br><span class="line">#两个文件夹将共享数据</span><br><span class="line">docker run -it -v &#x2F;宿主机绝对路径:&#x2F;容器内目录:ro 镜像名</span><br><span class="line">#容器内对共享目录只读</span><br></pre></td></tr></table></figure>
-<p>dockerfile添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">略</span><br><span class="line">--volume-from 容器间传递共享</span><br></pre></td></tr></table></figure>
-
-<h1 id="DockerFile"><a href="#DockerFile" class="headerlink" title="DockerFile"></a>DockerFile</h1><p>DockerFile 是用来构建Docker镜像的构建文件，是由一系列命令和参数构成的脚本。</p>
-<p>构建三步骤：</p>
-<pre><code>* 编写DockerFile文件
-* docker build
-* docker run</code></pre>
-<p>scratch 是元镜像</p>
-<h4 id="DockerFile基础知识："><a href="#DockerFile基础知识：" class="headerlink" title="DockerFile基础知识："></a>DockerFile基础知识：</h4><pre><code>* 每条保留字指令都必须为大写字母且后面要跟随至少一个参数
-* 指令从上到下，顺序执行
-* #表示注释
-* 每条指令都会创建一个新的镜像层，并对镜像进行提交</code></pre>
-<h4 id="DockerFile执行的大致流程"><a href="#DockerFile执行的大致流程" class="headerlink" title="DockerFile执行的大致流程"></a>DockerFile执行的大致流程</h4><pre><code>* docker从基础镜像运行一个容器
-* 执行一条指令并对容器做出修改
-* 执行类似docker commit的操作提交一个新的镜像层
-* docker再基于刚提交的镜像运行一个新容器
-* 执行dockerfile中的下一条指令知道所有指令都执行完成</code></pre>
-<h4 id="DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段"><a href="#DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段" class="headerlink" title="DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段"></a>DockerFile、Docker镜像与Docker容器分别代表的软件的三个不同阶段</h4><pre><code>* DockerFile 是软件的原材料
-* Docker镜像是软件的交付品
-* Docker容器则可以认为世软件的运行态</code></pre>
-<p>DockerFile面向开发，Docker镜像成为交付标准，Docker容器则涉及到部署与运维<img src="https://uploader.shimo.im/f/49a8vK8yeIvKwTVP.png!thumbnail" alt="图片"></p>
-<h1 id="DockerFile保留字指令"><a href="#DockerFile保留字指令" class="headerlink" title="DockerFile保留字指令"></a>DockerFile保留字指令</h1><p><img src="https://uploader.shimo.im/f/XQy1Oekt7xZhtZpY.png!thumbnail" alt="图片"></p>
 <ol>
-<li><p>FROM：基础镜像，当前镜像是基于哪个镜像的</p>
+<li><p>查询用户指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id 用户名</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>MAINTAINER：镜像维护者的姓名和邮箱地址</p>
+<li><p>切换用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su - 用户名</span><br></pre></td></tr></table></figure>
+<p>高权限进入低权限用户不需要输入密码</p>
 </li>
-<li><p>RUN：容器构建时需要运行的命令</p>
-</li>
-<li><p>EXPOSE：当前容器对外暴露的端口号</p>
-</li>
-<li><p>WORKDIR：指定在创建容器后，终端默认登录的进来工作目录，一个落脚点</p>
-</li>
-<li><p>ENV：用来构建镜像过程中设置环境变量</p>
-</li>
-<li><p>ADD：将宿主机目录下的文件拷贝进镜像且ADD命令会自动处理URL和解压tar压缩包</p>
-</li>
-<li><p>COPY：类似ADD，拷贝文件和目录到镜像中</p>
-<ul>
-<li>COPY src dest</li>
-<li>COPY [“src”, “dest”]</li>
-</ul>
-</li>
-<li><p>VOLUME：容器数据卷，用于数据保存和持久化工作</p>
-</li>
-<li><p>CMD：容器启动时要运行的命令，可以有多个，CMD会被docker run之后的参数替换</p>
-<ul>
-<li>shell格式：CMD &lt;命令&gt;</li>
-<li>exec格式：CMD [“可执行文件“， ”参数1”,  “参数2”…]</li>
-<li>参数列表格式：CMD [”参数1”,  “参数2”…]，在指定ENTRYPOINT指令后，用CMD指定具体参数</li>
-</ul>
-</li>
-<li><p>ENTRYPOINT：同CMD，但是docker run 之后的参数会追加到该命令行中</p>
-</li>
-<li><p>ONBUILD：当构建一个被继承的dockerfile时运行命令，父镜像在被子继承后父镜像的onbuild会被触发</p>
-<h4 id="例子1："><a href="#例子1：" class="headerlink" title="例子1："></a>例子1：</h4></li>
 </ol>
-<p>阿里云pull下的centos没有vim，也没有ifconfig。制作一个包含这些工具的centos镜像</p>
-<p>第一步：</p>
-<p>DockerFile文件编写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#DockerFile文件编写</span><br><span class="line">FROM centos</span><br><span class="line">MAINTAINER llj&lt;lilingjie_nefu@qq.com&gt;</span><br><span class="line">ENV MYPATH &#x2F;tmp</span><br><span class="line">WORKDIR $MYPATH</span><br><span class="line">RUN yum -y install vim</span><br><span class="line">RUN yum -y install net-tools</span><br><span class="line">EXPOSE 80</span><br><span class="line">CMD echo &quot;success!!!&quot;</span><br><span class="line">CMD &#x2F;bin&#x2F;bash</span><br><span class="line">ONBUILD RUN echo &quot;Dad is looking at you&quot;</span><br></pre></td></tr></table></figure>
-<p>第二步：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f &#x2F;mydocker&#x2F;DockerFile -t llj_centos:1.0 .</span><br></pre></td></tr></table></figure>
-<p>注意：</p>
-<pre><code>    * 最后那个&quot;.&quot;必须加，不然报错
-    * 我使用的Docker toolbox，创建了mydocker文件夹，创建DockerFile文件，运行，报错，大意是找不到该文件，有&quot;D:\mydocker&quot;字样，我去D盘下创建了mydocker文件夹，DockerFile文件，然后可以正常运行
-    * 对上一条，我发现我用的是git bash，没进入docker toolbox提供的虚拟机，进入就好了</code></pre>
-<h4 id="例子2："><a href="#例子2：" class="headerlink" title="例子2："></a>例子2：<img src="https://uploader.shimo.im/f/RVYO3ikJaRFqzOlY.png!thumbnail" alt="图片"></h4><h1 id="本地镜像发布到阿里云"><a href="#本地镜像发布到阿里云" class="headerlink" title="本地镜像发布到阿里云"></a>本地镜像发布到阿里云</h1><p><img src="https://uploader.shimo.im/f/XCFKiIalEcbvU9Zy.png!thumbnail" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/8AkjqUWoeXN6h1Lb.png!thumbnail" alt="图片"></p>
+<h1 id="组管理"><a href="#组管理" class="headerlink" title="组管理"></a>组管理</h1><hr>
+<p>Linux 中每个用户必须属于一个组，不能独立于组外。在 Linux 中每个文件有所在者、所在组、其他组的概念</p>
+<h4 id="增加组"><a href="#增加组" class="headerlink" title="增加组"></a>增加组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd 组名</span><br></pre></td></tr></table></figure>
+<h4 id="删除组"><a href="#删除组" class="headerlink" title="删除组"></a>删除组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupdel 组名</span><br></pre></td></tr></table></figure>
+<h4 id="切换组、家目录"><a href="#切换组、家目录" class="headerlink" title="切换组、家目录"></a>切换组、家目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">usermod -g 组名 lilingjie</span><br><span class="line">usermod -d 目录名 lilingjie #改变用户登陆的初始目录</span><br></pre></td></tr></table></figure>
+<h4 id="用户和组的相关文件"><a href="#用户和组的相关文件" class="headerlink" title="用户和组的相关文件"></a>用户和组的相关文件</h4><pre><code>* /etc/passwd文件
+    * user 的配置文件，记录用户的各种信息
+    * 每行含义：用户名:口令:用户标识号:组标识号:注释性描述:主目录:登陆shell
+* /etc/shadow文件
+    * 口令配置文件
+    * 每行含义：登录名:加密口令:最后一次修改时间:最小时间间隔:最大时间间隔:警告时间:不活动时间:失效时间:标志
+* /etc/group文件
+    * 组的配置文件，记录Linux包含的组的信息
+    * 每行含义：组名:口令:组标识号:组内用户:组内用户列表</code></pre>
+<h4 id="查看文件所有者"><a href="#查看文件所有者" class="headerlink" title="查看文件所有者"></a>查看文件所有者</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -ahl</span><br></pre></td></tr></table></figure>
+<h4 id="修改文件所有者"><a href="#修改文件所有者" class="headerlink" title="修改文件所有者"></a>修改文件所有者</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chown 用户名 文件名</span><br><span class="line">chown 用户名:组名 文件名</span><br><span class="line">#-R：如果是目录，则使其下所有子文件或目录递归生效</span><br></pre></td></tr></table></figure>
+<h4 id="修改文件所在组"><a href="#修改文件所在组" class="headerlink" title="修改文件所在组"></a>修改文件所在组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chgrp 组名 文件名</span><br><span class="line">#-R：如果是目录，则使其下所有子文件或目录递归生效</span><br></pre></td></tr></table></figure>
+<h4 id="其他组"><a href="#其他组" class="headerlink" title="其他组"></a>其他组</h4><p>除文件所有者和所在组的用户外，系统的其他用户都是文件的其他组</p>
+<h1 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h1><hr>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="权限格式"><a href="#权限格式" class="headerlink" title="权限格式"></a>权限格式</h4><p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-rw-rw-r--  1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>文件类型：0位</p>
+<ul>
+<li>-：普通文件</li>
+<li>d：目录（目录大小总是 4096B）</li>
+<li>l：软连接</li>
+<li>c：字符设备</li>
+<li>b：块文件</li>
+</ul>
+</li>
+<li><p>文件所有者权限：1 - 3 位</p>
+<ul>
+<li>rw-</li>
+</ul>
+</li>
+<li><p>文件所在组的权限：4 - 6 位</p>
+<ul>
+<li>r–：只读</li>
+</ul>
+</li>
+<li><p>文件的其他组用户拥有的权限：7 - 9 位</p>
+<ul>
+<li>r–：只读</li>
+</ul>
+</li>
+<li><p>数字</p>
+<ul>
+<li>如果是文件，则表示硬链接数目</li>
+<li>如果是目录，则表示该目录的子目录的个数<h4 id="rwx权限详解"><a href="#rwx权限详解" class="headerlink" title="rwx权限详解"></a>rwx权限详解</h4></li>
+</ul>
+</li>
+</ul>
+<p>对文件：</p>
+<pre><code>* r：可读
+* w：可写，不代表可删除，对文件所在目录有 w 权限才可删除
+* x：可执行</code></pre>
+<p>对目录：</p>
+<pre><code>* r：可读，ls查看目录内容
+* w：可写，修改、创建、删除、重命名目录
+* x：可执行，可以进入该目录</code></pre>
+<h4 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h4><p>通过 chmod ，可以修改文件或者目录的权限</p>
+<p>u：所有者</p>
+<p>g：所有组</p>
+<p>o：其他人</p>
+<p>a：所有人（u、g、o的总和）</p>
+<p>第一种：通过 +、-、= 变更权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod u&#x3D;rwx,g&#x3D;rx,o&#x3D;x 文件目录名</span><br><span class="line">chmod o+w 文件目录名</span><br><span class="line">chmod a-x 文件目录名</span><br></pre></td></tr></table></figure>
+<p>第二种：通过数字变更权限</p>
+<p>所有者、所在组、其他组用三个三位二进制数字表示，即三个十进制数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 751 文件目录名</span><br><span class="line">#等价 chmod u&#x3D;rwx,g&#x3D;rx,o&#x3D;x 文件目录名</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="任务调度crond"><a href="#任务调度crond" class="headerlink" title="任务调度crond"></a>任务调度crond</h1><hr>
+<p>任务调度：指系统在某个时间执行的特定的命令或程序</p>
+<ol>
+<li>系统工作：有些重要的工作必须周而复始地执行。如病毒扫描。</li>
+<li>个别用户工作：如对数据库备份。<h4 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h4></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">crontab [选项]</span><br><span class="line">#-e 编辑crontab定时任务</span><br><span class="line">#-l 查询crontab定时任务</span><br><span class="line">#-r 删除当前用户所有的crontab任务</span><br></pre></td></tr></table></figure>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*&#x2F;1 * * * * ls -l &#x2F;etc &gt;&gt; &#x2F;tmp&#x2F;to.txt</span><br></pre></td></tr></table></figure>
+<p>每隔一分钟执行一次</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l &#x2F;etc &gt;&gt; &#x2F;tmp&#x2F;to.txt</span><br></pre></td></tr></table></figure>
+<p>五个*代表：分 时 天 月 星期几</p>
+<h4 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h4><pre><code>* *  ：代表任何时间
+* ,  ：代表不连续时间。&quot;0 8,12,16 * * * 命令&quot;：代表每天8点0分、12点0分、16点0分都执行一次命令
+* -  ：代表连续的时间范围。&quot;0 5 * * 1-6 命令&quot;：代表周一到周六每天5点0分执行一次命令
+* */n  ：代表每隔多久执行一次。&quot;*/10 * * * * 命令&quot;：代表每隔10分钟执行一遍命令</code></pre>
+<h4 id="修改crontab下的编辑器"><a href="#修改crontab下的编辑器" class="headerlink" title="修改crontab下的编辑器"></a>修改crontab下的编辑器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select-editor</span><br></pre></td></tr></table></figure>
+<h4 id="重启任务调度"><a href="#重启任务调度" class="headerlink" title="重启任务调度"></a>重启任务调度</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service crond restart</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="磁盘分区和挂载"><a href="#磁盘分区和挂载" class="headerlink" title="磁盘分区和挂载"></a>磁盘分区和挂载</h1><hr>
+<p>Linux采用一种叫“载入”的处理方法，将一个分区和一个目录联系起来</p>
+<h4 id="分区基本知识"><a href="#分区基本知识" class="headerlink" title="分区基本知识"></a>分区基本知识</h4><ol>
+<li><p>MBR分区</p>
+<ul>
+<li>最多支持四个主分区</li>
+<li>系统只能安装在主分区</li>
+<li>扩展分区要占一个主分区</li>
+<li>MBR最大只支持2TB，但拥有最好的兼容性</li>
+</ul>
+</li>
+<li><p>GTP分区</p>
+<ul>
+<li>支持无限多个主分区（但操作系统可能限制，如 windows下最多支持128个分区）</li>
+<li>最大支持18EB，（1EB = 1024PB， 1PB = 1024TB）</li>
+<li>windows 7 64位以后支持GTP<h4 id="硬盘种类"><a href="#硬盘种类" class="headerlink" title="硬盘种类"></a>硬盘种类</h4></li>
+</ul>
+</li>
+</ol>
+<p>分为IDE硬盘和SCSI硬盘，目前基本上是SCSI硬盘</p>
+<h4 id="查看系统的分区和挂载情况"><a href="#查看系统的分区和挂载情况" class="headerlink" title="查看系统的分区和挂载情况"></a>查看系统的分区和挂载情况</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsblk -f</span><br></pre></td></tr></table></figure>
+<h4 id="-1"><a href="#-1" class="headerlink" title=""></a></h4><h4 id="如何增加一块硬盘？"><a href="#如何增加一块硬盘？" class="headerlink" title="如何增加一块硬盘？"></a>如何增加一块硬盘？</h4><p>！理解了再用，不要乱搞</p>
+<pre><code>* 插入硬盘
+* 分区：fdisk /dev/sdb
+* 格式化：mkfs -t ext4 /dev/sdb1
+* 挂载：先创建一个/home/newdisk，挂载 mount /dev/sdb1 /home/newdisk
+    * 说明：只是临时挂载，重启后失效
+* 设置可以自动挂载：永久挂载，编辑/etc/fstab，执行mount -a</code></pre>
+<h4 id="取消挂载"><a href="#取消挂载" class="headerlink" title="取消挂载"></a>取消挂载</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">umount 设备名称或者挂载目录</span><br><span class="line">#例如 umount &#x2F;dev&#x2F;sdb1 或者 umount &#x2F;newdisk</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="磁盘状态查询"><a href="#磁盘状态查询" class="headerlink" title="磁盘状态查询"></a>磁盘状态查询</h1><hr>
+<h4 id="查询系统整体磁盘使用情况"><a href="#查询系统整体磁盘使用情况" class="headerlink" title="查询系统整体磁盘使用情况"></a>查询系统整体磁盘使用情况</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+<h4 id="查询指定目录的磁盘占用情况"><a href="#查询指定目录的磁盘占用情况" class="headerlink" title="查询指定目录的磁盘占用情况"></a>查询指定目录的磁盘占用情况</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">du -h 目录</span><br><span class="line">#-s：制定目录占用大小汇总</span><br><span class="line">#-a：含文件</span><br><span class="line">#-h：带计量单位</span><br><span class="line">#--max-depth&#x3D;1：子目录深度</span><br><span class="line">#-c：列出明细的同时，增加汇总量</span><br></pre></td></tr></table></figure>
+<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><ol>
+<li>当前目录下文件数目<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l . | grep &quot;^-&quot; | wc -l</span><br></pre></td></tr></table></figure></li>
+<li>统计当前文件夹下的目录的个数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l . | grep &quot;^d&quot; | wc -l</span><br></pre></td></tr></table></figure></li>
+<li>统计当前文件夹下文件的个数，包括子文件夹里的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lR . | grep &quot;^-&quot; | wc -l</span><br></pre></td></tr></table></figure></li>
+<li>统计文件夹下目录的个数，包括子文件夹里的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lR . | grep &quot;^d&quot; | wc -l</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h1 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h1><hr>
+<h4 id="获取ip"><a href="#获取ip" class="headerlink" title="获取ip"></a>获取ip</h4><ol>
+<li><p>自动获取ip：每次自动获取的ip地址可能不一样</p>
+</li>
+<li><p>获取静态ip：直接修改配置文件来指定ip</p>
+<ul>
+<li>编辑/etc/sysconfig/network-scripts/ifcfg-eth0</li>
+<li>我用的 Ubuntu 20.04，需要修改的文件是/etc/netplan/01-network-manager-all.yaml</li>
+</ul>
+</li>
+</ol>
+<h1 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h1><hr>
+<p>进程都可能以两种方式存在，前台和后台</p>
+<h4 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ps</span><br><span class="line">#-a：所有</span><br><span class="line">#-u：以用户的格式显示</span><br><span class="line">#-x：显示后台进程运行的参数</span><br><span class="line">#-e：所有</span><br><span class="line">#-f：全格式</span><br></pre></td></tr></table></figure>
+<p>字段说明：</p>
+<pre><code>* USER：用户名
+
+* PID：进程识别号
+* PPID：父进程的PID
+* %CPU：占用CPU
+* %MEM：占用内存
+* VSZ：使用的虚拟内存，单位KB
+* RSS：使用物理内存情况，单位KB
+* TTY：终端机号
+* STAT：进程状态，S为休眠，s为该进程是会话的先导进程，N表示进程拥有比普通优先级更低的优先级，R为运行，D为短期等待，Z为僵死进程，T为被跟踪或被停止
+* START：启动时间
+* TIME：此进程消耗的CPU时间
+* COMMAND：进程执行时的命令行
+* C：CPU用于计算执行优先级的因子。数值越大，CPU密集型运算，执行优先级降低；数值越小，I/O密集型运算，执行优先级提高。</code></pre>
+<h4 id="查看进程树"><a href="#查看进程树" class="headerlink" title="查看进程树"></a>查看进程树</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pstree [选项]</span><br><span class="line">#-p：显示进程PID</span><br><span class="line">#-u：显示进程所属用户</span><br></pre></td></tr></table></figure>
+<h4 id="终止进程"><a href="#终止进程" class="headerlink" title="终止进程"></a>终止进程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#通过进程号来终止进程</span><br><span class="line">kill [选项] 进程号</span><br><span class="line">#-9：强制终止</span><br><span class="line">#通过进程名称来会终止进程，支持通配符</span><br><span class="line">killall 进程名称</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h1><hr>
+<p>服务的本质是后台进程，通常会监听某个端口，等待其他程序的请求，比如 mysql， sshd， 防火墙。因此又称为守护进程</p>
+<h4 id="service管理命令"><a href="#service管理命令" class="headerlink" title="service管理命令"></a>service管理命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service 服务名 [start|stop|restart|reload|status]</span><br></pre></td></tr></table></figure>
+<p>CentOS 7.0 后，不再使用service，而是 systemctl<br>案例：</p>
+<p>（这个课程使用的CentOS 6.0，CentOS7.0后和我用的Ubuntu 20.04都没有使用iptables）</p>
+<ol>
+<li>查看防火墙<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables status</span><br></pre></td></tr></table></figure></li>
+<li>关闭防火墙（临时关闭，重启后失效）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables stop</span><br></pre></td></tr></table></figure></li>
+<li>重启防火墙<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables restart</span><br></pre></td></tr></table></figure>
+<h4 id="查看服务名"><a href="#查看服务名" class="headerlink" title="查看服务名"></a>查看服务名</h4></li>
+</ol>
+<p>Ubuntu 20.04没有这个命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setup</span><br></pre></td></tr></table></figure>
+<p>直接查看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l &#x2F;etc&#x2F;init.d&#x2F;</span><br></pre></td></tr></table></figure>
+<h4 id="服务运行级别"><a href="#服务运行级别" class="headerlink" title="服务运行级别"></a>服务运行级别</h4><p>和系统运行级别相同，见 常用指令 -&gt; 运行级别</p>
+<p>查看或者修改默认级别（我用的Ubuntu 20.04没有此文件）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi &#x2F;etc&#x2F;inittab</span><br></pre></td></tr></table></figure>
+<h4 id="chkconfig指令"><a href="#chkconfig指令" class="headerlink" title="chkconfig指令"></a>chkconfig指令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --list</span><br><span class="line">chkconfig 服务名 --list</span><br><span class="line">chkconfig --level 5 服务名 on&#x2F;off #在系统级别在5的时候，服务启动或者不启动</span><br></pre></td></tr></table></figure>
+<h4 id="动态监控进程"><a href="#动态监控进程" class="headerlink" title="动态监控进程"></a>动态监控进程</h4><p>top 命令和 ps 命令类似，top在执行一段时间后可以更新正在运行的进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">top [选项]</span><br><span class="line">#-d：制定top命令每隔几秒更新，默认是3秒</span><br><span class="line">#-i：使top不显示任何闲置和僵死进程</span><br><span class="line">#-p：通过指定进程ID来监控某个进程状态</span><br></pre></td></tr></table></figure>
+<p>交互操作说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">P：以CPU使用率排序，默认是此项</span><br><span class="line">M：以内存使用率排序</span><br><span class="line">N：以PID排序</span><br><span class="line">q：退出</span><br><span class="line">u：监视特定用户</span><br><span class="line">k：终止指定进程</span><br></pre></td></tr></table></figure>
+<h4 id="监控网络状态"><a href="#监控网络状态" class="headerlink" title="监控网络状态"></a>监控网络状态</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netstat [选项]</span><br><span class="line">#-an 按一定顺序排列输出</span><br><span class="line">#-p 显示哪个进程在调用</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="apt软件包管理"><a href="#apt软件包管理" class="headerlink" title="apt软件包管理"></a>apt软件包管理</h1><hr>
+<h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>/etc/apt/source.list：指定了官方软件仓库地址</p>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">apt-get update #更新源</span><br><span class="line">apt-get install package #安装包</span><br><span class="line">apt-get remove package #删除包</span><br><span class="line">apt-cache search package #搜索软件包</span><br><span class="line">apt-cache show package #获取包的相关信息，如说明、大小、版本</span><br><span class="line">apt-get install package --reinstall #重新安装包</span><br><span class="line">apt-get -f install #修复安装</span><br><span class="line">apt-get remove package --purge #删除包，包括配置文件</span><br><span class="line">apt-get build-dep package #安装相关的编译环境</span><br><span class="line">apt-get upgrade #更新已安装的包</span><br><span class="line">apt-get dist-upgrade #升级系统</span><br><span class="line">apt-cache depends package #了解使用该包依赖哪些包</span><br><span class="line">apt-cache rdepends package #查看该包被哪些包依赖</span><br><span class="line">apt-get source package #下载该包的源代码</span><br></pre></td></tr></table></figure>
+
+<h1 id="ssh远程登录"><a href="#ssh远程登录" class="headerlink" title="ssh远程登录"></a>ssh远程登录</h1><hr>
+<p>SSH为Secure Shell 的缩写</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>需安装openssh-server，并启动sshd服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br><span class="line">service sshd start</span><br></pre></td></tr></table></figure>
+<h4 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#基本语法</span><br><span class="line">ssh 用户名@ip</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
 
       
     </div>
@@ -356,7 +591,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -424,7 +659,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -451,8 +686,8 @@
 
 <div class="copyright">
   
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
