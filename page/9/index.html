@@ -152,7 +152,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/20/hyperledger%E7%AE%80%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/20/%E4%BB%A5%E4%B8%8B%E6%96%87%E7%AB%A0%E6%8E%92%E7%89%88%E6%9C%89%E9%97%AE%E9%A2%98%EF%BC%8C%E7%9C%8B%E8%BF%99%E9%87%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -166,7 +166,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/09/20/hyperledger%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">hyperledger简记</a>
+            <a href="/2020/09/20/%E4%BB%A5%E4%B8%8B%E6%96%87%E7%AB%A0%E6%8E%92%E7%89%88%E6%9C%89%E9%97%AE%E9%A2%98%EF%BC%8C%E7%9C%8B%E8%BF%99%E9%87%8C/" class="post-title-link" itemprop="url">以下文章排版有问题，看这里</a>
         </h2>
 
         <div class="post-meta">
@@ -175,10 +175,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-09-20 23:26:27 / 修改时间：23:37:16" itemprop="dateCreated datePublished" datetime="2020-09-20T23:26:27+08:00">2020-09-20</time>
+              <time title="创建时间：2020-09-20 23:55:29" itemprop="dateCreated datePublished" datetime="2020-09-20T23:55:29+08:00">2020-09-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-21 00:04:27" itemprop="dateModified" datetime="2020-09-21T00:04:27+08:00">2020-09-21</time>
+              </span>
 
           
 
@@ -191,76 +197,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h3><ul>
-<li>理解Hyperledger fabric 1.1的基本概念和软件架构；</li>
-<li>能根据企业业务情况，分析Hyperledger fabric 的应用场景；</li>
-<li>熟悉Hyperledger fabric的关键组件：peer，ordering service，ca和msp。</li>
-<li>能够建立测试网络，使用node sdk编写应用程序。</li>
-<li>能够使用nodejs编写链码。</li>
-<li>能够参与到Hyperledger fabric开源项目的讨论和开发中</li>
-</ul>
-<h1 id="Hyperledger-fabric-简介"><a href="#Hyperledger-fabric-简介" class="headerlink" title="Hyperledger fabric 简介"></a>Hyperledger fabric 简介</h1><p>hyperledger fabric 是基于区块链的企业级分布式账本技术，通过智能合约解决多个组织之间的信任问题</p>
-<ul>
-<li>模块化</li>
-<li>可扩展</li>
-<li>超安全</li>
-</ul>
-<h1 id="重要名词"><a href="#重要名词" class="headerlink" title="重要名词"></a>重要名词</h1><ul>
-<li>Hyperledger：由linux基金会孵化的区块链技术</li>
-<li>Hyperledger Fabirc：第一个孵化出的商用DLT框架</li>
-<li>Hyperledger composer：一个在DLT框架上创建的商业应用的工具</li>
-<li>MSP（Membership Service Provider）：只是一个接口，管理Roles 和 Access Restrictions</li>
-<li>fabric ca：一个高质量工具，帮助我们自动生成证书。ca可以为不同用户生成不同证书。支持链式继承，上一级别的ca可以很容易作废下一级证书</li>
-<li>chaincode：chaincode可以获取用户证书</li>
-</ul>
-<h1 id="Hyperledger为什么特别适合企业级开发"><a href="#Hyperledger为什么特别适合企业级开发" class="headerlink" title="Hyperledger为什么特别适合企业级开发"></a>Hyperledger为什么特别适合企业级开发</h1><ul>
-<li>premissioned network 授权网络<ul>
-<li>access control</li>
-</ul>
-</li>
-<li>transaction 是可以控制可见性的</li>
-<li>no cryptocurrency 无数字货币<ul>
-<li>没有矿工，低成本，验证操作灵活 </li>
-</ul>
-</li>
-<li>programmable 可编程<ul>
-<li>chaincode（smart contract 智能合约）</li>
-</ul>
-</li>
-<li>使用Hyperledger可以创建私有链、联盟链和公有链 </li>
-<li>Hyperledger 没有 51% 攻击，没有挖矿的概念，因为 Hyperledger 采用了独特的共识协议，每个共识协议的参与者都是由CA来认证的</li>
-</ul>
-<h1 id="Assets，chaincode-amp-ledger"><a href="#Assets，chaincode-amp-ledger" class="headerlink" title="Assets，chaincode&amp;ledger"></a>Assets，chaincode&amp;ledger</h1><ul>
-<li>assets：有价值的东西，可以被交易的东西，json表示</li>
-<li>chaincode：transaction | business logic</li>
-<li>ledger：记录了所有的transaction，所有的状态 ，所有参与者都保存了ledger</li>
-</ul>
-<h1 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h1><p>Hyperledger 中 node 分为三种：</p>
-<ul>
-<li>client：实例化 transaction<ul>
-<li>cli</li>
-<li>node sdk</li>
-<li>java sdk</li>
-</ul>
-</li>
-<li>peer：用来存储和同步 ledger 的数据</li>
-<li>orderer：用来排序分发 transaction</li>
-</ul>
-<h1 id="channel"><a href="#channel" class="headerlink" title="channel"></a>channel</h1><p>每个 channel 可以理解成独立的 Hyperledger fabri 的实例（其他区块链系统里没有channel的概念），理解成 私有子网</p>
-<h1 id="chaincode"><a href="#chaincode" class="headerlink" title="chaincode"></a>chaincode</h1><h4 id="1-是什么"><a href="#1-是什么" class="headerlink" title="1.是什么"></a>1.是什么</h4><p>chaincode 就是智能合约，是应用程序，是代码，是business logic。用来更新账本数据。可以用 nodejs、java、go 编写。在Hyperledger里，读取和更新数据必须通过 chaincode 来完成</p>
-<h4 id="2-生命周期"><a href="#2-生命周期" class="headerlink" title="2.生命周期"></a>2.生命周期</h4><p>chaincode需要先安装，然后必须实例化，实例化chaincode会启动docker容器，在这个容器里面运行chaincode</p>
-<ul>
-<li>安装 install</li>
-<li>实例化 init</li>
-<li>调用 invoke</li>
-</ul>
-<h4 id="3-背书策略"><a href="#3-背书策略" class="headerlink" title="3.背书策略"></a>3.背书策略</h4><p>通过 AND 或者 OR 关键字定义背书策略</p>
-<h4 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h4><ul>
-<li>每个 peer 可以属于多个 channel</li>
-<li>每个 channel 有独立的ledger</li>
-<li>每个 channel 可以有一个或者多个 chaincode</li>
-<li>每个 chaincode 可以有不同的背书策略</li>
-</ul>
+          <p>用石墨文档记的笔记，但是它的语法好像和主流的有点问题，导出来是乱的，下面补上石墨的链接<br><a target="_blank" rel="noopener" href="https://shimo.im/docs/xkxpcRQ6C6RxY9ty/">Shell简记</a><br><a target="_blank" rel="noopener" href="https://shimo.im/docs/jqK96GwDQxkXkWkt/">大学赚钱</a><br><a target="_blank" rel="noopener" href="https://shimo.im/docs/cRCVjgcPdX39Qt8J/">k8s简记</a><br><a target="_blank" rel="noopener" href="https://shimo.im/docs/hTWgxDjp36kGQ9yd/">git简记</a><br><a target="_blank" rel="noopener" href="https://shimo.im/docs/Thy8VGY99ydrjTdt/">Linux简记</a><br><a target="_blank" rel="noopener" href="https://shimo.im/docs/DHYTQcqJC9HTrwCX/">Docker简记</a><br><a target="_blank" rel="noopener" href="https://shimo.im/docs/hWPjD3HYq9wqX3yx/">Go简记</a><br><a target="_blank" rel="noopener" href="https://shimo.im/docs/pgPxRpcgYjg9tqcR/">区块链笔记</a></p>
 
       
     </div>
@@ -279,7 +216,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -347,7 +284,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

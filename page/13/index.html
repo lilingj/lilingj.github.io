@@ -152,7 +152,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/28/k8s%E7%AE%80%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/28/git%E7%AE%80%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -166,7 +166,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/28/k8s%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">k8s简记</a>
+            <a href="/2020/08/28/git%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">git简记</a>
         </h2>
 
         <div class="post-meta">
@@ -176,14 +176,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-28 20:26:28" itemprop="dateCreated datePublished" datetime="2020-08-28T20:26:28+08:00">2020-08-28</time>
+              <time title="创建时间：2020-08-28 23:26:24" itemprop="dateCreated datePublished" datetime="2020-08-28T23:26:24+08:00">2020-08-28</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-20 23:52:10" itemprop="dateModified" datetime="2020-09-20T23:52:10+08:00">2020-09-20</time>
+                <time title="修改时间：2020-09-20 23:51:51" itemprop="dateModified" datetime="2020-09-20T23:51:51+08:00">2020-09-20</time>
               </span>
 
           
@@ -197,147 +197,195 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h4 id="什么是k8s？"><a href="#什么是k8s？" class="headerlink" title="什么是k8s？"></a>什么是k8s？</h4><p>k8s 是一组服务器集群</p>
-<p>k8s所管理的是集群上的容器</p>
-<h4 id="k8s的作用和功能"><a href="#k8s的作用和功能" class="headerlink" title="k8s的作用和功能"></a>k8s的作用和功能</h4><pre><code>* 自我修复
-* 弹性伸缩：实时根据服务器的并发情况，增加或缩减容器数量
-* 自动部署
-* 回滚
-* 服务发现和负载均衡
-* 机密和配置管理
-* 存储编排
-* 批处理</code></pre>
-<h4 id="杂"><a href="#杂" class="headerlink" title="杂"></a>杂</h4><p>MESOS                        APACHE     分布式资源管理框架</p>
-<p>Docker Swarm              阿里云宣布剔除Docker Swarm</p>
-<p>K8s                                Google      10年容器化基础架构</p>
-<pre><code>* 轻量级：消耗资源小
-* 开源
-* 弹性伸缩
-* 负载均衡：IPVS</code></pre>
-<p>k8s本质上是一组服务器集群，k8s可以在集群的各个节点上运行特定的docker容器</p>
-<h1 id="组件说明"><a href="#组件说明" class="headerlink" title="组件说明"></a>组件说明</h1><pre><code>* APISERVER：所有服务访问统一入口
-* CrontrollerManager：维持副本期望数目
-* Scheduler：负责介绍人物，选择合适的节点进行分配任务
-* ETCD：键值对数据库，储存K8S集群所有重要信息（持久化）
-* Kubelet：直接跟容器引擎交互实现容器的生命周期管理
-* Kube-proxy：负责写入规则至 IPTABLES、IPVS，实现服务映射访问
-* COREDNS：可以为集群中的SVC创建一个域名IP的对应关系解析
-* DASHBOARD：给 K8S 集群提供一个 B/S 结构访问体系
-* INGRESS CONTROLLER：官方只能实现四层代理，INGRESS 可以实现七层代理
-* FEDERATION：提供一个可以跨集群中心多 K8S 统一管理功能
-* PROMETHEUS：提供 K8S 集群的监控能力
-* ELK：提供 K8S 集群日志统一分析介入平台</code></pre>
-<h1 id="K8S-架构"><a href="#K8S-架构" class="headerlink" title="K8S 架构"></a>K8S 架构</h1><p><img src="https://uploader.shimo.im/f/1MkOvikuPOyLEba2.png!thumbnail" alt="图片"></p>
-<h4 id="k8s-集群两类节点"><a href="#k8s-集群两类节点" class="headerlink" title="k8s 集群两类节点"></a>k8s 集群两类节点</h4><pre><code>* master node
-* worker node</code></pre>
-<h4 id="master-节点的组件（程序）"><a href="#master-节点的组件（程序）" class="headerlink" title="master 节点的组件（程序）"></a>master 节点的组件（程序）</h4><pre><code>* apiserver：接受客户端操作 k8s 的指令
-* schedulor：从多个 worker 节点的组件中选举一个来启动服务
-* controller manager：向 worker 节点的 kubelet 发送指令的</code></pre>
-<h4 id="worker-节点的组件（程序）"><a href="#worker-节点的组件（程序）" class="headerlink" title="worker 节点的组件（程序）"></a>worker 节点的组件（程序）</h4><pre><code>* kubelet：向 docker 发送指令管理 docker 容器的
-* kubeproxy：管理 docker 的网络</code></pre>
-<h4 id="k8s-用的数据库"><a href="#k8s-用的数据库" class="headerlink" title="k8s 用的数据库"></a>k8s 用的数据库</h4><p>etcd：键值对数据库，用来注册节点、服务、记录账户。。。</p>
-<h1 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h1><h4 id="Pod"><a href="#Pod" class="headerlink" title="Pod"></a>Pod</h4><pre><code>* Pod 是 k8s 的最小部署单元
-* 一组容器的集合
-* 一个 Pod 中的容器共享网络命名空间
-* Pod 是短暂的</code></pre>
-<h4 id="Controllers"><a href="#Controllers" class="headerlink" title="Controllers"></a>Controllers</h4><p>控制器：控制 Pod，启动、停止、删除</p>
-<pre><code>* ReplicaSet：确保预期的 Pod 副本数量
-* Deployment：无状态应用部署
-* StatefulSet：有状态应用部署
-* DaemonSet：确保所有 node 运行同一个 Pod
-* Job：一次性任务
-* Cronjob：定时任务</code></pre>
-<h4 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h4><pre><code>* 将一组 Pod 关联起来，提供一个统一入口，即使Pod地址发生改变，用户访问也不会发生变化![图片](https://uploader.shimo.im/f/pmZgTEqIVsYN6cA4.png!thumbnail)
+          <h1 id="git-结构"><a href="#git-结构" class="headerlink" title="git 结构"></a>git 结构</h1><pre><code>* 工作区：写代码，通过git add提交到暂存区
+* 暂存区：临时存储，通过git commit提交到本地库
+* 本地库：保存历史版本</code></pre>
+<h1 id="本地库操作"><a href="#本地库操作" class="headerlink" title="本地库操作"></a>本地库操作</h1><ol>
+<li><p>本地库初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>初始化本地库后多了 .git 文件夹， .git 目录中存放的是本地库相关的子目录和文件</p>
+</li>
+<li><p>设置签名</p>
+</li>
+</ol>
+<p>形式：</p>
+<pre><code>* 用户名：llj
+* Email地址：zz@qq.com</code></pre>
+<p>作用：区分不同开发人员身份</p>
+<p>辨析：这里设置的签名和登录远程库的账密没有任何关系</p>
+<p>命令：</p>
+<pre><code>* 项目级别/仓库级别：仅在本地库范围内有效
+    * git config user.name llj
+    * git config user.email zz@qq.com
+    * 信息保存在当前项目下的config文件中
+* 系统用户级别：登录当前操作系统的用户范围
+    * git config --global user.name llj
+    * git config --global user.email zz@qq.com
+    * 信息保存在 ~/.gitconfig 文件
+* 项目级别优先系统用户级别，不允许二者都没有</code></pre>
+<h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><ol>
+<li><p>状态查看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+<p>查看工作区、暂存区状态</p>
+</li>
+<li><p>添加操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add [file name]</span><br></pre></td></tr></table></figure>
+<p>将工作区的新建/修改添加到暂存区</p>
+</li>
+<li><p>提交操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;commit message&quot; [file name]</span><br></pre></td></tr></table></figure>
+<p>将暂存区提交到本地库</p>
+</li>
+<li><p>查看历史记录操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">git log --pretty&#x3D;oneline</span><br><span class="line">git log --oneline</span><br><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4></li>
+<li><p>前进后退</p>
+</li>
+</ol>
+<p>基于索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 索引</span><br></pre></td></tr></table></figure>
+<p>使用^符号：只能后退</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^^</span><br></pre></td></tr></table></figure>
+<p>根据^符号的数量来回退几次<br>使用~符号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~2</span><br></pre></td></tr></table></figure>
+<p>根据~符号后的数字来回退几次<br>reset命令三个参数对比：</p>
+<pre><code>* --soft：
+    * 仅仅在本地库移动HEAD指针
+* --mixed：
+    * 在本地库移动HEAD指针
+    * 重置暂存区
+* --hard：
+    * 在本地库移动HEAD指针
+    * 重置暂存区
+    * 重置工作区</code></pre>
+<ol start="5">
+<li>删除文件并找回</li>
+</ol>
+<p>删除：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm good.txt</span><br><span class="line">git add good.txt</span><br><span class="line">git commit -m &quot;del good.txt&quot;</span><br></pre></td></tr></table></figure>
+<p>找回：</p>
+<p>已提交至本地库：回退一个版本</p>
+<p>未提交至本地库：git reset –hard HEAD</p>
+<ol start="6">
+<li><p>比较文件差异</p>
+<ul>
+<li>git diff [文件名]<ul>
+<li>将工作区中的文件与暂存区进行比较</li>
+</ul>
+</li>
+<li>git diff [本地库中历史文件] [文件名]<ul>
+<li>将工作区中的文件和本地库历史记录比较</li>
+</ul>
+</li>
+<li>git diff：比较多个文件</li>
+</ul>
+</li>
+</ol>
+<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><ol>
+<li>什么是分支</li>
+</ol>
+<p>在版本控制过程中，使用多条线同时推进多个任务</p>
+<ol start="2">
+<li><p>分支的好处</p>
+<ul>
+<li>同时并行推进多个功能开发，提高开发效率</li>
+<li>各个分支在开发过程中，某个分支开发失败，不会影响其他分支</li>
+</ul>
+</li>
+<li><p>分支操作</p>
+<ul>
+<li>创建分支<ul>
+<li>git branch [分支名]</li>
+</ul>
+</li>
+<li>查看分支<ul>
+<li>git branch -v</li>
+</ul>
+</li>
+<li>切换分支<ul>
+<li>git checkout [分支名]</li>
+</ul>
+</li>
+<li>合并分支<ul>
+<li>切换到被合并的分支上：git checkout [分支名]</li>
+<li>执行 merge 命令：git merge [分支名]</li>
+</ul>
+</li>
+<li>解决冲突<ul>
+<li>编辑文件，删除特殊符号</li>
+<li>把文件修改到满意的程度</li>
+<li>git add .</li>
+<li>git commit -m “日志信息”<ul>
+<li>commit 此时不能带文件名</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="Git基本原理"><a href="#Git基本原理" class="headerlink" title="Git基本原理"></a>Git基本原理</h1><ol>
+<li>哈希</li>
+</ol>
+<p>采用 SHA-1 哈希算法</p>
+<ol>
+<li>保存版本的机制</li>
+</ol>
+<p>集中式版本控制工具的文件管理机制（增量式）</p>
+<p>以文件变更列表的方式存储信息。这类系统讲他们保存的信息看做是一组基本文件和每个文件随时间逐步积累的差异</p>
+<p><img src="https://uploader.shimo.im/f/OwpxPL43akuyAmW5.png!thumbnail" alt="图片"></p>
+<p>Git 的文件管理机制（快照流）</p>
+<p>每次提交更新时 Git 都会对当前全部文件制作一个快照并保存这个快照的索引。如果文件没有修改，git 不再存储该文件，而是保留一个链接指向之前存储的文件</p>
+<p><img src="https://uploader.shimo.im/f/mT1iwpXOMJzVIhxg.png!thumbnail" alt="图片"></p>
+<ol>
+<li>分支管理机制</li>
+</ol>
+<p>本质是创建和移动指针</p>
+<h1 id="远程仓库基本操作"><a href="#远程仓库基本操作" class="headerlink" title="远程仓库基本操作"></a>远程仓库基本操作</h1><ol>
+<li>本地创建远程仓库别名</li>
+</ol>
+<p>在本地 gittest 仓库下创建远程仓库 gittest 别名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add lljtest https:&#x2F;&#x2F;github.com&#x2F;lilingj&#x2F;lljtest.git</span><br><span class="line">git remote -v  #查看已有别名</span><br></pre></td></tr></table></figure>
 
-* 防止 Pod 失联
-* 定义一组 Pod 的访问策略</code></pre>
-<h4 id="Label"><a href="#Label" class="headerlink" title="Label"></a>Label</h4><pre><code>* 标签，附加到某个资源上，用于关联对象、查询和筛选
-* 一组 Pod 有一个统一的标签，Services 通过标签和一组 Pod 关联</code></pre>
-<h4 id="Namespace"><a href="#Namespace" class="headerlink" title="Namespace"></a>Namespace</h4><pre><code>* 命名空间，将对象逻辑上隔离（默认情况下，Pod 是可以互相访问的）
-    * 为不同的公司提供隔离的 Pod 运行环境
-    * 为开发环境、测试环境、生产环境分别准备不同的名称空间，进行隔离</code></pre>
-<h1 id="K8S部署"><a href="#K8S部署" class="headerlink" title="K8S部署"></a>K8S部署</h1><ol>
-<li>生产环境K8S平台规划</li>
-</ol>
-<p>多 master 集群，master 建议 3 台主机，etcd 必须 3 台以上（奇数：3、5、7。。。防止出现无法选举出主etcd节点），worker 节点越多越好</p>
-<pre><code>* 单 master 集群：master 单点故障宕机![图片](https://uploader.shimo.im/f/Xj741bvUHIagjKoa.png!thumbnail)
-* 多 master 集群（推荐使用）：通过 load balancer 实现负载均衡![图片](https://uploader.shimo.im/f/7xgcPBeHjwqaCLds.png!thumbnail)</code></pre>
 <ol>
-<li><p>服务器硬件配置推荐</p>
+<li>推送操作<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push 远程仓库地址或别名 分支名</span><br></pre></td></tr></table></figure>
+例子：将本地仓库 gittest 的 master 分支推送到远程仓库 gittest</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push lljtest master #通过别名</span><br><span class="line">git push https:&#x2F;&#x2F;github.com&#x2F;lilingj&#x2F;lljtest.git master #通过地址</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>克隆操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 远程仓库地址</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<ul>
+<li>完整地把远程库下载到本地</li>
+<li>创建 origin 远程地址别名</li>
+<li>初始化本地库</li>
+</ul>
 </li>
-<li><p>官方提供三种部署方式</p>
+<li><p>添加协作成员</p>
 </li>
 </ol>
-<p><img src="https://uploader.shimo.im/f/FdwU9D7Ol4TZHNV9.png!thumbnail" alt="图片"></p>
-<p>初始化服务器：</p>
-<pre><code>* 关闭防火墙
-    * systemctl stop firewalld
-    * systemctl disable firewalld
-* 关闭交换分区
-    * swapoff -a
-    * vim /etc/fastab     删掉最后一行dev
-    * free -m        若显示最后一行为0，则已经关闭
-* 配置主机名
-    * hostnamectl set-hostname k8s-master1-llj
-* 配置名称解析
-    * 配置 /etc/hosts 文件
-* 关闭selinux
-    * 临时关闭 setenforce 0
-    * 永久关闭
-        * vim /etc/selinux/config
-        * 修改文件某行为 SELINUX=disabled
-* 配置时间同步
-    * 选择一个节点为服务端，剩下作为客户端
-        * 配置服务端
-            * yum install chrony -y
-            * vim /etc/chrony.conf
-                * 修改三项（这个我听不懂，不知道具体意义）
-                    * server 127.127.1.0 iburst
-                    * allow 192.168.31.0/24
-                    * local stratum 10
-            * systemctl start chronyd
-            * systemctl enable chronyd
-            * ss -unl | grep 123         有输出则成功
-        * 配置客户端
-            * yum install chrony -y
-            * vim /etc/chrony.conf
-                * 添加server 服务器地址 iburst
-            * systemctl start chronyd
-            * systemctl enable chronyd
-            * ss -unl | grep 123         有输出则成功</code></pre>
+<p>在 github 中添加</p>
 <ol>
-<li>为Etcd和APIServer自签SSL证书</li>
+<li><p>抓取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch 远程库地址或别名 分支名</span><br><span class="line">git merge 远程库地址别名&#x2F;远程分支名</span><br></pre></td></tr></table></figure>
+<p>上下两段代码等价</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull 远程库地址或别名 分支名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决冲突</p>
+<ul>
+<li>如果不是远程库最新版所做的修改，不能推送，必须先拉取</li>
+<li>拉取下来后如果进入冲突状态，解决冲突</li>
+</ul>
+</li>
+<li><p>跨团队协作</p>
+</li>
 </ol>
-<p>三步：</p>
-<pre><code>    * 创建证书颁发机构
-    * 填写表单，写明etcd 所在节点的ip
-    * 向证书颁发机构申请证书</code></pre>
-<p>加密：</p>
-<pre><code>    * 对称加密：加密解密用相同秘钥
-    * 非对称加密：是用公钥私钥
-    * 单向加密：只能加密不能解密（哈希）</code></pre>
-<p>ssl证书来源：</p>
-<pre><code>    * 网络第三方机构购买
-    * 自签证书（内网使用，浏览器提示信息“不受信任”）</code></pre>
-<p>签证机构（CA）</p>
-<p>自建CA</p>
-<pre><code>    * openssl
-    * cfssl</code></pre>
+<p>fork 远程仓库，协作人员以该远程仓库为基础，更新代码后，pull request 回被fork的仓库，经原仓库管理人员审核后，被 merge 到原仓库</p>
 <ol>
-<li>Etcd数据库集群部署</li>
-</ol>
-<p>Etcd 需要三台虚拟机</p>
-<ol>
-<li><p>部署Master组件</p>
-</li>
-<li><p>部署Node组件</p>
-</li>
-<li><p>部署K8S集群网络</p>
-</li>
-<li><p>部署Web UI（Dashboard）</p>
-</li>
-<li><p>部署集群内部DNS解析服务（CoreDNS）</p>
-</li>
+<li>SSH 登录<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">rm -rf .ssh</span><br><span class="line">ssh-keygen -t rsa -C myemailaddr@qq.com</span><br></pre></td></tr></table></figure>
+在 .ssh 文件夹下生成 id_rsa 和 id_rsa.pub 公私钥对，将公钥复制到 github 上</li>
 </ol>
 
       
@@ -357,7 +405,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -425,7 +473,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

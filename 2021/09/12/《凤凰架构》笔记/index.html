@@ -20,30 +20,32 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="昼短苦夜长，何不秉烛游？">
-<meta property="og:type" content="website">
-<meta property="og:title" content="换菜刀换脸盆">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="第一部分 演进中的架构第一章 服务架构演进史 原始分布式时代：寻找使用多台计算机共同协作来支撑同一套软件系统的可行方案。设计向性能做出的妥协，令DCE“尽量简单透明”的努力几乎全部付诸东流，无论是从编码、设计、部署还是从运行效率上看，远程都与本地有着天壤之别 单体系统时代：巨石系统，Monolithic Application。 单体除了难以阻断错误传播、不便于动态更新程序以外，还面临难以技术异构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《凤凰架构》笔记">
+<meta property="og:url" content="http://example.com/2021/09/12/%E3%80%8A%E5%87%A4%E5%87%B0%E6%9E%B6%E6%9E%84%E3%80%8B%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="换菜刀换脸盆">
-<meta property="og:description" content="昼短苦夜长，何不秉烛游？">
+<meta property="og:description" content="第一部分 演进中的架构第一章 服务架构演进史 原始分布式时代：寻找使用多台计算机共同协作来支撑同一套软件系统的可行方案。设计向性能做出的妥协，令DCE“尽量简单透明”的努力几乎全部付诸东流，无论是从编码、设计、部署还是从运行效率上看，远程都与本地有着天壤之别 单体系统时代：巨石系统，Monolithic Application。 单体除了难以阻断错误传播、不便于动态更新程序以外，还面临难以技术异构">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-12T15:00:00.000Z">
+<meta property="article:modified_time" content="2021-09-12T09:13:31.698Z">
 <meta property="article:author" content="lilingj">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2021/09/12/%E3%80%8A%E5%87%A4%E5%87%B0%E6%9E%B6%E6%9E%84%E3%80%8B%E7%AC%94%E8%AE%B0/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>换菜刀换脸盆</title>
+  <title>《凤凰架构》笔记 | 换菜刀换脸盆</title>
   
 
 
@@ -146,9 +148,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -164,10 +167,9 @@
       <meta itemprop="name" content="换菜刀换脸盆">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/12/%E3%80%8A%E5%87%A4%E5%87%B0%E6%9E%B6%E6%9E%84%E3%80%8B%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">《凤凰架构》笔记</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          《凤凰架构》笔记
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -191,7 +193,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="第一部分-演进中的架构"><a href="#第一部分-演进中的架构" class="headerlink" title="第一部分 演进中的架构"></a>第一部分 演进中的架构</h1><h2 id="第一章-服务架构演进史"><a href="#第一章-服务架构演进史" class="headerlink" title="第一章 服务架构演进史"></a>第一章 服务架构演进史</h2><ul>
+        <h1 id="第一部分-演进中的架构"><a href="#第一部分-演进中的架构" class="headerlink" title="第一部分 演进中的架构"></a>第一部分 演进中的架构</h1><h2 id="第一章-服务架构演进史"><a href="#第一章-服务架构演进史" class="headerlink" title="第一章 服务架构演进史"></a>第一章 服务架构演进史</h2><ul>
 <li><strong>原始分布式时代</strong>：寻找使用多台计算机共同协作来支撑同一套软件系统的可行方案。设计向性能做出的妥协，令DCE“尽量简单透明”的努力几乎全部付诸东流，无论是从编码、设计、部署还是从运行效率上看，远程都与本地有着天壤之别</li>
 <li><strong>单体系统时代</strong>：巨石系统，Monolithic Application。<ul>
 <li>单体除了难以阻断错误传播、不便于动态更新程序以外，还面临难以技术异构的困难。</li>
@@ -1520,25 +1522,51 @@
 <li>现在，基于Kubernetes构筑的服务网格是目前最先进的架构风格，即通过中间人流量劫持的方式，以介于应用和基础设施之间的边车代理来做到既让用户代码可以专注业务需求，不必关注分布式的技术，又能实现几乎不亚于此前Spring Cloud时代的哪种通过代码来解决分布式问题的可配置、安全和可观测性</li>
 </ul>
 
-      
     </div>
 
     
     
     
+        <div class="reward-container">
+  <div>给我一块钱，可以不可以</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="lilingj 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="lilingj 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/24/%E7%90%86%E8%A7%A3fabirc%E7%9A%84channel%E5%92%8C%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0/" rel="prev" title="理解channel和动态添加">
+      <i class="fa fa-chevron-left"></i> 理解channel和动态添加
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
@@ -1590,6 +1618,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E6%BC%94%E8%BF%9B%E4%B8%AD%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">第一部分 演进中的架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B%E5%8F%B2"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 服务架构演进史</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E6%9E%B6%E6%9E%84%E5%B8%88%E8%A7%86%E8%A7%92"><span class="nav-number">2.</span> <span class="nav-text">第二部分 架构师视角</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E8%AE%BF%E9%97%AE%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.1.</span> <span class="nav-text">第二章 访问远程服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">第三章 事务处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E9%80%8F%E6%98%8E%E5%A4%9A%E7%BA%A7%E5%88%86%E6%B5%81%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.3.</span> <span class="nav-text">第四章 透明多级分流系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%9E%B6%E6%9E%84%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-number">2.4.</span> <span class="nav-text">第五章 架构安全性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86-%E5%88%86%E5%B8%83%E5%BC%8F%E7%9A%84%E5%9F%BA%E7%9F%B3"><span class="nav-number">3.</span> <span class="nav-text">第三部分 分布式的基石</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%88%86%E5%B8%83%E5%BC%8F%E5%85%B1%E8%AF%86"><span class="nav-number">3.1.</span> <span class="nav-text">第六章 分布式共识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E4%BB%8E%E7%B1%BB%E5%BA%93%E5%88%B0%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.2.</span> <span class="nav-text">第七章 从类库到服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%B5%81%E9%87%8F%E6%B2%BB%E7%90%86"><span class="nav-number">3.3.</span> <span class="nav-text">第八章 流量治理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%8F%AF%E9%9D%A0%E9%80%9A%E4%BF%A1"><span class="nav-number">3.4.</span> <span class="nav-text">第九章 可靠通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7"><span class="nav-number">3.5.</span> <span class="nav-text">第十章 可观测性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86-%E4%B8%8D%E5%8F%AF%E5%8F%98%E8%AE%BE%E6%96%BD%E5%9F%BA%E7%A1%80"><span class="nav-number">4.</span> <span class="nav-text">第四部分 不可变设施基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E8%99%9A%E6%8B%9F%E5%8C%96%E5%AE%B9%E5%99%A8"><span class="nav-number">4.1.</span> <span class="nav-text">第十一章 虚拟化容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0-%E5%AE%B9%E5%99%A8%E9%97%B4%E7%BD%91%E7%BB%9C"><span class="nav-number">4.2.</span> <span class="nav-text">第十二章 容器间网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0-%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8"><span class="nav-number">4.3.</span> <span class="nav-text">第十三章 持久化存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0-%E8%B5%84%E6%BA%90%E4%B8%8E%E8%B0%83%E5%BA%A6"><span class="nav-number">4.4.</span> <span class="nav-text">第十四章 资源与调度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC"><span class="nav-number">4.5.</span> <span class="nav-text">第十五章 服务网格</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86-%E6%8A%80%E6%9C%AF%E6%96%B9%E6%B3%95%E8%AE%BA"><span class="nav-number">5.</span> <span class="nav-text">第五部分 技术方法论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0-%E5%90%91%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%BF%88%E8%BF%9B"><span class="nav-number">5.1.</span> <span class="nav-text">第十六章 向微服务迈进</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
